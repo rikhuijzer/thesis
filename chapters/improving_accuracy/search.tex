@@ -1,0 +1,97 @@
+\section{Search}
+\label{sec:search}
+
+The field of NLP is rapidly evolving due to the introduction of deep learning.
+Systems which obtain state of the art (SOTA) accuracy are often surpassed within a few months.
+A search is conducted to improve the accuracy of the existing systems.
+The research for this part has not been systematic.
+This is caused by the goal to improve accuracy.
+When aiming for such a goal completeness is not important, as long as the improvement is realised.
+The method for finding an improvement is based on coming up with `novel' approaches to improve accuracy.
+After having such an `novel' approach the literature is consulted.
+This search method relies on the assumption that papers have done their research and will provide proper related work.
+This section will explain the considered ideas and related literature.
+
+\subsection{Duplicate finding}
+\label{subsec:duplicate_finding}
+% clustering
+A large part of communications with customers consist of answering questions.
+Some questions will be duplicates, or in other words, some questions will have been asked and answered before.
+Finding duplicate questions is the same as finding clusters in the data.
+Another approach could be based on template responses used by customer support teams.
+A classifier could be trained to come up with these template responses.
+
+% semantic text similarity
+Another approach to find duplicates is using semantic text similarity (STS).
+STS is a NLP tasks focusing on finding sentences (or texts) having the same meaning.
+It is a recurring task in the SemEval workshop.
+Systems in this field obtain impressive results, however it would not help with the chosen task of intent classification.
+Also, intent classification is more useful for the thesis than only knowing whether two sentences are the same.
+
+\subsection{Using data}
+\label{subsec:using_data}
+According to~\citet{warden2018} it is more effective to get more training data than to apply better models and algorithms.
+For conversational agents in company settings it is easy to get raw data.
+This shifts the problem to applying to automatic data wrangling.
+This is not further investigated since the data obtained from customers cannot be part of a public thesis.
+Learning automatically from users is applied by some Microsoft chatbots.
+Microsoft Tay famously started to learn offensive language from users and has been shut down as a result.
+In China Microsoft has had a more successful release of XiaoIce.
+XiaoIce is optimized for ``long-term user engagement''~\citep{zhou2018design}.
+Engagement is achieved by establishing an emotional connection with the user.
+This system which is created by a research lab and being used by 660 million users does not automatically use the data to learn.
+The authors manually optimize the engagement of the system.
+From this it is concluded that reinforcement learning and automatic data wrangling are not yet feasible approaches to increase accuracy.
+
+\subsection{Kaggle}
+\label{subsec:kaggle}
+Kaggle (\url{https://www.kaggle.com}) is a well-known site in the machine learning domain.
+On this site a framework exists where datasets can be published.
+The site, along other things, shows statistics, a comments section and a scoreboard.
+It is famous for hosting `competitions', where the person or team obtaining the highest accuracy for some task gets price money from the dataset hoster.
+Kaggle provides a way for machine learning enthusiasts to communicate.
+People who obtain top 20 high scores on difficult tasks tend to explain their pipeline in a blogpost.
+Research papers tend to focus on designing the best deep learning architectures.
+The Kaggle explanations are valuable sources for learning how to get the most out of the architectures.
+One such post~\citep{kumar2018} uses three embeddings, namely Glove, FastText and Paragram.
+The author argues that ``there is a good chance that they (the embeddings) capture different type of information from the data''.
+This method is called boosting.
+Predictions from the embeddings are combined by taking the average score.
+A threshold is set to remove answers where the model is unsure.
+This method could be used to improve performance for natural language understanding.
+Running three systems in parallel does increase the training time, but the difference is not too large.
+It would be interesting to test whether averaging can be replaced by a more involved calculation.
+Meta-algorithms such as boosting, bagging and stacking are not investigated further since the improvement is expected to be insignificant.
+% Complete meta-algorithm surveys like the work by~\citet{vanschoren2018meta} have only been skimmed through.
+
+\subsection{Meta-learning}
+\label{subsec:meta-learning}
+Meta-learning is ``is the science of systematically observing how different machine learning approaches perform on a wide range of learning tasks, and then learning from this experience, or meta-data, to learn new tasks much faster than otherwise possible''~\citet{vanschoren2018meta}.
+Few-shot learning aims to learn useful representations from a few examples.
+In practise most intent classification systems use few examples, so few-shot learning is interesting to the research question.
+This was also concluded by the IBM T. J. Watson Research Center~\citep{yu2018diverse}.
+The authors show that their system outperforms other few-shot learning approaches.
+They do not compare their system against natural language understanding solutions and conclude that their research should be applied to other few-shot learning tasks.
+This implies that natural language understanding specific systems obtain higher accuracies.
+Automatically tuning hyperparameters as done in TensorFlow's AutoML is based on the work by~\citet{andrychowicz2016learning}.
+Industry claim that AutoML obtains 95\% of the accuracy of hand-tuning hyperparameters.
+Another problem is that it does not scale well~\citep{jones2017}.
+Transfer learning approaches like MAML~\citep{finn2017model} and Reptile~\citep{nichol2018reptile} could be useful for intent classification as well.
+Different domains require different models.
+Reptile seems interesting to be used to train a model on one domain and then be able to easily switch the model to other domains.
+This would introduce a lot of complexity in the code.
+More convenient would be using a model which works on all domains.
+
+\subsection{Embeddings}
+\label{subsec:embeddings}
+Embeddings capture knowledge about language and use that for downstream tasks.
+There appears to be a consensus about the timeline of embeddings evolution.
+Glove~\citep{pennington2014} was superseded by FastText~\citep{joulin2016bag}.
+The Facebook FastText embedding is aimed to be quick, allowing it to be used as a baseline.
+With 157 languages (\url{https://fasttext.cc/}) it is a mutli-lingual model.
+Another state-of-the-art and easy to implement embedding is the universal sentence encoder~\citep{cer2018universal}.
+The word `universal' denotes that the system has used a supervised training training task which has been chosen such that the embeddings generalize to downstream tasks.
+Not only Google, but also Microsoft research is working on multi-task learning~\citep{subramanian2018learning}.
+These embeddings are not enough to improve on existing systems, since Rasa is using the universal sentence encoder~\citep{wiese2018}.
+One step further would be to let the model decide what embedding it wants to use~\citep{kiela2018dynamic}.
+A caveat is the fact that one then needs to implement multiple embeddings (even when the model decides that one embedding is the best).

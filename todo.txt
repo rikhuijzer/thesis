@@ -1,0 +1,26 @@
+
+Get priorities right, then focus on taking small steps
+
+
+abstract, conclusion etc
+introduce NLU or "intent classification and named-entity recognition"
+read through search section
+Add link to improv and nlu_datasets
+NLU in practise, Fransis part (most interesting for spindle, but possibly also a fun overview for uni)
+explain TPU estimator code (free technical text) (in section improv?)
+capitalize tables
+read review https://arxiv.org/pdf/1708.02709.pdf
+describe improv and nlu_datasets
+Walk through notes and copy info.
+fix preliminaries
+insert images (increases page count ftw)
+Ask Jukka feedback on part of report
+Ask Jukka what he likes to see in report
+Describe improv
+Describe nlu_datasets
+Training data section
+Fix todos in report
+Reduce could / should
+Vanishing gradient explanation is okay, but need bit more formal. Replace ‘lets’ by ‘consider’ (colloquial phrases).
+Walk through entire report
+Move to public thesis repository

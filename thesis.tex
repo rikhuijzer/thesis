@@ -1,0 +1,181 @@
+%
+% TU/e Style Master Thesis template for LaTeX
+%
+% Public version 1.0
+% 2010 - 2013 Thijs Nugteren and Joos Buijs
+%
+% THIS IS THE MAIN FILE (i.e. compile this file, compiling the others directly won't work)
+%
+\documentclass[a4paper,10pt,twoside]{report}
+
+%all the other includes etc. are done in the thesis.sty file.
+\usepackage{thesis}
+
+%
+% These commands need to be defined in order to produce a correct and personalized document
+%
+\newcommand{\shortdoctitle}{Master's Thesis}
+\newcommand{\doctitle}{Automatically responding to customers}
+\newcommand{\docsubtitle}{Master Thesis}
+
+\newcommand{\me}{Rik Huijzer}
+\newcommand{\keywords}{keyword1, keyword2, keyword3}
+\newcommand{\version}{} % useless imo
+\newcommand{\monthYear}{January 2019}
+
+%Be sure to use all the titles for your committee members!!! (their names show up on the very first page!)
+\newcommand{\firstCommitteeMember}{dr. N. Yakovets}
+\newcommand{\secondCommitteeMember}{dr. G.H.L. Fletcher}
+\newcommand{\thirdCommitteeMember}{dr. J. Vanschoren}
+
+% proper date formatting
+\renewcommand{\today}{\ifnum\number\day<10 0\fi \number\day \space%
+\ifcase \month \or January\or February\or March\or April\or May%
+\or June\or July\or August\or September\or October\or November\or December\fi \space%
+\number \year}
+
+\author{\me}
+
+%
+% PDF settings
+%
+\hypersetup
+{
+pdfauthor={\me},
+pdftitle={\shortdoctitle},
+pdfsubject={\doctitle},
+pdfkeywords={\keywords}
+}
+
+\begin{document}
+
+    %use this include for PDF and distribution versions
+    \pagenumbering{roman}
+    \begin{center}
+        \includegraphics[height=2cm]{figures/tue-logo-high.png}\\
+        %\LARGE
+        %Eindhoven University of Technology \\
+        \large
+        Department of Mathematics and Computer Science
+
+        \vspace*{10cm}
+
+        \setlength{\TPHorizModule}{1mm}
+        \setlength{\TPVertModule}{\TPHorizModule}
+        % Set the Paragraph Indent to zero, so the first line is not Indented
+        % Back-up the current value so it can be put back at the end of the title page
+        \newlength{\backupparindent}
+        \setlength{\backupparindent}{\parindent}
+        \setlength{\parindent}{0mm}
+        % Begins a textbox at 72 mm from the left of the edge of the paper and 89 mm from the top
+        % The width of the textbox is 95 mm (167 - 72 mm)
+        % The height of the box cannot be defined, so it is your task to keep the text not too long
+        \begin{textblock}{95}
+            (62,89)
+            \vspace*{1mm}
+            \huge
+            \textbf{\doctitle \\}
+            \Large
+            \vspace*{5mm}
+            \textit{\docsubtitle}\\
+            \vspace*{10mm}
+            \Large
+            \me\\
+        \end{textblock}
+
+        \large
+        Supervisors:\\
+        \begin{tabular}{c}
+            \firstCommitteeMember\\
+            \secondCommitteeMember\\
+            \thirdCommitteeMember\\
+        \end{tabular}
+
+        \vfill
+        \version
+
+        \vfill
+        %\docdate \\
+        \large
+        Eindhoven, \monthYear\\
+
+        % Put the Paragraph Indent back to its original value
+        \setlength{\parindent}{\backupparindent}
+    \end{center}
+
+    \clearemptydoublepage
+
+    %Sometimes line numbers are nice, uncomment the next line to enable:
+    %\linenumbers
+
+    \input{chapters/abstract}
+
+    \clearemptydoublepage
+
+    \input{chapters/preface}
+
+    \clearemptydoublepage
+
+    \tableofcontents
+
+    \clearemptydoublepage
+
+    \listoffigures
+
+    \clearemptydoublepage
+
+    \listoftables
+
+    \clearemptydoublepage
+
+    \lstlistoflistings
+
+    \clearemptydoublepage
+
+    \input{chapters/introduction}
+
+    \clearemptydoublepage
+
+    \input{chapters/preliminaries}
+
+    \clearemptydoublepage
+
+    \input{chapters/nlu}
+
+    \clearemptydoublepage
+
+    \input{chapters/improving_accuracy}
+
+    \clearemptydoublepage
+
+    \input{chapters/future_work}
+
+    \clearemptydoublepage
+
+    \input{chapters/conclusions}
+
+    \clearemptydoublepage
+
+    %Choose a good bibliography style, plain would do often, but these might be nice too
+    %\bibliographystyle{these}
+    \bibliographystyle{plainnat}
+    \bibliography{references}
+
+    \clearemptydoublepage
+
+    \appendix
+    \addcontentsline{toc}{chapter}{Appendix}
+
+    \input{appendices/bench}
+
+    \input{appendices/fp}
+
+    \input{appendices/factory}
+
+    \input{appendices/braun_recalculations}
+
+    \input{appendices/improv}
+
+    \input{appendices/nlu_datasets}
+
+\end{document}

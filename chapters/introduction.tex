@@ -1,0 +1,115 @@
+\chapter{Introduction}
+\label{ch:introduction}
+
+\setcounter{page}{0}
+\pagenumbering{arabic}
+This master thesis is the final report of the graduation project for the Computer Science and Engineering master at Eindhoven University of Techonology (TU/e).
+The project is carried out at Devhouse Spindle in Groningen.
+
+\section{Thesis context}
+\label{sec:thesis_context}
+Spindle is interested in automatically responding to customer questions.
+It is expected that automated responses to text are feasible by recent examples in artificial intelligence.
+Smartphones include speech recognition, allowing users to tell the phone what they want.
+Obtaining information about the weather or the age of a specific president by talking to a device is possible.
+Self-driving cars are constantly in the news.
+They are able to drive fully autonomous in certain regions.
+Regions are typically in America, since the country has wider roads and technology companies have offices there.
+Google AlphaGo has been able to beat the best Go players in the world.
+At the same time another Google team is working on Duplex.
+The goal of Duplex is to fill in missing information from their sites by calling people and asking for the information.
+Demonstrations by Google show that it is difficult for unsuspecting humans to tell the difference between Duplex and a real human.
+
+% field evolve speed
+Remarkable about the context is the speed in which the field evolves.
+Learning about some scientific topic means picking up a recent book or review paper.
+For example, Stanford provides a `Deep Learning for Natural Language Processing' course.
+This course is given bij Christopher Manning who has been active in natural language processing for many years and is highly cited in the field.
+When comparing the material of the `Winter 2018' version with the `Winter 2017' we see many changes.
+Attention and transformer models~\citep{vaswani2017attention} now get three lectures instead of one.
+This could be a coincidence where last year has been a particularly interesting one.
+Looking at the years before it does not seem to be so.
+A recent review paper for the same field~\citep{young2018recent} still see lots of potential.
+They expect better models for unlabelled data, reinforcement learning, zero-shot learning and network memory enrichment via knowledge base.
+
+% implications of evolving speed (more hyperrefs and blog references)
+The fast pace implies that this thesis is in certain aspects unconventional.
+An atypical high amount of references are to arXiv publications, blogposts and websites.
+These sources are regarded with more than usual skepticism and it is tried to extract only empirically validated information.
+This would not seem to work for fields like theoretical physics.
+Arguably the benefit of deep learning is that everyone can reproduce and improve results given some time and a (cloud) computer.
+
+\section{Problem description}
+\label{sec:problem_description}
+% why intent classification
+The field working on interpreting text is natural language processing.
+In this field many tasks seem interesting.
+For example, semantic text similarity could be used to find sentences having the same meaning.
+One could apply this in an application to classify user input as being a duplicate.
+Duplicates can automatically be answered by using some template.
+Another interesting task is question answering.
+This field is still maturing.
+State-of-the-art systems focus on specifying the answer for some question given a paragraph of text or given a large pre-structured knowledge base.
+Note the word `paragraph'.
+IBM Watson is an example where the latter is used for its responses in the Jeopardy quiz~\citep{high2012era}.
+
+% intent classification
+The intent classification tasks is chosen due to the following practical constraints.
+Intents are often used by conversational agents (chatbots) and therefore able to classify in real-time.
+Also, the training data typically contains only a few dozen examples.
+Another benefit of these systems is that they are being applied in industry (empirical evidence).
+The IBM sales department (\url{https://www.ibm.com}) claims that companies like Autodesk are able to respond to 60\% of their customer chats automatically.
+
+% organisations claiming highest accuracy numbers
+Various organisations claim to have obtained the best accuracy numbers for text classification tasks.
+Snips show that they outperform the competition by a large margin (\url{https://medium.com/snips-ai/2b8ddcf9fb19}) on 2 June 2017.
+The competition consists of api.ai, Wit.ai, Luis.ai and Amazon Alexa.
+Their small benchmark tests the systems against 70 queries per intent on their own dataset.
+Snips claim to score 79\% accuracy, while the second best scores 73\%.
+Also, via sentence examples Snips show that some named-entities are classified incorrectly by systems other than Snips.
+A comparison by~\citet{braun2017} looks at LUIS, Watson Conversation, API.ai, wit.ai, Amazon Lex and Rasa.
+Three datasets are created and published by the authors.
+Code to re-run or extend the benchmarks has not been included.
+DeepPavlov~\citep{burtsev2018} reports another high score for intent classification.
+It is based on the Snips dataset and compared against api.ai, Watson Conversation, Microsoft LUIS, Wit.ai, Snips.ai, Recast.ai and Amazon Lex.
+Botfuel show they are `on par' with the competition (\url{https://medium.com/botfuel/eb8684a1e55f}).
+This is based on runs on the same datasets as~\citet{braun2017}.
+Using micro averaging the Botfuel is one procent lower than Watson, equals LUIS and outperforms DialogFlow, Rasa, Snips and Recast.
+The results for Rasa match the results provided in the paper.
+This means that Botfuel has compared their system against an old version of Rasa.
+
+% bench problem generalization
+The main problem with these claims is that the numbers appear convincing to a machine learning layman.
+It could be that some organisation has cherry picked a dataset for their system or omitted systems which outperformed theirs.
+The only way for users to determine what system is the most accurate for their data is to trust these claims or write their own benchmark.
+This gives rise to the following research question.\\
+
+\rqone \\[1mm]
+
+% increasing state of the art problem
+Another interesting problem from an academic point of view is increasing accuracy.
+Natural language understanding is far from solved.
+Due to the probabilistic nature of machine learning one should not expect perfect results.
+However, accuracies one some computer vision tasks are above 99\%, which cannot be said for natural language understanding.
+The second research question is as follows.\\
+
+\rqtwo \\[1mm]
+
+The focus in this question lies on English datasets.
+For Spindle Dutch datasets would be more useful, however baselines for Dutch datasets do not exist.
+Also, knowledge obtained from answering RQ2 is expected to generalise to any language.
+The first and second research question are discussed respectively in chapter~\ref{ch:nlu} and~\ref{ch:improving_accuracy}.
+
+\section{Project goal}
+\label{sec:project_goal}
+Answering RQ1 means writing code.
+Even if the answer is negative, it will have provided a baseline to use when answering RQ2.
+The aim of the software is to be used by others, so it should be easy to run.
+Software extensions should also be possible.
+The goal related to the first research question is as follows.\\
+
+\rgone \\
+
+\noindent To not let our guard down the goal related to the second research question is stated ambitiously.\\
+
+\rgtwo

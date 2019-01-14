@@ -1,0 +1,100 @@
+\section{Results}
+\label{sec:results}
+
+% less text is allowed for this section since it makes sense
+Experiments are conducted on the AskUbuntu, Webapplications, Chatbot and SNIPS2017 dataset as introduced in section~\ref{subsec:available_datasets}.
+Comparisons are made for a fixed number of steps (or equivalently epochs).
+The reason for this is that intermediate results are not easily reported for the BERT model as explained in section~\ref{subsec:training}.
+The number of steps to be used for training is basically a guess on what should be enough.
+For each dataset various runs for BERT are executed.
+During one run only intents are shown to the system and accuracy is measured for intents.
+Another run only shows entities and measures intents.
+A third run shows the system intents and entities and measures both.
+These methods are denoted as separate or joint.
+It is expected that the joint training increases accuracy for both intent and entity classifications.
+The reason for this is that the model sees more varied data and hence should be able to more easily find a good internal representation of the data.
+Results are listed in table~\ref{tab:runs_scores}.
+
+% notes on runs
+Note that separate training consists of two runs, and hence ran twice as many epochs.
+This seems fair, since intent or entity improvements which require twice as many training steps are not interesting for expensive models such as BERT.
+As a baseline Rasa 0.13.8 with the Spacy pipeline is used.
+Only intent classification is possible using the benchmark code, so entity scores are missing.
+Omitting scores for other systems has been deliberate.
+The table is merely meant to support that joint training is feasible.
+A final remark is that the scores have been rounded to two decimals.
+The reason for this is that results vary between runs and for changes to hyperparameters.
+To avoid falsely reporting perfect scores (having accuracy of 1.0), all intent and entity numbers are rounded down.
+The number of epochs is calculated by taking number of training steps times training batch size and dividing by number of training examples.
+% todo: list number of intents and entities per dataset in table, like discussed in methodology
+The training time for each model is around 10 minutes.
+Running time differences between runs are small, since most time is spent on training preparations and transferring model checkpoints between TPU and cloud storage.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{l l l l l c c}
+        \textbf{Dataset}    & \textbf{Steps}  & \textbf{Batch size} & \textbf{Epochs}  & \textbf{Method}   & \textbf{Intent}  & \textbf{Entity}\\
+        \hline
+        AskUbuntu           & & & & Rasa & 0.83 \\
+                            & 250 (twice) & 32 & 151 (twice) &  separate & 0.74 & 0.99\\
+                            & 250 & 32 & 151 & joint & 0.98 & 0.79\\
+        \hline
+        WebApplications     & & & & Rasa & 0.67\\
+                            & 250 (twice) & 32 & 267 (twice) & separate & 0.00 & 0.79\\
+                            & 250 & 32 & 267 & joint & 0.65 & 0.81\\
+                            & 1000 (twice) & 8 & 267 (twice) & separate & 0.72 & 0.79\\
+                            & 1000 & 8 & 267 & joint & 0.53 & 0.80\\
+        \hline
+        Chatbot             & & & & Rasa & 0.98 \\
+                            & 250 (twice) & 16 & 40 (twice) & separate & 0.99 & 0.74\\
+                            & 250 & 16 & 40 & joint & 0.98 & 0.79\\
+        \hline
+        Snips2017           & & & & Rasa & 0.99\\
+                            & 1500 (twice) & 32 & 22.9 (twice) & separate & 0.03 & 0.83\\
+                            & 1500 & 32 & 22.9 & joint & 0.97 & 0.85\\
+        \hline
+    \end{tabular}
+    \caption{Weighted f1 accuracy scores for separate and joint training on four datasets.}
+    \label{tab:runs_scores}
+\end{table}
+
+The code to reproduce the results the logs (including predictions) can be found at the links provided in table~\ref{tab:runs_urls}.
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{l l}
+        \textbf{Dataset}    & \textbf{Url}\\
+        AskUbuntu           & \url{https://github.com/rikhuijzer/improv/tree/master/runs/askubuntu}\\
+        WebApps             & \url{https://github.com/rikhuijzer/improv/tree/master/runs/webapplications} \\
+        Chatbot             & \url{https://github.com/rikhuijzer/improv/tree/master/runs/chatbot} \\
+        Snips2017           & \url{https://github.com/rikhuijzer/improv/tree/master/runs/snips2017} \\
+    \end{tabular}
+    \caption{Hyperlinks for Rasa and BERT run information.}
+    \label{tab:runs_urls}
+\end{table}
+
+% result analysis
+From the results it can be concluded that joint training is feasible.
+The model will not learn anything when training on intents separately for SNIPS2017 and WebApplications.
+For WebApplications it has been found that lowering the step size can solve this problem.
+This suggests that the gradient descent does not converge because the step size is too big.
+A bigger batch size means a more stable error gradient.
+It might be that this caused the model to get stuck in a local minimum.
+Specifically, the difference with joint training is that the joint training data is much more varied.
+Say a typical sentence contains 12 tokens.
+Then a joint training batch of size 32 will contain about 3 tokens related to intents and 29 related to entities.
+For an intent training batch of size 32 it will contain 32 tokens related to intents.
+Hence, the data for the joint training is much more complex.
+This seems to indicate that the joint training forces the model to learn a more complex representation.
+An alternative explanation could be related to the fact that training data is not shuffled.
+The default BERT code hints to shuffle data, but when comparing the Colab log with the training data, the implementation in \textsc{improv} does not.
+
+% closing remarks
+An important thing to note about the results is that the datasets are very small.
+One would expect that the large BERT model is better suited for datasets which contain more training examples.
+Furthermore, the experiments are based on a naive implementation.
+Not only the batch size but also other hyperparameters can be tuned for better results.
+Training has used a fixed number of steps or epochs.
+It might be that more epochs give higher accuracies.
+On the other hand it might also be that less epochs correspond to similar accuracies in less training time.
+Other interesting hyperparameters are \textit{max\_seq\_length} and \textit{learning\_rate}.
+Lowering the former to the expected maximum number of tokens in sentences reduces training and inference time.

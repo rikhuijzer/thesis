@@ -1,0 +1,162 @@
+\chapter{Notes on functional programming in Python}
+\label{ch:fp}
+
+Python is not a pure functional language.
+However more and more constructs of functional programming are being added to the language each year.
+This appendix will explain some functional ideas used in the code, as presented by~\citet{lott2015}.
+Higher-order functions take or return functions, this is used to replace the factory design pattern as explained in section~\ref{sec:mapping_to_functions}.
+Keeping track of state without a class results in function signatures to contain many parameters, these can be handled by using NamedTuples, see section~\ref{sec:named_tuple}.
+Another benefit of classes is that data can be stored, used for example in caching.
+A convenient solution for caching is described in section~\ref{sec:function_caching}.
+Collections of data are typically transformed via loops.
+Here each loop will transform the entire collection and move to the next transformation.
+Lazy evaluation, as described in section~\ref{sec:lazy_evaluation}, uses a more efficient way.
+
+\section{Mapping to functions}
+\label{sec:mapping_to_functions}
+In code we often have a function which calls other functions depending on some conditionals.
+For example in `system.py` the factory design pattern is replaced by a more functional design.
+In this design `system.py` behaves like a super and delegates the work based on what system
+we currently interested in.
+We give an example for two systems.
+The delegation could be done via conditional statements.
+
+\begin{verbatim}
+    if 'mock' in system.name:
+      response = src.systems.mock.get_response(tp.Query(system, message.text))
+    elif 'rasa' in system.name:
+      response = src.systems.rasa.get_response(tp.Query(system, message.text))
+    elif ...
+\end{verbatim}
+
+This introduces a lot of code duplication.
+Therefore a dict is created.
+\begin{verbatim}
+    get_intent_systems = {
+      'mock': src.systems.mock.get_response,
+      'rasa': src.systems.rasa.get_response,
+      ...
+    }
+\end{verbatim}
+Now we can just get the correct function from the dict and call it.
+\begin{verbatim}
+    func: Callable[[tp.Query], tp.Response] =
+      get_substring_match(get_intent_systems, system.name)
+    query = tp.Query(system, message.text)
+    response = func(query)
+\end{verbatim}
+
+Note that \textsc{get\_substring\_match()} implements the substring matching used in the conditional code (\textsc{if 'mock' in system.name:}).
+Since the code can return any of the functions contained in the mapping they should all have the same signature and output.
+The used IDE (PyCharm 2018.2.4) is not able to check this.
+Therefore, functions from the mapping \textsc{func} get a type hint.
+This allows the IDE to check types again and it allows developers to see what signature should be used for all the functions in the mapping.
+
+\section{NamedTuple}
+\label{sec:named_tuple}
+Pure functions by definition cannot rely on information stored somewhere in the system.
+We provide one example from the code where this created a problem and how this can be solved using NamedTuples.
+
+The benchmarking tools communicates with a system called Rasa.
+Rasa starts in a default, untrained, state.
+To measure its performance we train Rasa and then send many sentences to the system.
+In general one prefers to functions should be as generic as possible.
+It makes sense to have one function which takes some sentence, sends it to Rasa to be classified and returns all information from the response.
+To avoid re-training Rasa for each system we have to remember whether Rasa is already trained.
+Passing a flag 'retrain' to the system is insufficient, since the function does not know where Rasa should train on.
+To make it all work we need the following parameters:
+\begin{itemize}
+    \item \textsc{sentence}: The sentence text.
+    \item \textsc{sentence\_corpus}: The corpus the sentence is taken from.
+    \item \textsc{system\_name}: Used to call the function which can train the specific system we are interested in.
+    \item \textsc{system\_knowledge}: Used in combination with \textsc{sentence\_corpus} to determine whether we need to re-train.
+    \item \textsc{system\_data}: In specific cases even more information is needed.
+\end{itemize}
+re-training the system to check whether its outputs differ.
+
+When this function has decided to train the system the system\_knowledge changes.
+% todo: what should be on next line
+So as output we need to return ``
+
+Since Python 3.5 a NamedTuple with type hints is available.
+
+To allow for better type checking and reduce the number of function parameters use is made of \textsc{typing.NamedTuples}.
+
+% todo: Explain how NamedTuples help type checking on Factory Design pattern replacement.
+
+\section{Function caching}
+\label{sec:function_caching}
+Functions can be cached using \textsc{functools.lru\_cache}.
+This is mainly used for reducing the number of filesystem operations.
+A typical example is as follows.
+Suppose we write some text to a file iteratively by calling \textsc{write} multiple times.
+Since we try to avoid storing a state \textsc{write} does not know whether the file already exists.
+To solve we can do two things.
+The first option is passing parameters telling the function whether the file already exists.
+This is cumbersome, since this state needs to be passed through all the functions to the function which is calling the loop over \textsc{write}.
+This can be done directly by calling \textsc{write} or indirectly by calling some other function.
+The second option is defining a function to create a file if it does not yet exists \textsc{create\_file}.
+We call this function every time \textsc{write} is called.
+This does mean that the filesystem is accessed to check the folder each time \textsc{write} is called.
+To avoid all those filesystem operations \textsc{create\_file} can be decorated using \textsc{functools.lru\_cache}.
+Now on all but the first calls to \textsc{create\_file} just query memory.
+
+% caveats
+There is one caveat with this using function caching.
+Make sure to not try to mimic state.
+In other words the program should not change behaviour if the cache is removed.
+Reason for this is that any state introduced via the cache is similar to creating functions with side-effects but without all the constructs from object-oriented programming.
+
+\section{Lazy evaluation}
+\label{sec:lazy_evaluation}
+By default Python is not interested in performance and advises to use a list for every collection.
+However, lists are mutable and therefore not suitable for hashing.
+Since hashing is not possible any function taking lists as input is not suitable for function caching.
+
+Also, in many cases the list might not be the final structure we need.
+Consider the following use cases where the output of type list is used:
+\begin{itemize}
+    \item Only unique values are required, so the list is casted to a set.
+    \item Only whether some value satisfies P is required.
+    \item The x first elements are required.
+    \item Only the values satisfying x are required.
+    \item Only an output which is transformed is required.
+\end{itemize}
+
+Considering all these use cases it makes more sense to return an iterator by default instead of a collection.
+One practical example for the bench project which supports this notion is using an iterator on classification requests.
+
+Suppose we want to measure the performance of some cloud service.
+Suppose we wrote some code which takes a sentence from some corpus and performs the following operations on this sentence:
+\begin{enumerate}
+    \item Send the sentence to some cloud service.
+    \item Transforms the response to the pieces of information we need.
+    \item Store this information.
+\end{enumerate}
+Suppose one of the last two operations contains a mistake causing the program to crash.
+When not using an iterator all sentences will have been sent to the cloud service after the first operation.
+Since the post-processing did not succeed we did not obtain results and need to redo this operation.
+In effect the programming error caused us to waste about as many API calls as there are sentences in the corpus we are testing.
+This is a problem since the API calls cost money and take time to execute.
+
+To solve this use lazy evaluation.
+For example, functions supporting lazy evaluation in Python are \textsc{map}, \textsc{filter}, \textsc{reduce} and \textsc{any}.
+Another benefit for using iterators is that it improves modularity and, once used to the paradigm, readability.
+Take the following typical Python code.
+
+\begin{verbatim}
+    my_list = []
+    for item in some_iterable:
+      updated_item = g(f(item))
+      my_list.append(updated_item)
+\end{verbatim}
+
+In this code some iterable is read and the transformation \textsc{f} and \textsc{g} are applied to each item in the iterable.
+The same code can be rewritten to use \textsc{map} as follows.
+
+\begin{verbatim}
+    def transform(item: SomeType) -> OtherType:
+      return g(f(item))
+
+    my_iterable = map(transform, some_iterable)
+\end{verbatim}

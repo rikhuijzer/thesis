@@ -1,0 +1,38 @@
+\section{Benchmark results}
+\label{sec:benchmark_results}
+This section will present the benchmark results for intent classification using micro f1 score.
+An explanation for the differences in averages for the f1 score is presented in section~\ref{subsec:methodology}.
+Here micro f1 scores are used to allow comparing results with~\citet{braun2017}.
+The results are listed in table~\ref{tab:benchmark_comparison}.
+
+\begin{table}[!htbp]
+    \centering
+    \begin{tabular}{l c c c c}
+        \textbf{System} & \textbf{Source} & \textbf{AskUbuntu} & \textbf{Chatbot} & \textbf{WebApplications} \\
+        \hline
+        Rasa:0.5-mitie & see section~\ref{sec:recalculations_rasa} & 0.862 & 0.981 & 0.746 \\
+        Microsoft LUIS & see section~\ref{sec:recalculations_luis} & 0.899 & 0.981 & 0.814 \\
+        Watson Conversation (2017) & see section~\ref{sec:recalculations_watson} & 0.917 & 0.972 & 0.831 \\
+        Rasa:0.13.7-mitie & \textsc{bench} & 0.881 & & 0.763 \\
+        Rasa:0.13.8-spacy & \textsc{bench} & 0.853 & 0.981 & 0.627 \\
+        Watson Conversation (2018) & \textsc{bench} & 0.881 & 0.934 & 0.831 \\
+        \hline
+    \end{tabular}
+    \caption{Micro f1 scores for intent classification.
+    One score is missing due to a bug in \textsc{bench}.}
+    \label{tab:benchmark_comparison}
+\end{table}
+
+The paper remarks that ``For our two corpora, LUIS showed the best results, however, the open source alternative RASA could achieve similar results.''
+When considering only intents this does not hold.
+Watson Conversation has very similar results, and in fact slightly higher scores on two out of three datasets.
+The MITIE back-end outperforms the spaCy back-end in terms of accuracy.
+This would not support the choice of Rasa to depreciate MITIE.
+It is expected to be caused by the facts that training MITIE takes more time than spaCy and MITIE tends to freeze during training.
+Interesting to see is that the accuracy for Watson Conversation has dropped.
+The cause can only be guessed since IBM does not provide information about the Watson back-end.
+It could be that the calculations for \textsc{bench} and the paper differ.
+Alternatively it could be that the back-end for Watson has changed.
+The datasets under consideration are small, so it might be that Watson has chosen a back-end better suited for large datasets.
+Note that IBM is aimed at large companies.
+These companies have the resources for creating lots of training examples.

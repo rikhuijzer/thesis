@@ -1,0 +1,30 @@
+\chapter*{Abstract}
+\label{ch:abstract}
+
+Artificial intelligence caused a lot of progress in the natural language processing (NLP) field.
+It is interesting to see whether this can be used to automate customer support.
+NLP has evolved to contain many tasks.
+The intent classification tasks is the most interesting due to the following practical constraints.
+Intents are often used by conversational agents (advanced chatbots) and therefore should classify in real-time.
+Also, the training data typically contains only a few dozen examples.
+
+Accuracy of classification differs per system.
+Higher accuracy means responding correctly to customer utterances more often.
+Each system claims to have the best accuracy scores when comparing their system to others.
+This could be due to the fact that the authors cherry pick datasets for their evaluation.
+To solve this a benchmarking tool is created.
+The tool is aimed on creating comparisons in such a way that users can easily run new or re-run existing evaluations.
+The code can easily be extended to allow comparison of more datasets and systems.
+
+To improve the accuracy of intent classification systems deep learning architectures for NLP have been investigated.
+New accuracy records are set every few months for various NLP tasks.
+One of the most promising systems at the time of writing is considered.
+The system, Google BERT, uses context from both sides of some word to predict the meaning of the word.
+The main difference with other recent systems is that the context is used in all hidden layers of the network.
+The model has shown state-of-the-art results for eleven NLP tasks.
+An attempt is made to increase that number by applying the model to intent classification.
+This obtained significant increases in running time, but not in accuracy.
+A second attempt trained the system jointly on intent classification and named-entity recognition.
+Here information from the former task is used while prediction the latter and vice versa.
+It is shown that joint training with BERT is feasible, and can be used to lower training time when compared to separate training of BERT.
+Future work is needed to see whether accuracy improvements are significant.

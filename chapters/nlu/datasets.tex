@@ -1,0 +1,125 @@
+\section{Datasets}
+\label{sec:datasets}
+Trained models are considered black boxes at the time of writing.
+To verify performance of a model data is required.
+This is fed to the model and results are measured.
+% todo: write more intro text
+% todo: Explain conversational agents
+% todo: Explain intent classification
+
+\subsection{Format}
+\label{subsec:format}
+The dataset format needs to be able to specify a sentence annotation and subsentence or token annotations.
+% NER only annotations
+One often used dataset for token classification is CoNLL-2003~\citep{tjong2003}.
+It uses the NER task definition as described by~\citet{chinchor1999}.
+The definition uses tags to specify entities, for example:
+\begin{center}
+    \begin{verbatim}
+        <B_ENAMEX TYPE="PERSON">bill<E_ENAMEX> and <B_ENAMEX TYPE="PERSON">
+        susan jones<E_ENAMEX>
+    \end{verbatim}
+\end{center}
+Note that this limits the text since angled brackets (`$<$', `$>$') cannot be used without escaping the brackets.
+A less verbose and non text constraining annotation standard is the BIO2 annotation standard.
+The origin is unclear, but adaptation is done by at least Stanford as seen in Glove~\citep{pennington2014}.
+Here sentences are annotated as follows.
+\begin{center}
+    \begin{verbatim}
+        I B-Person
+        and O
+        John B-Person
+        Doe I-Person
+        worked O
+        yesterday B-Date
+        . O
+    \end{verbatim}
+\end{center}
+where B, I and O respectively mean begin, intermediate and `empty' annotation.
+Note that other annotations, like part-of-speech tagging, is possible by adding another column of tokens.
+A benefit of this annotation is that measuring performance can be done by looking at each token annotation separately.
+In a tag example like above it is unclear how cases where the classifier is partly correct should be solved.
+Suppose only `susan' is classified as person and not her last name `jones'.
+Metrics now have to decide how to handle this partially correct situation.
+In the BIO2 annotation standard token classifications can only be correct or incorrect.
+One drawback is that the standard is not easy to read for humans.
+A more readable format is the Rasa Markdown format.
+Here it constraints the text by using square (`[', `]') and round bracket (`(', `)') symbols to denote annotations.
+For example:
+\begin{center}
+    \begin{verbatim}
+    [I]
+        (person) and [John Doe](person) worked [yesterday](date).
+    \end{verbatim}
+\end{center}
+Unlike BIO2 this standard does not easily allow to also specify other annotations, for example part of speech tagging.
+One could argue that by the readability of a Markdown format and the versatility of the BIO standard show that there is no single `best' approach.
+
+% combined annotations
+A combination of sentence annotations and token annotations is not supported by standard described above.
+For BIO one could track the sentence annotations in a separate file or put it before or after the sentence.
+The former adds duplicate information while the latter is not compatible with the standard.
+For Rasa one could change it to a table and put the Markdown and sentence annotation in separate columns.
+This is very readable and compact, but means transforming the token annotation for easier validation as described above.
+Datasets which combine sentence annotations with token annotations seem to take yet another approach.
+They use json to store any information they have.
+These formats should allow for easier parsing, but can not easily be read by humans.
+For example one dataset annotates entities as as follows.
+\begin{center}
+    \begin{verbatim}
+        "entities": [{
+        "entity": "StationDest",
+        "start": 4,
+        "stop": 4,
+        "text": "marienplatz"
+        }]
+    \end{verbatim}
+\end{center}
+This entity belongs to the sentence ``i want to go marienplatz''.
+`start' and `stop' here assume the sentence to be tokenized using a WordPunctTokenizer having regexp \verb/\w+|[^\w\s]+/.
+Drawbacks are that the entity text is duplicated and human readers need to tokenize the sentence manually for verification.
+
+\subsection{Available datasets}
+\label{subsec:available_datasets}
+% nlu evaluation corpora
+Three datasets for intent classification and entity recognition are created by~\citet{braun2017} and made publicly available.
+The paper and its Github version use different names, this document will stick to WebApplications, AskUbuntu and Chatbot.
+WebApplications and AskUbuntu are obtained by pulling questions from StackExchange (\url{https://stackexchange.com}).
+For example, they respectively contain ``How can I delete my [Hunch](WebService) account?'' and ``How to install a [Brother MFC-5890CN](Printer) network printer?''.
+Intents for these examples are `Delete Account' and `Setup Printer'.
+StackExchange datasets are labeled using Amazon Mechanical Turk.
+The Chatbot dataset is based on a Telegram chatbot in production use.
+This dataset contains sentences like ``when is the [next](Criterion) [train](Vehicle) in [muncher freiheit](StationStart)?'' having intent `DepartureTime'.
+Labeling is done by the authors of the paper.
+
+% snips
+Snips (\url{https://snips.ai}) is a company which provides software to locally run a voice assistant.
+They have shared some of the data generated by their users as well as results for their benchmarks on Github (\url{https://github.com/snipsco/nlu-benchmark}).
+The incentive for sharing these datasets seems to be showing that their system performs better than other systems.
+Two datasets have been published by Snips.
+The thesis has only used the 2017 version and not the 2016 version.
+The 2017 version will from now on be referred to as Snips2017.
+Sentences in this dataset are typically short.
+They utter some command to the system, for example for the intent `PlayMusic': ``i want to listen to [Say It Again](track) by [Blackstratblues](artist)''.
+
+% table description and general info
+More information about both corpora can be found in table~\ref{tab:corpora}.
+In this table `None' is not counted as an intent.
+The reason for specifying this is that falling back to \textit{null} or some intent during unsure predictions result in different scores for most metrics.
+F1 score calculations, for example, do not ignore \textit{nulls} or `None', but instead consider them as a separate group.
+Information about the unique number of entities for Snips2017 is not specified by the dataset authors.
+
+% summaries of data
+\begin{table}
+    \centering
+    \begin{tabular}{l l l l l}
+        \textbf{dataset} & \textbf{train} & \textbf{test} & \textbf{intents} & \textbf{entities}\\
+        \hline
+        WebApplications & 30 & 54 & 7 & 1\\
+        AskUbuntu & 53 & 109 & 4 & 3\\
+        Chatbot & 100 & 106 & 2 & 5\\
+        Snips2017 & 2100 & 700 & 7 & unknown\\
+    \end{tabular}
+    \caption{Number of labeled train and test sentences and unique intents and entities per dataset}
+    \label{tab:corpora}
+\end{table}

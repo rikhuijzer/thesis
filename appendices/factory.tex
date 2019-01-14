@@ -1,0 +1,113 @@
+\chapter{Lazy evaluation demonstration}
+\label{ch:demonstration}
+
+This appendix demonstrates the effect of using iterators instead of regular collections.
+The code demonstrates this by processing some fictional raw materials to a chair.
+The first is function called \textsc{ford} is similar to a Ford factory around 1915.
+Here each part of the assembly line just keeps producing items as long as there is input coming in.
+After a while the other parts of the assembly line start processing the items and discover a fault in the items.
+One problem of this way of working is that the factory now has a pile of incorrect items in their stock.
+
+The second function called \textsc{toyota} is similar to a Toyota factory after 1960.
+Here just-in-time (JIT) manufacturing is used as developed by Toyota~\citep{ohno1988toyota}.
+Each item is processed only when the next step in the process makes a request for this item.
+
+\section{Benefits}
+\label{sec:benefits}
+Using JIT makes sense in computer programs for the following reasons.
+It saves memory.
+In each step in the process we only store one intermediate result instead of all intermediate results.
+
+It can detect bugs earlier.
+Suppose you got a combination of processing steps, lets call them \textsc{f} and \textsc{g} and you apply them to 100 items.
+In \textsc{f} we send some object to a system and get a response.
+In \textsc{h} we store the response of this API call.
+Suppose there is a bug in \textsc{h}, lets say the file name is incorrect.
+Suppose this is not covered in the tests and we decide to run our program to get all the results we want.
+Using an approach similar to \textsc{ford} the program crashes after doing 100 executions of \textsc{f} and \textsc{g}.
+This means that the program executed 100 API calls.
+Using \textsc{toyota} the program crashes after just one API call.
+Here \textsc{ford} has in essence wasted 99 API calls.
+
+It does not make assumptions for the caller.
+Suppose some function \textsc{k} returns an iterable and is called by \textsc{l}.
+The function \textsc{l} can now decide how it wants to use the iterable.
+For example it can be casted to unique values via \textsc{set} or it can partly be evaluated by using \textsc{any}.
+
+\section{Code}
+\label{sec:code}
+\begin{verbatim}
+from typing import List, NamedTuple
+""" See README.md """
+
+Wood = NamedTuple('Wood', [('id', int)])
+Chair = NamedTuple('Chair', [('id', int)])
+
+
+materials = [Wood(0), Wood(1), Wood(2)]
+
+
+def ford():
+    """ Processing all the items at once and going to the next step. """
+    def remove_faulty(items: List[Wood]) -> List[Wood]:
+        out = []
+        for material in items:
+            print('inspecting {}'.format(material))
+            if material.id != 1:
+                out.append(material)
+        return out
+
+    def process(items: List[Wood]) -> List[Chair]:
+        out = []
+        for material in items:
+            print('processing {}'.format(material))
+            out.append(Chair(material.id))
+        return out
+
+    filtered = remove_faulty(materials)
+    processed = process(filtered)
+    print('Result of ford(): {}'.format(processed))
+
+
+def toyota():
+    """ Processing all the items one by one. """
+    def is_not_faulty(material: Wood) -> bool:
+        print('inspecting {}'.format(material))
+        return material.id != 1
+
+    def process(material: Wood) -> Chair:
+        print('processing {}'.format(material))
+        return Chair(material.id)
+
+    filtered = filter(is_not_faulty, materials)
+    processed = list(map(process, filtered))
+    print('Result of toyota(): {}'.format(processed))
+
+
+if __name__ == '__main__':
+    ford()
+    print()
+    toyota()
+\end{verbatim}
+
+\section{Output}
+\label{sec:output}
+The output for the program is as follows.
+
+\begin{verbatim}
+inspecting Wood(id=0)
+inspecting Wood(id=1)
+inspecting Wood(id=2)
+processing Wood(id=0)
+processing Wood(id=2)
+Result of ford(): [Chair(id=0), Chair(id=2)]
+
+inspecting Wood(id=0)
+processing Wood(id=0)
+inspecting Wood(id=1)
+inspecting Wood(id=2)
+processing Wood(id=2)
+Result of toyota(): [Chair(id=0), Chair(id=2)]
+\end{verbatim}
+
+This demonstrates that iterator elements are only executed when called.

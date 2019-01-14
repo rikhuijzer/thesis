@@ -1,0 +1,74 @@
+\backcite {vogel1996hmm}{{{\fontencoding {OT1}\selectfont ix}}{(document)}{Doc-Start}}
+\backcite {lecun2015deep}{{{\fontencoding {OT1}\selectfont ix}}{(document)}{Doc-Start}}
+\backcite {cho2014learning}{{{\fontencoding {OT1}\selectfont ix}}{(document)}{Doc-Start}}
+\backcite {cho2014learning}{{{\fontencoding {OT1}\selectfont ix}}{(document)}{Doc-Start}}
+\backcite {olah2015}{{{\fontencoding {OT1}\selectfont ix}}{(document)}{Doc-Start}}
+\backcite {uszkoreit2017}{{{\fontencoding {OT1}\selectfont ix}}{(document)}{Doc-Start}}
+\backcite {devlin2018}{{{\fontencoding {OT1}\selectfont ix}}{(document)}{Doc-Start}}
+\backcite {devlin2018}{{{\fontencoding {OT1}\selectfont ix}}{(document)}{Doc-Start}}
+\backcite {vaswani2017attention}{{1}{1.1}{section.1.1}}
+\backcite {young2018recent}{{1}{1.1}{section.1.1}}
+\backcite {high2012era}{{2}{1.2}{section.1.2}}
+\backcite {braun2017}{{2}{1.2}{section.1.2}}
+\backcite {burtsev2018}{{2}{1.2}{section.1.2}}
+\backcite {braun2017}{{2}{1.2}{section.1.2}}
+\backcite {pennachin2007contemporary}{{5}{2.1}{section.2.1}}
+\backcite {langkilde1998practical}{{6}{2.1.1}{subsection.2.1.1}}
+\backcite {sumita1991experiments}{{6}{2.1.2}{subsection.2.1.2}}
+\backcite {manning2017lectures}{{6}{2.1.2}{subsection.2.1.2}}
+\backcite {vogel1996hmm}{{7}{2.1}{figure.caption.7}}
+\backcite {lecun2015deep}{{8}{2.2}{figure.caption.8}}
+\backcite {mikolov2014learning}{{8}{2.2.4}{figure.caption.8}}
+\backcite {manning2017lectures}{{8}{2.2.4}{figure.caption.8}}
+\backcite {cho2014learning}{{8}{2.2.5}{subsection.2.2.5}}
+\backcite {cho2014learning}{{9}{2.3}{figure.caption.9}}
+\backcite {cho2014learning}{{9}{2.4}{figure.caption.10}}
+\backcite {schuster1997}{{10}{2.2.8}{subsection.2.2.8}}
+\backcite {olah2015}{{10}{2.5}{figure.caption.11}}
+\backcite {young2018recent}{{10}{2.2.9}{subsection.2.2.9}}
+\backcite {vaswani2017attention}{{11}{2.2.10}{subsection.2.2.10}}
+\backcite {uszkoreit2017}{{11}{2.6}{figure.caption.12}}
+\backcite {peters2018}{{12}{2.2.11}{subsection.2.2.11}}
+\backcite {gardner2017}{{12}{2.2.11}{subsection.2.2.11}}
+\backcite {wu2016}{{12}{2.2.12}{subsection.2.2.12}}
+\backcite {tjong2003}{{13}{3.1.1}{subsection.3.1.1}}
+\backcite {chinchor1999}{{13}{3.1.1}{subsection.3.1.1}}
+\backcite {pennington2014}{{13}{3.1.1}{subsection.3.1.1}}
+\backcite {braun2017}{{14}{3.1.2}{subsection.3.1.2}}
+\backcite {choi2015depends}{{16}{3.2.1}{subsection.3.2.1}}
+\backcite {burtsev2018}{{16}{3.2.2}{subsection.3.2.2}}
+\backcite {manning2017lectures}{{16}{3.2.3}{subsection.3.2.3}}
+\backcite {dale2018text}{{17}{3.2.3}{subsection.3.2.3}}
+\backcite {braun2017}{{17}{3.3}{section.3.3}}
+\backcite {braun2017}{{18}{3.4.2}{subsection.3.4.2}}
+\backcite {warden2018}{{19}{4.1.2}{subsection.4.1.2}}
+\backcite {zhou2018design}{{19}{4.1.2}{subsection.4.1.2}}
+\backcite {kumar2018}{{20}{4.1.3}{subsection.4.1.3}}
+\backcite {vanschoren2018meta}{{20}{4.1.4}{subsection.4.1.4}}
+\backcite {yu2018diverse}{{20}{4.1.4}{subsection.4.1.4}}
+\backcite {andrychowicz2016learning}{{20}{4.1.4}{subsection.4.1.4}}
+\backcite {jones2017}{{20}{4.1.4}{subsection.4.1.4}}
+\backcite {finn2017model}{{20}{4.1.4}{subsection.4.1.4}}
+\backcite {nichol2018reptile}{{20}{4.1.4}{subsection.4.1.4}}
+\backcite {pennington2014}{{20}{4.1.5}{subsection.4.1.5}}
+\backcite {joulin2016bag}{{20}{4.1.5}{subsection.4.1.5}}
+\backcite {cer2018universal}{{20}{4.1.5}{subsection.4.1.5}}
+\backcite {subramanian2018learning}{{20}{4.1.5}{subsection.4.1.5}}
+\backcite {wiese2018}{{20}{4.1.5}{subsection.4.1.5}}
+\backcite {kiela2018dynamic}{{21}{4.1.5}{subsection.4.1.5}}
+\backcite {devlin2018}{{21}{4.2}{section.4.2}}
+\backcite {williams2018}{{21}{4.2.1}{subsection.4.2.1}}
+\backcite {rajpurkar2018}{{21}{4.2.1}{subsection.4.2.1}}
+\backcite {dettmers2018}{{21}{4.2.2}{figure.caption.15}}
+\backcite {jouppi2017}{{21}{4.2.2}{figure.caption.15}}
+\backcite {wolf2018}{{21}{4.2.2}{figure.caption.15}}
+\backcite {bajaj2018}{{22}{4.2.2}{figure.caption.15}}
+\backcite {rasa2018}{{22}{4.2.4}{subsection.4.2.4}}
+\backcite {ma2017jointly}{{23}{4.2.4}{Item.6}}
+\backcite {zhang2018joint}{{23}{4.2.4}{Item.6}}
+\backcite {devlin2018}{{23}{4.4}{figure.caption.16}}
+\backcite {devlin2018}{{24}{4.5}{figure.caption.17}}
+\backcite {devlin2018}{{29}{6}{chapter.6}}
+\backcite {lott2015}{{38}{B}{appendix.B}}
+\backcite {ohno1988toyota}{{41}{C}{appendix.C}}
+\backcite {braun2017}{{44}{D}{appendix.D}}
