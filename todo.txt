@@ -1,10 +1,10 @@
 
 Get priorities right, then focus on taking small steps
 
-introduce NLU or "intent classification and named-entity recognition"
 fix all the typos and inconsistencies! get quality right
 read through search section
 Add link to improv and nlu_datasets
+future work
 
 NLU in practise, Fransis part (most interesting for spindle, but possibly also a fun overview for uni, remember why: see conversation with fransis in slack)
 
