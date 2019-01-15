@@ -111,3 +111,29 @@ Non-perfect alignment can also be observed from the fact that the number of word
     \caption{Word alignment for a German-English sentence pair~\cite[Figure 1]{vogel1996hmm}.}
     \label{fig:alignment}
 \end{figure}
+
+\subsection{Natural language understanding}
+\label{subsec:nlu}
+Conversational agent or dialogue systems aim to communicate with humans using natural language.
+Consensus is not clear on whether a chatbot is synonymous to conversational agent.
+Some argue it is~\citep{io2017chatbots}, this thesis will consider the words to be synonymous.
+Conversational agents can be used to replace graphical user interfaces~\citep{brennan1990conversation} or to act as a social companion~\citep{fitzpatrick2017delivering, zhou2018design}.
+Interpreting user utterances gives rise to a new tasks, often denoted as natural language understanding (NLU)~\citep{jaech2016domain, braun2017, yang2017end}.
+NLU extracts information from user sentences.
+The entire sentence meaning or intention is defined as an intent.
+Information from one or more sequential words is defined as a named-entity.
+For example consider the following sentence:
+
+\begin{center}
+"I would like to book a ticket to London tomorrow."
+\end{center}
+
+In this sentence the intent of the user is to book a ticket.
+Conversational agents which handle these requests have some related slots which need to be filled.
+For this book ticket example the system needs to know the destination of the user and when the user wants to arrive.
+Named-entity recognition (NER) can be used to find this information.
+A NER classifier can be trained to classify London as a destination and tomorrow as a date.
+Most systems allow entities to be defined by examples and regular expressions.
+The examples can be used as a complete set or entities similar to the examples can be detected by using machine learning.
+
+% also mention multiple sentences by rasa

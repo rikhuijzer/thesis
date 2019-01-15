@@ -98,3 +98,7 @@ It might be that more epochs give higher accuracies.
 On the other hand it might also be that less epochs correspond to similar accuracies in less training time.
 Other interesting hyperparameters are \textit{max\_seq\_length} and \textit{learning\_rate}.
 Lowering the former to the expected maximum number of tokens in sentences reduces training and inference time.
+
+Interesting is to observe that jointly training generalizes to sequential labeling and sentence classification.
+In other words, any combination of tasks where sentences are classified as well as parts of the sentence and these tasks are correlated.
+The tasks are expected to be correlated for any
