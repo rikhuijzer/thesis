@@ -1,6 +1,5 @@
 
-Get priorities right, then focus on taking small steps
-
+feedback jukka
 fix all the typos and inconsistencies! get quality right
 read through search section
 Add link to improv and nlu_datasets
