@@ -2,14 +2,13 @@
 \label{sec:nlp}
 
 % inroduction and why interesting
-Natural language processing (NLP) aims to read text and extract meaningful information from it.
+Natural language processing (NLP) aims to read text or listen to speech and extract meaningful information from it.
 One deviation from this definition is natural language generation, where text is generated.
-Note that this differs from interpretation of text and then returning some pre-defined piece of text.
+Note that natural language generation differs from interpretation of text and then returning some pre-defined piece of text.
 The difficulty in NLP is that humans have evolved to use a concise way of communication which makes use of knowledge from the world and context.
 For example, the response to ``I want more money.'' depends on whether the sentence is uttered by a child or employee.
 A perfect NLP system would need artificial general intelligence or is `AI-complete'.
 Current artificial intelligence systems ``demonstrate intelligence in only one or another specialised area''~\citep{pennachin2007contemporary}, so called `narrow AI'.
-This makes it an field which is far from solved.
 
 % tasks
 The field is divided in tasks.
@@ -29,7 +28,7 @@ To be able to explain more complex neural network architectures we first take a 
 Language models try to capture the grammar of a language.
 Capturing grammar can be done by using probabilities for sentences or probabilities of upcoming words given a part of a sentence.
 It is based on the assumption that grammatically correct sentences occur more often than incorrect sentences.
-The following three tasks demonstrate the usefulness of probabilities.
+The following three tasks and examples demonstrate the usefulness of probabilities.
 \begin{center}
     \begin{tabular}{l l}
         Spell correction & $P(\text{my car broke}) > P(\text{my car boke})$\\
@@ -37,6 +36,10 @@ The following three tasks demonstrate the usefulness of probabilities.
         Speech recognition & $P(\text{the red car}) > P(\text{she read ar})$
     \end{tabular}\\
 \end{center}
+In the first example it is much more likely that the third word should be `broke' than `boke'.
+This is used by automatic spell checkers to correct mistakes.
+In machine translation knowledge about the expected order of words is used to improve translation accuracy.
+The speech recognition example shows that phonetically equivalent and grammatically incorrect phrases can be filtered.
 
 A simple approach is to use counters to calculate the sentence probabilities.
 This makes use of the chain rule.
@@ -67,10 +70,10 @@ Although n-grams offer good performance for certain cases they are in practise n
 \label{subsec:mt}
 % introduction
 Machine translation became known to the public by introduction of Google Translate in 2006.
-The system was statistical (as explained in section~\ref{subsec:language_model}) and not rule-based.
+The system was based on a statistical language model (as explained in section~\ref{subsec:language_model}) and not on a rule-based model.
 Rule-based means formulating linguistic rules which is ``a difficult job and requires a linguistically trained staff''~\citep{sumita1991experiments}.
-In an attempt to visualise the progress made in the field we consider the `one sentence benchmark' by~\citet{manning2017lectures}.
-This benchmark contains one Chinese to English example which is compared with Google Translate output.
+In an attempt to visualise the progress made in the field we consider one example translation through time as recorded by~\citet{manning2017lectures}.
+This `one sentence benchmark' contains one Chinese to English example which is compared with Google Translate output.
 The correct translation for the example is:\\
 
 In 1519, six hundred Spaniards landed in Mexico to conquer the Aztec Empire with a population of a few million.
@@ -88,7 +91,7 @@ Google Translate returned the following translations.
 
 % alignment
 One important concept in machine translation is alignment.
-Alignment refers to the fact that words in different languages tend to be aligned.
+Alignment refers to the fact that words in different languages tend to be located at similar parts in the sentence.
 Consider the sentences
 
 \begin{center}
@@ -98,6 +101,7 @@ and
 \begin{center}
     ``\underline{ja ich denke wenn wir} das hinkriegen \underline{an beiden tagen acht uhr}''.
 \end{center}
+\vspace*{1mm}
 The first five words of the sentences are perfectly aligned.
 The last five words of the sentences are not.
 Alignment is visualised in figure~\ref{fig:alignment}.
@@ -116,11 +120,12 @@ Non-perfect alignment can also be observed from the fact that the number of word
 \label{subsec:nlu}
 Conversational agent or dialogue systems aim to communicate with humans using natural language.
 Consensus is not clear on whether a chatbot is synonymous to conversational agent.
-Some argue it is~\citep{io2017chatbots}, this thesis will consider the words to be synonymous.
+Some argue it is~\citep{io2017chatbots}, and some argue that conversational agents are more sophisticated that bots which can chat.
+This thesis will consider the words to be synonymous.
 Conversational agents can be used to replace graphical user interfaces~\citep{brennan1990conversation} or to act as a social companion~\citep{fitzpatrick2017delivering, zhou2018design}.
 Interpreting user utterances gives rise to a new tasks, often denoted as natural language understanding (NLU)~\citep{jaech2016domain, braun2017, yang2017end}.
 NLU extracts information from user sentences.
-The entire sentence meaning or intention is defined as an intent.
+The meaning for the entire sentence or intention is defined as an intent.
 Information from one or more sequential words is defined as a named-entity.
 For example consider the following sentence:
 
@@ -134,6 +139,4 @@ For this book ticket example the system needs to know the destination of the use
 Named-entity recognition (NER) can be used to find this information.
 A NER classifier can be trained to classify London as a destination and tomorrow as a date.
 Most systems allow entities to be defined by examples and regular expressions.
-The examples can be used as a complete set or entities similar to the examples can be detected by using machine learning.
-
-% also mention multiple sentences by rasa
+The examples can be used for keyword matching or entities similar to the examples can be detected by using machine learning.

@@ -30,7 +30,7 @@ One of the Rasa solutions is applying machine learning to let developers train d
 Rasa allows the system to be used as API and `Python API'.
 The Python API is the most efficient.
 Here users install \textsc{rasa\_nlu} in their programming environment and call functions directly.
-Depending on the used back-end a selection of dependencies have to be installed.
+Depending on the used configuration a selection of dependencies have to be installed.
 Since Rasa is called from Python it is not able to maintain a state.
 The regular API advises to spin up a Docker container.
 This is less efficient, but more modular.
@@ -41,23 +41,24 @@ Users can pull these for free and use the newest stable configuration of choice.
 Configurations are defined as a pipeline.
 Pipelines specify what components should be applied to sentences and in what order.
 Typical pipelines contain at least a tokenizer followed by some classifier.
-Pipelines are meant to be modified easily and specified in yaml.
+Pipelines are meant to be modified easily and are specified in yaml.
 In practise default pipelines often suffice for end-users.
 A back-end refers to the used intent classifier in some pipeline, for example `tensorflow'.
-At the time of writing three back-ends are offered by Rasa, namely \textsc{rasa-mitie}, \textsc{rasa-spacy} and \textsc{rasa-tensorflow}.
+Three back-ends are offered by Rasa via Docker Hub, namely \textsc{rasa-mitie}, \textsc{rasa-spacy} and \textsc{rasa-tensorflow}.
 \textsc{rasa-mitie} is the oldest and depreciated.
+% note-to-self: do not change MITIE to \textsc{MITIE} or \textsc{mitie} or whatever.
 Training MITIE (\url{https://github.com/mit-nlp/MITIE}) takes at least a few minutes for small datasets.
 This is caused by the fact that it is tuning hyperparameters during training.
 On two computers used for this thesis the Docker Hub image occasionally hangs on various datasets.
 \textsc{rasa-spacy} is the successor of MITIE and, unsurprisingly, based on spaCy (\url{https://spacy.io}).
 In 2015 spaCy was in the top 1\% for accuracy and the fastest syntactic parser~\citep{choi2015depends}.
-spaCy (and by that \textsc{rasa-spacy}) requires a language model to parse text.
-It includes seven language models for which English, Spanish and French include vectors.
+spaCy (and by that \textsc{rasa-spacy}) uses a language model to parse text.
+It includes seven language models for which English, Spanish and French include word vectors.
 The multilingual model supports only named entities.
 Unlike the other two back-ends \textsc{rasa-tensorflow} is not based on a pre-trained language model.
 This is like classifying sentences in an unfamiliar language (say Chinese) after only seeing some examples.
 Rasa advises to use this back-end when training data contains more than 1000 training examples.
-The benefit is that this back-end is language independent and can handle domain specific data and hierarchical intents.
+The benefit of \textsc{rasa-tensorflow} is that the back-end is language independent and can handle domain specific data and hierarchical intents.
 
 \subsection{DeepPavlov}
 \label{subsec:deeppavlov}
@@ -66,12 +67,11 @@ Unlike Rasa, DeepPavlov aims to aid researchers in development of new techniques
 Being a newer system than Rasa and aimed at researchers the system is not yet production ready.
 The system does only provide a Python API, requiring Python 3.6.
 One claimed benefit of the system is that they do not export machine learning components from other systems.
-Another reason why the system is not well suited for production is that pipelines can download information.
+A reason why the system is not well suited for production is that pipelines can download information.
 This means that a generic Docker needs to download many megabytes of data for each time the Docker is started.
 Manually defining new Dockers holding this information is possible, but does require some knowledge about Docker and some time to set it up.
 For users who want to use few training examples pre-trained models are necessary.
 DeepPavlov by default includes DSTC 2, Wikipedia, Reddit, RuWiki+Lenta and ELMo embeddings.
-Its hard to tell what model should be chosen for some use-case.
 
 % cloud services
 \subsection{Cloud services}
@@ -82,10 +82,10 @@ Functionality differs per provider, but in the basis they all over the same feat
 Naming conventions do not seem to exists.
 For example, Rasa calls intent classification training examples \textit{utterances}, while Google Dialogflow calls them \textit{training phrases}.
 Via the web interface or API examples can be sent to a server and the system can be configured.
-Configurations specify the utterances, dialog flows, how to classify entities (used for slot filling) and input language.
+Configurations specify the example utterances, dialog flows, how to classify entities (used for slot filling) and input language.
 At some point the server will use the provided examples to train the model.
 This takes a few seconds.
-This makes sense, since users do not want to wait and computations cost money.
+% This makes sense, since users do not want to wait and computations cost money.
 Settings for the dialogs and APIs are located somewhere in the complete cloud offerings.
 An extension on the intent classification and slot filling described above is using knowledge bases.
 When looking at IBM Watson a document needs to be uploaded and annotated by humans.

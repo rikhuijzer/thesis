@@ -22,8 +22,8 @@
 \backcite {cho2014learning}{{9}{2.2.3}{subsection.2.2.3}}
 \backcite {cho2014learning}{{9}{2.3}{figure.caption.6}}
 \backcite {manning2017lectures}{{9}{2.2.3}{figure.caption.7}}
-\backcite {hochreiter1997long}{{9}{2.2.3}{figure.caption.8}}
 \backcite {cho2014learning}{{10}{2.4}{figure.caption.7}}
+\backcite {hochreiter1997long}{{10}{2.2.3}{figure.caption.8}}
 \backcite {chung2014empirical}{{10}{2.2.3}{figure.caption.8}}
 \backcite {schuster1997}{{10}{2.2.4}{subsection.2.2.4}}
 \backcite {olah2015}{{11}{2.6}{figure.caption.9}}
@@ -44,6 +44,7 @@
 \backcite {manning2017lectures}{{16}{3.2.3}{subsection.3.2.3}}
 \backcite {dale2018text}{{17}{3.2.3}{subsection.3.2.3}}
 \backcite {braun2017}{{17}{3.3}{section.3.3}}
+\backcite {braun2017}{{17}{3.4}{section.3.4}}
 \backcite {braun2017}{{18}{3.4.2}{subsection.3.4.2}}
 \backcite {warden2018}{{19}{4.1.2}{subsection.4.1.2}}
 \backcite {zhou2018design}{{19}{4.1.2}{subsection.4.1.2}}
