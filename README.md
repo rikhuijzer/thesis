@@ -1,1 +1,2 @@
 # thesis
+See `thesis.pdf`.
