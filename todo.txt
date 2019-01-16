@@ -1,9 +1,10 @@
 
-feedback jukka
+feedback hylke and jukka
+fix BERT section
 fix all the typos and inconsistencies! get quality right
 read through search section
 Add link to improv and nlu_datasets
-future work
+future work in results
 
 NLU in practise, Fransis part (most interesting for spindle, but possibly also a fun overview for uni, remember why: see conversation with fransis in slack)
 
@@ -15,7 +16,6 @@ describe improv and nlu_datasets
 Walk through notes and copy info.
 fix preliminaries
 insert images (increases page count ftw)
-Ask Jukka feedback on part of report
 Ask Jukka what he likes to see in report
 Describe improv
 Describe nlu_datasets

@@ -48,22 +48,20 @@ For example, semantic text similarity could be used to find sentences having the
 One could apply this in an application to classify user input as being a duplicate.
 Duplicates can automatically be answered by using some template.
 Another interesting task is question answering.
-This field is still maturing.
-State-of-the-art systems focus on specifying the answer for some question given a paragraph of text or given a large pre-structured knowledge base.
-Note the word `paragraph'.
-IBM Watson is an example where the latter is used for its responses in the Jeopardy quiz~\citep{high2012era}.
+IBM Watson is a well-known example where knowledge base question answering is used for its responses in the Jeopardy quiz~\citep{high2012era}.
+State-of-the-art systems for the question answering task can do no more than answering some question given a paragraph of text~\citep{}.
 
 % intent classification
-The intent classification tasks is chosen due to the following practical constraints.
-Intents are often used by conversational agents (chatbots) and therefore able to classify in real-time.
+The intent classification task is chosen due to the following practical constraints.
+Intents are used by chatbots and therefore should be able to classify in real-time.
 Also, the training data typically contains only a few dozen examples.
 Another benefit of these systems is that they are being applied in industry (empirical evidence).
-The IBM sales department (\url{https://www.ibm.com}) claims that companies like Autodesk are able to respond to 60\% of their customer chats automatically.
+The IBM sales department claims that Autodesk using conversational agents cut down their resolution time ``from 1.5 days to 5.4 minutes for most inquiries''~\citep{ibm2018autodesk}.
 
 % organisations claiming highest accuracy numbers
 Various organisations claim to have obtained the best accuracy numbers for text classification tasks.
 Snips show that they outperform the competition by a large margin (\url{https://medium.com/snips-ai/2b8ddcf9fb19}) on 2 June 2017.
-The competition consists of api.ai, Wit.ai, Luis.ai and Amazon Alexa.
+The competition consists of api.ai (now Google DialogFlow~\citep{google2019dialogflow}), Wit.ai, Luis.ai~\citep{microsoft2019luis} and Amazon Alexa (now Amazon Lex~\citep{amazon2019lex}).
 Their small benchmark tests the systems against 70 queries per intent on their own dataset.
 Snips claim to score 79\% accuracy, while the second best scores 73\%.
 Also, via sentence examples Snips show that some named-entities are classified incorrectly by systems other than Snips.
