@@ -1,12 +1,12 @@
 
-feedback hylke and jukka
 fix BERT section
+feedback hylke and jukka
 fix all the typos and inconsistencies! get quality right
 read through search section
 Add link to improv and nlu_datasets
 future work in results
 
-NLU in practise, Fransis part (most interesting for spindle, but possibly also a fun overview for uni, remember why: see conversation with fransis in slack)
+NLU in practise, Fransis part (most interesting for spindle, but possibly also a fun overview for uni, remember why: see conversation with fransis in slack, mention huggingface using BERT)
 
 preface
 explain TPU estimator code (free technical text) (in section improv?)

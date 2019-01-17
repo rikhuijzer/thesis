@@ -18,6 +18,7 @@ The goal of Duplex is to fill in missing information from Google sites by callin
 Demonstrations by Google show that it is difficult for unsuspecting humans to tell the difference between Duplex and a real human.
 
 \iffalse
+% todo: show number of publications
 % field evolve speed
 Remarkable about the context is the speed in which the field evolves.
 Learning about some scientific topic means picking up a recent book or review paper.
@@ -31,32 +32,24 @@ This could be a coincidence where last year has been a particularly interesting 
 Looking at the years before it does not seem to be so.
 A recent review paper for the same field~\citep{young2018recent} still see lots of potential.
 They expect better models for unlabelled data, reinforcement learning, zero-shot learning and network memory enrichment via knowledge base.
-\fi
 
 % implications of evolving speed (more hyperrefs and blog references)
 The fast pace of the field implies that this thesis is in certain aspects unconventional.
 An atypical high amount of references are to arXiv publications, blogposts and websites.
 These sources are regarded with more than usual skepticism and it is tried to extract only empirically validated information.
 Arguably the benefit of deep learning is that everyone can reproduce and improve results given some time and a (cloud) computer.
+\fi
 
 \section{Problem description}
 \label{sec:problem_description}
 % why intent classification
-The field working on interpreting text is natural language processing.
-In this field many tasks seem interesting.
-For example, semantic text similarity could be used to find sentences having the same meaning.
-One could apply this in an application to classify user input as being a duplicate.
-Duplicates can automatically be answered by using some template.
-Another interesting task is question answering.
-IBM Watson is a well-known example where knowledge base question answering is used for its responses in the Jeopardy quiz~\citep{high2012era}.
-State-of-the-art systems for the question answering task can do no more than answering some question given a paragraph of text~\citep{}.
-
-% intent classification
-The intent classification task is chosen due to the following practical constraints.
-Intents are used by chatbots and therefore should be able to classify in real-time.
-Also, the training data typically contains only a few dozen examples.
-Another benefit of these systems is that they are being applied in industry (empirical evidence).
-The IBM sales department claims that Autodesk using conversational agents cut down their resolution time ``from 1.5 days to 5.4 minutes for most inquiries''~\citep{ibm2018autodesk}.
+The graduation company would preferably see a system that is automatically trained on various sets of a few dozen text documents to answer customer questions.
+The field working on text interpretation is natural language processing (NLP).
+Research in NLP has focused their efforts on various tasks.
+To solve the problem defined above we require a task which is able to interpret questions in real-time using few training data.
+Natural language understanding (NLU), which maps text to meaning~\citep{jurafsky2014speech}, is working on interpretation of text.
+Specifically, chatbots are using intent classification to understand the intention of a user when uttering some sentence~\citep{a, b, c, d}.
+The IBM sales department claims that Autodesk using chatbots cut down their resolution time ``from 1.5 days to 5.4 minutes for most inquiries''~\citep{ibm2018autodesk}.
 
 % organisations claiming highest accuracy numbers
 Various organisations claim to have obtained the best accuracy numbers for text classification tasks.
