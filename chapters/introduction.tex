@@ -67,30 +67,27 @@ Although the authors ``guarantee transparency'' about the benchmark~\citep{snips
 DeepPavlov~\citep{burtsev2018} reports another high score for intent classification.
 It is based on the Snips dataset~\citep{snips2017dataset} and compared against API.ai, Watson Conversation, Microsoft LUIS, Wit.ai, Snips, Recast.ai (now SAP Conversational AI~\citep{sap2019conversational}) and Amazon Lex.
 Their model uses embeddings trained on the DSTC2 dataset~\citep{baymurzina2019classifiers,baymurzina2019intents}.
-DSTC2 contains communications with users or `calls'~\citet{henderson2014second}.
-The dataset includes roughly 500 dialogs with 7.88 turns on average in each condition for 6 conditions~\citet{henderson2014second}, hence about 20.000 turns or utterances.
+DSTC2 contains communications with users or `calls'~\citep{henderson2014second}.
+The dataset includes roughly 500 dialogs with 7.88 turns on average in each condition for 6 conditions~\citep{henderson2014second}, hence about 20.000 turns or utterances.
 Knowing that the focus for Snips also lies in interpretation of voice commands~\citep{snips2019voice} it is expected that the model created by DeepPavlov does not obtain state-of-the-art results for other tasks.
-Botfuel claim they are `on par' with the competition~\citep{botfuel2018benchmark}.
+Botfuel~\citep{botfuel2019} claims to be `on par' with the competition~\citep{botfuel2018benchmark}.
 This is based on runs on the same datasets as~\citet{braun2017}.
-Using micro averaging the Botfuel is one procent lower than Watson, equals LUIS and outperforms DialogFlow, Rasa, Snips and Recast.ai.
-The results for Rasa match the results provided in the paper.
+Botfuel shows it is one procent lower than Watson, equals LUIS and outperforms DialogFlow, Rasa, Snips and Recast.ai.
+The score for Rasa matches the score listed by~\citet{braun2017}.
 This means that Botfuel has compared their system against an old version of Rasa.
-These observations give rise to the following research question.
+These observations give rise to the following research question.\\
 
 \rqone \\[1mm]
 
 % increasing state of the art problem
-Another interesting problem from an academic point of view is increasing accuracy.
-Natural language understanding is far from solved.
-Due to the probabilistic nature of machine learning one should not expect perfect results.
-However, accuracies one some computer vision tasks are above 99\%, which cannot be said for natural language understanding.
-The second research question is as follows.\\
+An interesting problem from an academic point of view is increasing accuracy.
+The second research question aims to do that.\\
 
 \rqtwo \\[1mm]
 
-The focus in this question lies on English datasets.
-For Spindle Dutch datasets would be more useful, however baselines for Dutch datasets do not exist.
-Also, knowledge obtained from answering RQ2 is expected to generalise to any language.
+For the graduation company Dutch datasets would match their use-case, however the focus in research lies on English datasets~\citep{cambria2014jumping,young2018recent}.
+To be able to compare our results with the research the focus in this question lies on English datasets.
+It is expected that the knowledge from answering this question can be transferred to Dutch datasets since many models are multilingual~\citep{devlin2018}.
 The first and second research question are discussed respectively in chapter~\ref{ch:benchmarking} and~\ref{ch:improving_accuracy}.
 
 \section{Project goal}
