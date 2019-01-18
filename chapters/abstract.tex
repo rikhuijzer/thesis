@@ -20,10 +20,10 @@ To improve the accuracy of intent and named-entity classification deep learning 
 New accuracy records are set every few months for various NLP tasks.
 One of the most promising systems at the time of writing is considered.
 The system, Google BERT, uses context from both sides of some word to predict the meaning of the word.
-For example, the difference in meaning for the word `river' can be concluded from the sentences `river bank' and `bank account'.
+For examples, the meaning of the word `bank' differs in the sentences `river bank' and `bank account'.
 BERT has shown state-of-the-art results for eleven NLP tasks.
 An attempt is made to increase that number by applying the model to intent classification.
-Compared to other systems this obtained significant increases in running time, but not in accuracy.
+Compared to baseline models applied by industry this obtained significant increases in running time, but not in accuracy.
 A second attempt trained the system jointly on intent classification and named-entity recognition.
 BERT is well-suited for joint training, because it uses context in all hidden layers of the network.
 Information from the intent classification task is used for making NER predictions and vice versa.

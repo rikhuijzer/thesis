@@ -48,32 +48,34 @@ The field working on text interpretation is natural language processing (NLP).
 Research in NLP has focused their efforts on various tasks.
 To solve the problem defined above we require a task which is able to interpret questions in real-time using few training data.
 Natural language understanding (NLU), which maps text to meaning~\citep{jurafsky2014speech}, is working on interpretation of text.
-Specifically, chatbots are using intent classification to understand the intention of a user when uttering some sentence~\citep{a, b, c, d}.
+Specifically, chatbots are using intent classification to understand the intention of a user when the user utters some sentence~\citep{bocklisch2017rasa,burtsev2018,zhou2018design}.
 The IBM sales department claims that Autodesk using chatbots cut down their resolution time ``from 1.5 days to 5.4 minutes for most inquiries''~\citep{ibm2018autodesk}.
 
 % organisations claiming highest accuracy numbers
-Various organisations claim to have obtained the best accuracy numbers for text classification tasks.
-Snips show that they outperform the competition by a large margin (\url{https://medium.com/snips-ai/2b8ddcf9fb19}) on 2 June 2017.
-The competition consists of api.ai (now Google DialogFlow~\citep{google2019dialogflow}), Wit.ai, Luis.ai~\citep{microsoft2019luis} and Amazon Alexa (now Amazon Lex~\citep{amazon2019lex}).
+Various parties run benchmarks and use this to draw conclusions about the best performing system.
+Issues can be pointed out which question the conclusions.
+A methodology and three datasets for benchmarking intent classification and named-entity recognition (NER) are created and published by~\citet{braun2017}.
+NER aims to detect information like dates, locations and person names from text.
+The paper compares accuracy for Microsoft LUIS~\citep{microsoft2019luis}, IBM Watson Conversation (now Watson Assistant~\citep{ibm2019assistant}), API.ai (now Google DialogFlow~\citep{google2019dialogflow}), Wit.ai~\citep{facebook2019wit}, Amazon Lex~\citep{amazon2019lex} and Rasa~\citep{bocklisch2017rasa}.
+Based on the advances in the field~\citep{young2018recent} the scores from this paper need to be updated.
+Snips~\citep{snips2019voice} show that they outperform the competition by a large margin~\citep{snips2017benchmarking}.
+The competition consists of api.ai, Wit.ai, Luis.ai and Amazon Alexa.
 Their small benchmark tests the systems against 70 queries per intent on their own dataset.
 Snips claim to score 79\% accuracy, while the second best scores 73\%.
 Also, via sentence examples Snips show that some named-entities are classified incorrectly by systems other than Snips.
-A comparison by~\citet{braun2017} looks at LUIS, Watson Conversation, API.ai, wit.ai, Amazon Lex and Rasa.
-Three datasets are created and published by the authors.
-Code to re-run or extend the benchmarks has not been included.
+Although the authors ``guarantee transparency'' about the benchmark~\citep{snips2017dataset}, the dataset could still be cherry picked.
 DeepPavlov~\citep{burtsev2018} reports another high score for intent classification.
-It is based on the Snips dataset and compared against api.ai, Watson Conversation, Microsoft LUIS, Wit.ai, Snips.ai, Recast.ai and Amazon Lex.
-Botfuel show they are `on par' with the competition (\url{https://medium.com/botfuel/eb8684a1e55f}).
+It is based on the Snips dataset~\citep{snips2017dataset} and compared against API.ai, Watson Conversation, Microsoft LUIS, Wit.ai, Snips, Recast.ai (now SAP Conversational AI~\citep{sap2019conversational}) and Amazon Lex.
+Their model uses embeddings trained on the DSTC2 dataset~\citep{baymurzina2019classifiers,baymurzina2019intents}.
+DSTC2 contains communications with users or `calls'~\citet{henderson2014second}.
+The dataset includes roughly 500 dialogs with 7.88 turns on average in each condition for 6 conditions~\citet{henderson2014second}, hence about 20.000 turns or utterances.
+Knowing that the focus for Snips also lies in interpretation of voice commands~\citep{snips2019voice} it is expected that the model created by DeepPavlov does not obtain state-of-the-art results for other tasks.
+Botfuel claim they are `on par' with the competition~\citep{botfuel2018benchmark}.
 This is based on runs on the same datasets as~\citet{braun2017}.
-Using micro averaging the Botfuel is one procent lower than Watson, equals LUIS and outperforms DialogFlow, Rasa, Snips and Recast.
+Using micro averaging the Botfuel is one procent lower than Watson, equals LUIS and outperforms DialogFlow, Rasa, Snips and Recast.ai.
 The results for Rasa match the results provided in the paper.
 This means that Botfuel has compared their system against an old version of Rasa.
-
-% bench problem generalization
-The main problem with these claims is that the numbers appear convincing to a machine learning layman.
-It could be that some organisation has cherry picked a dataset for their system or omitted systems which outperformed theirs.
-The only way for users to determine what system is the most accurate for their data is to trust these claims or write their own benchmark.
-This gives rise to the following research question.\\
+These observations give rise to the following research question.
 
 \rqone \\[1mm]
 
