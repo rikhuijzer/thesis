@@ -20,7 +20,7 @@ The definition uses tags to specify entities, for example:
         susan jones<E_ENAMEX>
     \end{verbatim}
 \end{center}
-Note that this limits the text since angled brackets (`$<$', `$>$') cannot be used without escaping the brackets.
+Note that this constraints the text since angled brackets (`$<$', `$>$') cannot be used without escaping the brackets.
 A less verbose and non text constraining annotation standard is the BIO2 annotation standard.
 The origin is unclear, but adaptation is done by at least Stanford as seen in GloVe~\citep{pennington2014}.
 Here sentences are annotated as follows.
@@ -58,7 +58,7 @@ One could argue that the readability of a Markdown format and the versatility of
 A combination of sentence annotations and token annotations is not supported by the standards described above.
 For BIO one could track the sentence annotations in a separate file or put it before or after the sentence.
 The former adds duplicate information while the latter makes the file incompatible with the standard.
-For Rasa one could change it to a table and put the Markdown and sentence annotation in separate columns.
+For Rasa one could change it to a tab separated file and put the Markdown and sentence annotation in separate columns.
 This is very readable and compact, but means transforming the multi-token annotations to separate token annotations for easier validation.
 Datasets which combine sentence annotations with token annotations seem to take yet another approach.
 They use json to store any information they have.

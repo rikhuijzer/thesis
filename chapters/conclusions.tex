@@ -4,13 +4,12 @@
 Media suggests that difficult natural language processing (NLP) tasks can be solved by using artificial intelligence.
 It is interesting to see whether this can be used to automate customer support.
 To this end various NLP tasks have been considered.
-Eventually it is decided that intent classification is the most interesting task.
-Intent classification attempts to classify the intention of some user when he utters some sentence.
-For example, ``what is the weather tomorrow?'' could be labeled as `get\_weather'.
-A conversational agent (advanced chatbot) could then use this intent to decide how to respond.
+Eventually it is decided that intent classification and named-entity recognition are an interesting combination of tasks for the graduation company.
+This combination of tasks is often used in chatbots to respond to users in real-time.
 % research question one
-While reading about this task it was found that various systems claim to have obtained the highest accuracy scores for certain datasets.
-This is highly suspicious and gives rise to the following research question and goal.\\
+While reading about this task it was found that various parties run benchmarks and draw conclusions.
+For each party an issue which affects the validity is found.
+This gives rise to the following research question and goal.\\
 
 \rqone\\
 
@@ -19,9 +18,9 @@ This is highly suspicious and gives rise to the following research question and 
 The answer for the first research question is that it is possible, but impractical.
 Main issue is that to test a service one has to make API calls.
 This requires the user of a benchmark tool to have an user account for each service and it forces the tool to update for each changing service.
-Another issue is that evaluation of results is done on pre-defined datasets.
+Another issue is that evaluation of results is done on standard datasets.
 This does not guarantee that some system is indeed the best choice for some problem at hand.
-It could be that the pre-defined dataset contains more training data, is in another domain or uses another language.
+It could be that the standard dataset contains more training data, is in another domain or uses another language.
 Even when using the benchmarking tool with some use-case specific dataset knowing the best system is not very useful.
 Services push new models into production without letting users know, so benchmark results can become invalid at any moment.
 
@@ -34,19 +33,18 @@ Next, the tool (and knowledge obtained by creating the tool) is used to work on 
 
 The search for improvement has considered increasing the amount of training data and using new meta-learning algorithms and embeddings.
 A recent model called Google BERT~\citep{devlin2018} is expected to be the most likely candidate for increasing accuracy.
-The model uses pre-training to learn about language and can be fine-tuned to some specific task.
+The model provides a pre-trained checkpoint which has `learned' about language by reading large amounts of text.
+The pre-trained checkpoint can then be fine-tuned on some specific NLP task using transfer learning.
 It is a big model, meaning that fine-tuning takes around 1,5 days on a modern computer and a few minutes on a high-end GPU.
-Experiments on intent classification datasets showed non-significant improvements in accuracy.
+Experiments on intent classification datasets show non-significant improvements in accuracy.
 To improve accuracy further the model has been jointly trained on intent classification and named-entity recognition.
 The benefit is that named-entity information can be used to determine the intent and vice versa.
-The Google model is a good candidate for jointly training because it uses left and right context in all layers (deep bidirectionality).
+The Google model is a good candidate for jointly training because it, unlike other recent models, uses left and right context in all layers of the network.
 BERT has obtained state-of-the-art results in a wide range of tasks including named-entity recognition.
-This implies that jointly training BERT should obtain state-of-the-art results on the natural language understanding task.
-Specifically, on tasks where data consists of intents and named-entities which is typical for conversational agents.
+These two facts imply that jointly training BERT should obtain state-of-the-art results on the joint intent classification and NER task.
 Basic experiments are conducted in which training BERT separately is compared to training it jointly.
 The experiments show that jointly training is possible and in some cases obtains higher accuracies than separate training.
-It is expected that the results can be improved by taking a second look at the implementation and improving it.
-One issue for the current implementation is that the implementation does not shuffle the training data.
+Future work is needed to see whether the improvements in accuracy are significant.
 
 \iffalse
 % conclusions

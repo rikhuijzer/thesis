@@ -53,11 +53,11 @@ The IBM sales department claims that Autodesk using chatbots cut down their reso
 
 % organisations claiming highest accuracy numbers
 Various parties run benchmarks and use this to draw conclusions about the best performing system.
-Issues can be pointed out which question the conclusions.
+Issues can be pointed out which question the validity of these conclusions.
 A methodology and three datasets for benchmarking intent classification and named-entity recognition (NER) are created and published by~\citet{braun2017}.
 NER aims to detect information like dates, locations and person names from text.
 The paper compares accuracy for Microsoft LUIS~\citep{microsoft2019luis}, IBM Watson Conversation (now Watson Assistant~\citep{ibm2019assistant}), API.ai (now Google DialogFlow~\citep{google2019dialogflow}), Wit.ai~\citep{facebook2019wit}, Amazon Lex~\citep{amazon2019lex} and Rasa~\citep{bocklisch2017rasa}.
-Based on the advances in the field~\citep{young2018recent} the scores from this paper need to be updated.
+When knowing that the field is rapidly advancing~\citep{young2018recent} it becomes clear that the scores from this paper are outdated.
 Snips~\citep{snips2019voice} show that they outperform the competition by a large margin~\citep{snips2017benchmarking}.
 The competition consists of api.ai, Wit.ai, Luis.ai and Amazon Alexa.
 Their small benchmark tests the systems against 70 queries per intent on their own dataset.
@@ -69,7 +69,7 @@ It is based on the Snips dataset~\citep{snips2017dataset} and compared against A
 Their model uses embeddings trained on the DSTC2 dataset~\citep{baymurzina2019classifiers,baymurzina2019intents}.
 DSTC2 contains communications with users or `calls'~\citep{henderson2014second}.
 The dataset includes roughly 500 dialogs with 7.88 turns on average in each condition for 6 conditions~\citep{henderson2014second}, hence about 20.000 turns or utterances.
-Knowing that the focus for Snips also lies in interpretation of voice commands~\citep{snips2019voice} it is expected that the model created by DeepPavlov does not obtain state-of-the-art results for other tasks.
+Knowing that the focus for Snips also lies in interpretation of voice commands~\citep{snips2019voice} it is expected that the model created by DeepPavlov does not obtain state-of-the-art results for other datasets.
 Botfuel~\citep{botfuel2019} claims to be `on par' with the competition~\citep{botfuel2018benchmark}.
 This is based on runs on the same datasets as~\citet{braun2017}.
 Botfuel shows it is one procent lower than Watson, equals LUIS and outperforms DialogFlow, Rasa, Snips and Recast.ai.
@@ -79,15 +79,14 @@ These observations give rise to the following research question.\\
 
 \rqone \\[1mm]
 
-% increasing state of the art problem
 An interesting problem from an academic point of view is increasing accuracy.
 The second research question aims to do that.\\
 
 \rqtwo \\[1mm]
 
-For the graduation company Dutch datasets would match their use-case, however the focus in research lies on English datasets~\citep{cambria2014jumping,young2018recent}.
-To be able to compare our results with the research the focus in this question lies on English datasets.
-It is expected that the knowledge from answering this question can be transferred to Dutch datasets since many models are multilingual~\citep{devlin2018}.
+For the graduation company Dutch datasets would match their use-case, however the focus in NLP research is on English datasets~\citep{cambria2014jumping,young2018recent}.
+To be able to compare our results this thesis will also focus on English datasets.
+It is expected that the knowledge from answering this question can be transferred to Dutch datasets since modern multilingual models exist~\citep{spacy2019models,subramanian2018learning,devlin2018}.
 The first and second research question are discussed respectively in chapter~\ref{ch:benchmarking} and~\ref{ch:improving_accuracy}.
 
 \section{Project goal}

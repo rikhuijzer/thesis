@@ -6,7 +6,6 @@ Systems which obtain state of the art (SOTA) accuracy are often surpassed within
 A search is conducted to improve the accuracy of the existing systems.
 The research for this part has not been systematic.
 This is caused by the goal to improve accuracy.
-When aiming for such a goal completeness is not important, as long as the improvement is realised.
 The method for finding an improvement is based on coming up with `novel' approaches to improve accuracy.
 After having such an `novel' approach the literature is consulted.
 This search method relies on the assumption that papers have done their research and will provide proper related work.
@@ -53,6 +52,7 @@ Kaggle provides a way for machine learning enthusiasts to communicate.
 People who obtain top 20 high scores on difficult tasks tend to explain their pipeline in a blogpost.
 Research papers tend to focus on designing the best deep learning architectures.
 The Kaggle explanations are valuable sources for learning how to get the most out of the architectures.
+
 One such post~\citep{kumar2018} uses three embeddings, namely Glove, FastText and Paragram.
 The author argues that ``there is a good chance that they (the embeddings) capture different type of information from the data''.
 This method is called boosting.
@@ -90,7 +90,7 @@ Glove~\citep{pennington2014} was superseded by FastText~\citep{joulin2016bag}.
 The Facebook FastText embedding is aimed to be quick, allowing it to be used as a baseline.
 With 157 languages (\url{https://fasttext.cc/}) it is a mutli-lingual model.
 Another state-of-the-art and easy to implement embedding is the universal sentence encoder~\citep{cer2018universal}.
-The word `universal' denotes that the system has used a supervised training training task which has been chosen such that the embeddings generalize to downstream tasks.
+The word `universal' denotes that the system has used a supervised training task which has been chosen such that the embeddings generalize to downstream tasks.
 Not only Google, but also Microsoft research is working on multi-task learning~\citep{subramanian2018learning}.
 These embeddings are not enough to improve on existing systems, since Rasa is using the universal sentence encoder~\citep{wiese2018}.
 One step further would be to let the model decide what embedding it wants to use~\citep{kiela2018dynamic}.

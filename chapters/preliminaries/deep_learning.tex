@@ -18,7 +18,7 @@ The focus lies on the intuition behind the approaches.
 The goal of this is being able to estimate suitability of certain approaches for certain tasks.
 
 
-\subsection{glove}
+\subsection{GloVe}
 \label{subsec:glove}
 \fi
 
@@ -27,7 +27,7 @@ The goal of this is being able to estimate suitability of certain approaches for
 The vanishing gradient problem has for a long time halted the progress of neural networks with many layers, also known as deep neural networks.
 Backpropagation updates the weights in the network by sending information from the output layer in the direction of the input layer.
 The problem relates to vanishing and exploding updates to weights in the layers further from the output layer.
-These extreme updates are caused by the backpropagation.
+These extreme updates are caused by the backpropagation algorithm.
 Consider some weight $w$ which is near the input layer of some network.
 Say this weight is updated by the following partial derivative $w = d_1 \cdot d_2 \cdot \ldots \cdot d_i$.
 Here $i$ denotes the number of layers in the network.
@@ -133,7 +133,7 @@ In practise LSTMs take longer to converge than GRUs~\citep{chung2014empirical}, 
 \subsection{Attention}
 \label{subsec:attention}
 %See also CS224n including 'advanced attention' slides.
-One drawback of recurrent neural networks is that the decoder obtains all information from the final state of the encoder.
+One drawback of recurrent neural networks using the encoder-decoder model is that the decoder obtains all information from the final state of the encoder.
 A problem with this can be explained by looking at machine translation.
 When translating words are aligned as explained in section~\ref{subsec:mt}
 When generating the $n$-th word during decoding information we generally need mainly information from the $n$-th word which occurred during encoding.
@@ -178,7 +178,7 @@ To solve this both RNNs make one prediction for each word and the answers of bot
 \subsection{Convolutional neural networks}
 \label{subsec:cnn}
 % cnn intro
-Convolutional neural networks are an extension to vanilla neural networks which allow the model to exploit spatial locality.
+Convolutional neural networks (CNNs) are an extension to vanilla neural networks which allow the model to exploit spatial locality.
 This makes the networks highly successful for image classification.
 During image classification CNNs learn a hierarchical representation of the input, according to~\citet{conneau2016very}.
 The authors claim that such an hierarchical representation would have benefits for NLP over sequential models.
@@ -212,7 +212,7 @@ The model is integrated into the AllenNLP open-source NLP library created by~\ci
 \label{subsec:transformers}
 The main issue in the recurrent approaches is that distant information needs to pass through all the intermediate states.
 In the basic RNN for each state all the information is updated, causing less recent information to gradually disappear.
-The GRU and LSTM reduce this problem by being more selective when viewing or changing information.
+Gated recurrent architectures (GRUs and LSTMs) reduce this problem by being more selective when viewing or changing information.
 Transformer networks allow the model to look at previous inputs instead of previous states~\citet{vaswani2017attention}.
 For example, suppose we are translating `impounded' in the following sentence pair from the WMT'14 English-German dataset.
 \begin{center}

@@ -1,5 +1,5 @@
 
-fix BERT section
+fix BERT section (and why bert is suited for joint)
 feedback hylke and jukka
 fix all the typos and inconsistencies! get quality right
 read through search section

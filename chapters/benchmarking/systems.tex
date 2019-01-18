@@ -7,11 +7,12 @@
 Rasa (\url{https://rasa.com/}) is an open-source system allowing users to build conversational agents.
 The systems consists of two parts, namely \textsc{rasa\_nlu} and \textsc{rasa\_core}.
 The former classifies sentences and sub-sentences.
-To train the system users can specify (hierarchical) intents, synonyms and regexes.
+To train the system users can specify (hierarchical) intents, synonyms and regular expressions.
 Hierarchical intents is a recent addition which allows the system to extract multiple intents from a sentence.
 For example, it can extract `hi+book\_ticket' from
 ``Good morning.
 Can I order a ticket to London please?''.
+Regular expressions can, for example, be used to detect numbers and dates.
 The system is actively used in production.
 As a result the code is well documented and stable.
 
@@ -31,8 +32,7 @@ Rasa allows the system to be used as API and `Python API'.
 The Python API is the most efficient.
 Here users install \textsc{rasa\_nlu} in their programming environment and call functions directly.
 Depending on the used configuration a selection of dependencies have to be installed.
-Since Rasa is called from Python it is not able to maintain a state.
-The regular API advises to spin up a Docker container.
+The regular API advises use a Docker container.
 This is less efficient, but more modular.
 Containers are published to Docker Hub by Rasa.
 Users can pull these for free and use the newest stable configuration of choice.
@@ -78,21 +78,19 @@ DeepPavlov by default includes DSTC 2, Wikipedia, Reddit, RuWiki+Lenta and ELMo 
 \label{subsec:cloud_services}
 % conversational agents
 Cloud service providers and various small companies (start-ups) provide APIs for conversational agents.
-Functionality differs per provider, but in the basis they all over the same features.
+Functionality differs per provider, but in the basis they all offer the same features.
 Naming conventions do not seem to exists.
-For example, Rasa calls intent classification training examples \textit{utterances}, while Google Dialogflow calls them \textit{training phrases}.
+(For example, Rasa calls intent classification training examples \textit{utterances}, while Google Dialogflow calls them \textit{training phrases}.)
 Via the web interface or API examples can be sent to a server and the system can be configured.
 Configurations specify the example utterances, dialog flows, how to classify entities (used for slot filling) and input language.
 At some point the server will use the provided examples to train the model.
 This takes a few seconds.
-% This makes sense, since users do not want to wait and computations cost money.
-Settings for the dialogs and APIs are located somewhere in the complete cloud offerings.
 An extension on the intent classification and slot filling described above is using knowledge bases.
 When looking at IBM Watson a document needs to be uploaded and annotated by humans.
 This is an example of a structured knowledge base.
 
 % list of further natural language understanding providers
-In the period that IBM Watson won the Jeopardy quiz a lot of math and reasoning was required to create NLP systems.
+In the period that IBM Watson~\citep{ibm2019assistant} won the Jeopardy quiz~\citep{high2012era} a lot of math and reasoning was required to create NLP systems.
 Nowadays, training a competitive neural network for natural language processing is relatively easy.
 It takes a PhD candidate a few months~\citep{manning2017lectures}.
 This results in a lot of companies providing natural language processing services.

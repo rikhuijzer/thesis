@@ -166,10 +166,22 @@ This could make the intent classifier drop in accuracy.
 In an ideal end-to-end model incorrect NER classifications would be less of an issue.
 The model would learn to ignore the named entity recognition if it would not increase accuracy.
 
-
-
 \subsection{BERT joint training}
 \label{subsec:bert_joint_training}
+% why bert suitable
+We show that, compared to other recent pre-training model architectures, BERT is better suited for joint training.
+Consider the BERT prediction for $T_2$ in figure~\ref{fig:bert_comparison}.
+
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[scale=1]{figures/deeply_bidirectional.png}
+    \end{center}
+    \caption{
+        Comparison of flow of information in the layers of various recent pre-training model architectures~\cite[Figure 1]{devlin2018}.
+        Note that ``only BERT representations are jointly conditioned on both left and right context in all layers''~\citet{devlin2018}.
+    }
+    \label{fig:bert_comparison}
+\end{figure}
 
 % why possible
 That joint training BERT is possible can be observed from figure~\ref{fig:bert_single_sentence} and figure~\ref{fig:bert_ner}.
