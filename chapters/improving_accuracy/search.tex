@@ -1,11 +1,11 @@
 \section{Search}
 \label{sec:search}
 
-The field of NLP is rapidly evolving due to the introduction of deep learning.
+The field of NLP is rapidly evolving due to the introduction of deep learning~\citep{cambria2014jumping}.
 Systems which obtain state of the art (SOTA) accuracy are often surpassed within a few months.
+A recent example of this is ELMo as published in March 2018~\citep{peters2018} which has been surpassed~\citep{young2018recent} by BERT on in October 2018~\citep{devlin2018}.
 A search is conducted to improve the accuracy of the existing systems.
 The research for this part has not been systematic.
-This is caused by the goal to improve accuracy.
 The method for finding an improvement is based on coming up with `novel' approaches to improve accuracy.
 After having such an `novel' approach the literature is consulted.
 This search method relies on the assumption that papers have done their research and will provide proper related work.
@@ -32,7 +32,6 @@ Also, intent classification is more useful for the thesis than only knowing whet
 According to~\citet{warden2018} it is more effective to get more training data than to apply better models and algorithms.
 For conversational agents in company settings it is easy to get raw data.
 This shifts the problem to applying to automatic data wrangling.
-This is not further investigated since the data obtained from customers cannot be part of a public thesis.
 Learning automatically from users is applied by some Microsoft chatbots.
 Microsoft Tay famously started to learn offensive language from users and has been shut down as a result.
 In China Microsoft has had a more successful release of XiaoIce.
@@ -94,4 +93,4 @@ The word `universal' denotes that the system has used a supervised training task
 Not only Google, but also Microsoft research is working on multi-task learning~\citep{subramanian2018learning}.
 These embeddings are not enough to improve on existing systems, since Rasa is using the universal sentence encoder~\citep{wiese2018}.
 One step further would be to let the model decide what embedding it wants to use~\citep{kiela2018dynamic}.
-A caveat is the fact that one then needs to implement multiple embeddings (even when the model decides that one embedding is the best).
+A caveat is the fact that one then needs to implement multiple embeddings (even when the model decides that only one embedding should be used).

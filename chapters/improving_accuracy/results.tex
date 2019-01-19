@@ -85,8 +85,6 @@ Then a joint training batch of size 32 will contain about 3 tokens related to in
 For an intent training batch of size 32 it will contain 32 tokens related to intents.
 Hence, the data for the joint training is much more complex.
 This seems to indicate that the joint training forces the model to learn a more complex representation.
-An alternative explanation could be related to the fact that training data is not shuffled.
-The default BERT code hints to shuffle data, but when comparing the Colab log with the training data, the implementation in \textsc{improv} does not.
 
 % closing remarks
 An important thing to note about the results is that the datasets are very small.

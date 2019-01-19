@@ -1,27 +1,19 @@
 
+fix improv description
+describe nlu_datsets
 fix BERT section (and why bert is suited for joint)
-feedback hylke and jukka
-fix all the typos and inconsistencies! get quality right
-read through search section
-Add link to improv and nlu_datasets
+feedback hylke
+feedback jukka
 future work in results
 
 NLU in practise, Fransis part (most interesting for spindle, but possibly also a fun overview for uni, remember why: see conversation with fransis in slack, mention huggingface using BERT)
 
 preface
 explain TPU estimator code (free technical text) (in section improv?)
-capitalize tables
-read review https://arxiv.org/pdf/1708.02709.pdf
-describe improv and nlu_datasets
 Walk through notes and copy info.
-fix preliminaries
 insert images (increases page count ftw)
-Ask Jukka what he likes to see in report
-Describe improv
-Describe nlu_datasets
 Training data section
 Fix todos in report
 Reduce could / should
 Vanishing gradient explanation is okay, but need bit more formal. Replace ‘lets’ by ‘consider’ (colloquial phrases).
 Walk through entire report
-Move to public thesis repository

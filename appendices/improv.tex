@@ -1,3 +1,38 @@
 \chapter{\textsc{improv}}
 \label{ch:improv}
+% intro
+The project aimed to improve accuracy is called \textsc{improv} and available on Github (\url{https://github.com/rikhuijzer/improv}).
+Unlike \textsc{bench} and \textsc{nlu\_datasets} this project is in severe need of refactoring.
+The code is cloned from the Google BERT code, built on the Google TensorFlow library, as provided by the researchers~\citep{devlin2018github}.
 
+% pytorch
+Alternatively, it could have been based code is available for the PyTorch library~\citep{wolf2018github}.
+The PyTorch implementation is under active development unlike the TensorFlow implementation and includes more functionality.
+Features include Multi-GPU, distributed and 16-bits training.
+These allow the model to be trained more easily on GPUs by reducing and distributing the memory used by the model.
+BERT contains various models including \textsc{BERT-Base} and \textsc{BERT-Large}.
+The base model is only created for a fair comparison with other recent systems~\citep{devlin2018github}.
+\textsc{BERT-Large} is the model which obtains the best results.
+Using the \textsc{BERT-large} model requires more than 16 GB of RAM, hence more than one GPU.
+Since Google Colab does not provide a multi-GPU set-up, we need to use a TPU.
+This is not yet supported by PyTorch, hence we stick to the TensorFlow implementation.
+
+\section{Usage}
+\label{sec:improv_usage}
+The \textsc{improv} code can partially be executed on a local system.
+However, training the model requires at least one enterprise grade GPU.
+GPUs and TPUs are provided for free by Google Colab~\citep{google2019colab}.
+Using this code means importing one of IPython Notebooks listed in the repository in Colab.
+Hyperparameters can be set in the Notebook after which the code can be executed.
+The Notebook require a Google Account combined with a paid Google Cloud Bucket.
+The Bucket is used to store the trained checkpoints created by training the model.
+Newer runs listed in the `runs' folder in the Github repository depend on \textsc{improv}, \textsc{nlu\_datasets} and \textsc{rasa\_nlu}.
+The dependencies list the used version in the Notebook.
+When errors occur make sure that the correct versions are cloned or installed.
+
+\iffalse
+\section{Overview}
+\label{sec:improv_overview}
+Since the code is in need of refactoring this section will only describe the most important parts of the project.
+
+\fi

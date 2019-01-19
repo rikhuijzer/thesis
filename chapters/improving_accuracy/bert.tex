@@ -80,17 +80,17 @@ According to the paper the benefit of the Transformer models is that they are hi
 Training BERT consist mainly of matrix multiplications~\citep{dettmers2018}.
 These can be done quickly and efficiently on graphic processing units (GPUs) and tensor processing units (TPUs).
 The latter are ASICs created by Google specifically to do machine learning inference~\citep{jouppi2017}.
-When using the TensorFlow implementation of BERT GPUs with 16 GB of RAM are required.
-GPU optimizations are available in the PyTorch implementation provided by~\citet{wolf2018}, but this does not support TPUs at the time of writing.
+When using the TensorFlow implementation of BERT GPUs with 16 GB of RAM are required~\citep{devlin2018github}.
+GPU optimizations are available in the PyTorch implementation provided by~\citet{wolf2018}, but PyTorch does not support TPUs at the time of writing.
 Prices for these GPUs are at least a few thousand euros, which means most users and companies resort to cloud services.
-At the time of writing Google Colab (\url{https://colab.research.google.com}) provides free access to a GPU and TPU instance.
-One example implementation is provided~\citep{bajaj2018}.
+Google Colab~\citet{google2019colab} provides free access to a GPU and TPU instance.
+Code which uses Google Colab for BERT is based on an example implementation provided by Google~\citep{bajaj2018}.
 
 % colab usage
 Using Colab is a compromise between usability and costs.
 The costs are limited to the use of some storage in a Google Cloud Bucket.
-Usability is hindered by the usual constraints of Jupyter Notebooks, for example no unittests, no autocomplete and poor Git integration.
-To overcome these issues most of the code is written and tested locally and pushed to a Github repository.
+Usability is hindered by the usual constraints of online Jupyter Notebook editors, for example no unittests, no autocomplete and poor Git integration.
+To overcome these issues most of the code is written and tested locally and pushed to a Github repository called \textsc{improv}, see appendix~\ref{ch:improv}.
 In the Colab the code is then pulled from the repository and main functions are called.
 Using Colab has benefits as well.
 Hyperparameters and output are visible and can easily be modified in the Notebook, this eases verification.
@@ -103,33 +103,28 @@ Generating these plots can be done by specifying a model and metrics using the T
 
 % todo: explain why not listing intermediate accuracies
 
-
-\subsection{Sentence classification}
-\label{subsec:sentence_classification}
-
-
 \subsection{Joint training}
 \label{subsec:joint_training}
-
 % introduction
 One reason why neural networks are obtaining the best results for many fields is because networks are now deep.
 Deep networks have more layers and can therefore learn more complex tasks.
-One application of this is adding a larger portion of some pipeline to the model.
-For example, the code by~\citet{rasa2018} for the default pipeline for Rasa Spacy contains the following steps:
+One application of this is adding a larger portion of the pipeline to the model.
+For example, the code by~\citet{rasa2018config} for the default pipeline for \textsc{rasa-spacy}, as introduced in section~\ref{subsec:rasa}, contains the following steps.
+In these steps a featurizer denotes a system component which transforms text to vector representations~\citep{brutlag2000challenges}.
 \begin{enumerate}
-    \item tokenizer
-    \item intent entity featurizer regex
-    \item intent featurizer spacy
-    \item ner crf
-    \item ner synonyms
-    \item intent classifier sklearn
+    \item Tokenization which splits texts up in tokens.
+    \item Regular expression based intent and entity featurizer (for example able to featurize phone numbers),
+    \item Intent featurizer based on spaCy~\citep{spacy2019}.
+    \item Stanford Named Entity Recognizer based on conditional random fields~\citep{finkel2005incorporating}.
+    \item NER synonym detection.
+    \item Intent classification based on scikit-learn~\citep{scikit2019}.
 \end{enumerate}
 
-Training occurs in the ner crf (Stanford Named Entity Recognizer) and intent classifier sklearn component.
-For Rasa these two components work separately.
+For this pipeline the Stanford Named Entity Recognizer and scikit-learn classify separately.
 Preferably one would have one model which could learn to do the entire pipeline, also known as an end-to-end model.
-It seems unfeasible to train the entire pipeline in a reasonable amount of time.
-Using BERT it is possible to train named entity recognition (NER) and intent classification in the same model.
+End-to-end models have two benefits.
+Firstly, an end-to-end model avoids feature engineering and data pre-processing~\citep{ma2016end}.
+Secondly, end-to-end models can obtain higher accuracies because (semi-)optimal features are found automatically.
 
 % why it helps
 That the combination improves independent models has been shown by~\citet{ma2017jointly} and~\citet{zhang2018joint}.
