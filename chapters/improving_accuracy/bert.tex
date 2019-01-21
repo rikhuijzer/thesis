@@ -25,53 +25,88 @@ Looking into the tasks we see that the results are obtained for a wide range of 
 \end{itemize}
 
 % technical description
-The paper describes various reasons for the good results on the GLUE, MultiNLI and SQuAD datasets.
+The paper describes three reasons for the good results on the GLUE, MultiNLI and SQuAD datasets.
+One being that they pre-train the model and let users fine-tune it on their downstream task~\citep{devlin2018}.
+Fine-tuning starts with a model for which all the layers are initialized based upon a pre-trained model~\citep{guo2016deep}.
+Then the output layer is replaced by a task specific output layer, hence the number of labels equals the classes in the downstream dataset~\citep{guo2016deep}.
+This can also be denoted as transfer learning~\citep{cirecsan2012transfer}.
+The output layer uses dropout during training as described in the \textsc{create\_model} function in \textsc{run\_classifier.py}~\citep{devlin2019classifiers}.
+Basically, pre-training learns a language model which is used for the downstream task.
+Another is that transformer models parallelize better than recurrent architectures~\citep{vaswani2017attention}.
+This allowed the BERT researchers to train a model having 340 million parameters (\bert{large}). %bert large
+Lastly, the model is presented as being `deeply bidirectional'.
+The bidirectionality allows the model to use context from both sides to determine the meaning of a word.
+Deep bidirectionality denotes that the model uses left and right context in all layers of the model.
+This is visualised and compared to ELMo~\citep{peters2018} and OpenAI GPT~\citep{radford2018improving} in figure~\ref{fig:bert_comparison}.
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=\textwidth]{figures/deeply_bidirectional.png}
+    \end{center}
+    \caption{
+        Comparison of flow of information in the layers of various recent pre-training model architectures~\cite[Figure 1]{devlin2018}.
+        Note that ``only BERT representations are jointly conditioned on both left and right context in all layers''~\citep{devlin2018}.
+    }
+    \label{fig:bert_comparison}
+\end{figure}
 
-% pre-training versus fine-tuning
+% available models
+Another benefit of BERT is that they provide a wide range of pre-trained models.
+The basic models presented in the BERT paper are \bert{base} and \bert{large}.
+\bert{base} is ``chosen to have an identical model size as OpenAI GPT for comparison purposes''~\citep{devlin2018}.
+\bert{large} obtains higher accuracy on most tasks and has 340 million parameters in total.
+Compared to \bert{base} this is an increase from 110 million to 340 million parameters.
+The BERT Github repository~\citep{devlin2018github} lists some more models, namely uncased and cased variants for \bert{base} and \bert{large}.
+In general uncased models suffice, but for certain tasks (for example, NER) performance can be increased by using a cased model~\citep{devlin2018github}.
+Also, they provide a multilingual and Chinese version.
+The multilingual model is trained on the 100 languages having the most Wikipedia pages~\citep{devlin2019multi}.
+Note that Chinese is also part of the multilingual version.
 
 \subsection{Training}
 \label{subsec:training}
 % infeasibility of local training
 From now on training is used to denote fine-tuning of the model.
-Training the general language model on some downstream task is presented as being inexpensive.
+Training the general language model on some downstream task is presented as being inexpensive~\citep{devlin2018github}.
 Relative to the pre-training it is.
-Running training with the advised batch size of 32 will run out of RAM on a 16 GB RAM machine.
-The RAM usage on some machine will stay around 15 GB with batch size 16.
+Experiments show that fine-tuning with default hyperparameters will run out of RAM on a 16 GB RAM machine.
+Lowering the batch size reduces the memory usage, but running a few training steps still takes at least a few hours.
 
-To train the model on some tasks it is advised to run `a few epochs'.
-Let $a$ be `a few', and $b$ the number of training examples.
-Based on the example code provided by Google researchers $a = 3$ and $b = 1000$.
+To train the model on some tasks it is advised to run `a few epochs'~\citep{devlin2018github}.
+Based on the example code provided by Google researchers the number of epochs is 3 and the number of training examples is about 1000~\citep{bajaj2018}.
 So, it is advised to show the system $3000$ examples.
 For our smaller datasets of around 50 examples this means running $3000 / 50 = 60$ epochs.
 When measuring the training time in steps it means running $3000 / 16 \approx 188$ steps for a batch size of 16.
-Preliminary experiments on the AskUbuntu dataset (having 53 training examples) with a batch size of 32 confirm this estimate, see figure~\ref{fig:tensorboard_base} and~\ref{fig:tensorboard_large_2}.
-The images show that the system takes does not easily find a local minimum, and can even have a sudden drop in performance, see figure~\ref{fig:tensorboard_large}.
+Preliminary experiments on the AskUbuntu dataset (having 53 training examples) with a batch size of 32 confirm this estimate, see figure~\ref{fig:tensorboard}.
+The images show that the system does not converge smoothly, and can even have a sudden drop in performance.
+One possible explanation for the performance drop is that the model moved into an non-generalizing local minimum.
+
 The results are interesting because it shows that the model is able to learn something even for a dataset with only tens of training examples.
 \begin{figure}
     \centering
     \begin{minipage}{0.30\textwidth}
         % \centering
         \includegraphics[width=0.9\textwidth]{figures/tensorboard_askubuntu.png}
-        \caption{BERT-Base}
-        \label{fig:tensorboard_base}
+        \caption*{\bert{base}}
     \end{minipage}
     \hspace*{3mm}
     \begin{minipage}{0.30\textwidth}
         % \centering
         \includegraphics[width=0.9\textwidth]{figures/tensorboard_askubuntu_large.png}
-        \caption{BERT-Large}
-        \label{fig:tensorboard_large}
+        \caption*{\bert{large}}
     \end{minipage}
     \hspace*{3mm}
     \begin{minipage}{0.30\textwidth}
         % \centering
         \includegraphics[width=0.9\textwidth]{figures/tensorboard_askubuntu_large_2.png}
-        \caption{BERT-Large, second run}
-        \label{fig:tensorboard_large_2}
+        \caption*{\bert{large}, second run}
     \end{minipage}
-
+    \caption{TensorBoard visualisation for fine-tuning pre-trained models on AskUbuntu.
+    Here the horizontal axis denotes the number of steps.
+    Accuracy and loss for the model trained on the test set is evaluated at fixed steps on the evaluation set.
+    The plots show that BERT is in some cases able to converge to a correct local minimum after 100 steps (3200 examples shown to model).
+    The scores in these images should not be compared to the scores in section~\ref{sec:benchmark_results} since the metrics and the data split differ.}
+    \label{fig:tensorboard}
 \end{figure}
-Training the model for 5 steps or 80 examples takes at least a few hours.
+Training the model for 5 steps or 80 examples takes at least a few hours on a modern computer.
 Interpolation suggests that training 188 steps will take at least 36 hours.
 This is impractical when doing experiments.
 
@@ -79,7 +114,7 @@ This is impractical when doing experiments.
 According to the paper the benefit of the Transformer models is that they are highly parallelizable.
 Training BERT consist mainly of matrix multiplications~\citep{dettmers2018}.
 These can be done quickly and efficiently on graphic processing units (GPUs) and tensor processing units (TPUs).
-The latter are ASICs created by Google specifically to do machine learning inference~\citep{jouppi2017}.
+The latter are ASICs created by Google specifically to do machine learning inference~\citep{jouppi2017} and contain 64 GB of RAM~\citep{devlin2018github}.
 When using the TensorFlow implementation of BERT GPUs with 16 GB of RAM are required~\citep{devlin2018github}.
 GPU optimizations are available in the PyTorch implementation provided by~\citet{wolf2018}, but PyTorch does not support TPUs at the time of writing.
 Prices for these GPUs are at least a few thousand euros, which means most users and companies resort to cloud services.
@@ -97,11 +132,33 @@ Hyperparameters and output are visible and can easily be modified in the Noteboo
 Reproducibility is possible by opening the Notebook and running all cells.
 The first cell will ask to link the Colab to a Google account, make sure this account has access to a Google Cloud Bucket.
 
-% training notes
-The plots in figure~\ref{fig:tensorboard_base},~\ref{fig:tensorboard_large} and~\ref{fig:tensorboard_large_2} are created using the default TensorFlow visualisation tool TensorBoard.
+% tensorboard ignored from now
+The plots in figure~\ref{fig:tensorboard} are created using the default TensorFlow visualisation tool TensorBoard.
 Generating these plots can be done by specifying a model and metrics using the TensorFlow Estimator API.
+The plots will not be generated for the rest of the runs for two reasons.
+Firstly, the Estimator API for TPUs does not natively support visualizing intermediate results~\citep{Lakshmanan2018tpu}.
+This is discussed further in appendix~\ref{ch:improv}.
+Secondly, reporting intermediate results using a TPU takes a considerable amount of time.
+For each intermediate result (each point in the plot) the occurring actions are as follows.
+\begin{enumerate}
+    \item Transfer model checkpoint from TPU to Google Bucket.
+    \item Shutdown TPU.
+    \item Initialize TPU.
+    \item Transfer model checkpoint from Google Bucket to TPU.
+    \item Evaluate.
+    \item Transfer model checkpoint from TPU to Google Bucket.
+    \item Shutdown TPU.
+    \item Initialize TPU.
+    \item Transfer model checkpoint from Google Bucket to TPU.
+\end{enumerate}
+The shutdown and initialization takes about 30 seconds.
+Transferring data (around 1.2 GB) takes about 10 seconds.
+Hence, calculating one intermediate result takes about one and a half minute.
+Note that this can not be optimalized by running evaluation on the Google Colab machine (CPU) since it will run out of memory.
+(For a local machine with 16 GB RAM evaluation or `inference' on \bert{base} is possible and requires only a few minutes when setting batch size to 16.)
 
-% todo: explain why not listing intermediate accuracies
+% bert-large from now
+For the rest of this document all results are for the \bert{large} model since \bert{base} is only created for a fair comparison with OpenAI GPT~\citep{devlin2018}.
 
 \subsection{Joint training}
 \label{subsec:joint_training}
@@ -163,21 +220,6 @@ The model would learn to ignore the named entity recognition if it would not inc
 
 \subsection{BERT joint training}
 \label{subsec:bert_joint_training}
-% why bert suitable
-We show that, compared to other recent pre-training model architectures, BERT is better suited for joint training.
-Consider the BERT prediction for $T_2$ in figure~\ref{fig:bert_comparison}.
-
-\begin{figure}[htbp]
-    \begin{center}
-        \includegraphics[scale=1]{figures/deeply_bidirectional.png}
-    \end{center}
-    \caption{
-        Comparison of flow of information in the layers of various recent pre-training model architectures~\cite[Figure 1]{devlin2018}.
-        Note that ``only BERT representations are jointly conditioned on both left and right context in all layers''~\citet{devlin2018}.
-    }
-    \label{fig:bert_comparison}
-\end{figure}
-
 % why possible
 That joint training BERT is possible can be observed from figure~\ref{fig:bert_single_sentence} and figure~\ref{fig:bert_ner}.
 \begin{figure}[htbp]
