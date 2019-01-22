@@ -5,10 +5,15 @@
 \pagenumbering{arabic}
 This master thesis is the final report of the graduation project for the Computer Science and Engineering master at Eindhoven University of Techonology (TU/e).
 The project is carried out at Devhouse Spindle in Groningen.
+In this chapter the research questions are presented.
+Section~\ref{sec:thesis_context} explains the context for the research problem.
+The problem and the research questions are discussed in section~\ref{sec:problem_description}.
+Resulting goals from these questions are listed in section~\ref{sec:project_goal} as is an outline for the rest of the thesis.
 
 \section{Thesis context}
 \label{sec:thesis_context}
 Spindle is interested in automatically responding to customer questions.
+The field working on text interpretation is natural language processing (NLP).
 It is expected that automated responses to text are feasible by recent examples in artificial intelligence.
 Smartphones include speech recognition, allowing users to tell the phone what they want~\citep{lopez2017alexa}.
 This allows users to obtain information about the weather or the age of a specific president by talking to a device.
@@ -17,34 +22,25 @@ At the same time Google AlphaGo has learnt how to beat the best Go players in th
 The goal of Duplex is to fill in missing information from Google sites by calling people and asking for the information.
 Demonstrations by Google show that it is difficult for unsuspecting humans to tell the difference between Duplex and a real human.
 
-\iffalse
-% todo: show number of publications
 % field evolve speed
 Remarkable about the context is the speed in which the field evolves.
-Learning about some scientific topic means picking up a recent book or review paper.
-
-For example, Stanford provides a `Deep Learning for Natural Language Processing' course.
-This course is given bij Christopher Manning who has been active in natural language processing for many years and is highly cited in the field.
-When comparing the material of the `Winter 2018' version with the `Winter 2017' we see many changes.
-Attention and transformer models~\citep{vaswani2017attention} now get three lectures instead of one.
-This could be a coincidence where last year has been a particularly interesting one.
-
-Looking at the years before it does not seem to be so.
-A recent review paper for the same field~\citep{young2018recent} still see lots of potential.
-They expect better models for unlabelled data, reinforcement learning, zero-shot learning and network memory enrichment via knowledge base.
+Picking up a book as recent as 2010 will not list many common practises applied nowadays.
+The newer NLP approaches use deep learning (to do NLP from scratch) as introduced by~\citet{collobert2011natural} in 2011.
+In 2013 vector representations for words became dense by the introduction of word2vec~\citep{mikolov2013distributed}.
+These has been ``producing superior results on various NLP tasks''~\citep{young2018recent}.
+A recent review paper for deep learning and NLP~\citep{young2018recent} still see lots of potential.
+They expect better models for unlabelled data, reinforcement learning, zero-shot learning and network memory enrichment via a knowledge base.
 
 % implications of evolving speed (more hyperrefs and blog references)
-The fast pace of the field implies that this thesis is in certain aspects unconventional.
-An atypical high amount of references are to arXiv publications, blogposts and websites.
-These sources are regarded with more than usual skepticism and it is tried to extract only empirically validated information.
-Arguably the benefit of deep learning is that everyone can reproduce and improve results given some time and a (cloud) computer.
-\fi
+The fast pace of the field and the popularity of machine learning causes this thesis to be in certain aspects unconventional.
+The benefit of deep learning is that everyone can reproduce and improve results given some time and a (cloud) computer.
+The fast pace and machine learning cause an atypical high amount of references to respectively arXiv publications and blogposts and websites.
+It is tried to regard these sources with more than usual skepticism.
 
 \section{Problem description}
 \label{sec:problem_description}
 % why intent classification
 The graduation company would preferably see a system that is automatically trained on various sets of a few dozen text documents to answer customer questions.
-The field working on text interpretation is natural language processing (NLP).
 Research in NLP has focused their efforts on various tasks.
 To solve the problem defined above we require a task which is able to interpret questions in real-time using few training data.
 Natural language understanding (NLU), which maps text to meaning~\citep{jurafsky2014speech}, is working on interpretation of text.
@@ -89,7 +85,7 @@ To be able to compare our results this thesis will also focus on English dataset
 It is expected that the knowledge from answering this question can be transferred to Dutch datasets since modern multilingual models exist~\citep{spacy2019models,subramanian2018learning,devlin2018}.
 The first and second research question are discussed respectively in chapter~\ref{ch:benchmarking} and~\ref{ch:improving_accuracy}.
 
-\section{Project goal}
+\section{Project goal and outline}
 \label{sec:project_goal}
 Answering RQ1 means writing code.
 Even if the answer is negative, it will have provided a baseline to use when answering RQ2.
@@ -101,4 +97,12 @@ The goal related to the first research question is as follows.\\
 
 \noindent To not let our guard down the goal related to the second research question is stated ambitiously.\\
 
-\rgtwo
+\rgtwo \\
+
+% outline
+The first research question is discussed in chapter~\ref{ch:benchmarking}.
+It is working on benchmarking various NLP systems for specific NLP tasks.
+NLP and its tasks are introduced in chapter~\ref{ch:preliminaries}, specifically in section~\ref{sec:nlp}.
+The second research question is discussed in chapter~\ref{ch:improving_accuracy}.
+To be able to compare the introduced deep learning model with existing models one need to know about the existing models.
+Well-known models in NLP are explained in chapter~\ref{ch:preliminaries}, specifically in section~\ref{sec:deep_learning}.
