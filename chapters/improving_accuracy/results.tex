@@ -5,7 +5,7 @@
 Experiments are conducted on the AskUbuntu, Webapplications, Chatbot and SNIPS2017 dataset as introduced in section~\ref{subsec:available_datasets}.
 Comparisons are made for a fixed number of steps (or equivalently epochs).
 The reason for this is that intermediate results are not easily reported for the BERT model as explained in section~\ref{subsec:training}.
-The number of steps to be used for training is basically a guess on what should be enough.
+The number of steps to be used for training is based on a guess on what should be enough.
 For each dataset various runs for BERT are executed.
 During one run only intents are shown to the system and accuracy is measured for intents.
 Another run only shows entities and measures intents.
@@ -75,7 +75,7 @@ The code to reproduce the results the logs (including predictions) can be found 
 % result analysis
 From the results it can be concluded that joint training is feasible.
 The model will not learn anything when training on intents separately for SNIPS2017 and WebApplications.
-For WebApplications it has been found that lowering the step size can solve this problem.
+For WebApplications and Snips2017 it has been found that lowering the step size can solve this problem.
 This suggests that the gradient descent does not converge because the step size is too big.
 A bigger batch size means a more stable error gradient.
 It might be that this caused the model to get stuck in a local minimum.
@@ -97,19 +97,35 @@ On the other hand it might also be that less epochs correspond to similar accura
 Other interesting hyperparameters are \textit{max\_seq\_length} and \textit{learning\_rate}.
 Lowering the former to the expected maximum number of tokens in sentences reduces training and inference time.
 
-Interesting is to observe that jointly training generalizes to sequential labeling and sentence classification.
+Observe that joint training generalizes to sequential labeling and sentence classification.
 In other words, any combination of tasks where sentences are classified as well as parts of the sentence and these tasks are correlated.
-The tasks are expected to be correlated for any
+The tasks are expected to be correlated for any real-world NLP dataset.
 
-\iffalse
-\section{BERT implementation improvements}
-\label{sec:bert_implementation_improvements}
-% currently proof of concept, not using I is always preceded by B.
-% update loss function
-% X and O in NER reducing accuracy of NER
-% conditional code to fix I-<entity> statements appearing without B-<entity>
-% use multilangual and bert-base etc
-% more models
-% more datasets
-% hyperparameter tuning
-\fi
+\section{Implementation improvements}
+\label{sec:implementation_improvements}
+The current implementation is a proof-of-concept.
+The loss function for joint training needs to be reconsidered.
+Currently the importance of intent and all named-entities is the same, meaning one error in a intent or in a named-entity weights the same.
+It might be better for the model to have a higher importance for the intents, since the intent contains information about the entire sentence.
+Further tests are needed to see whether the increase in accuracy is significant.
+This requires more datasets.
+No dataset of around a few hundred distinct training examples has been evaluated, while this seems realistic for production use-cases.
+One could merge AskUbuntu, WebApplications and Chatbot, but this would be an unrealistic dataset.
+It would be a dataset where two thirds is related to software questions and one third is related to public transport information.
+Tests should also be conducted using the other models such as \bert{multilingual} and \bert{base} (cased).
+The authors~\citep{devlin2018} use English models to get SOTA results, this suggests that \bert{multilingual} performs worse.
+It is unknown how big the difference between the two is.
+Another improvement would be setting up fine-tuning such that TensorBoard visualisations (like figure~\ref{fig:tensorboard}) are possible.
+This allows users to get a better insight into the model training.
+Lastly, the code is in need of refactoring and validation.
+For example, the NER code has a distinction between X and O.
+O is used by the BIO annotation standard and X is used for positions which are not used (since the sentence is shorter than the maximum sequence length).
+The model in its current implementation does use X to classify tokens.
+
+% less important improvements
+Less important improvements are using conditional code to fix I-\textsc{entity} statements appearing without a B-\textsc{entity}.
+This constraint is enforced by the BIO annotation standard, where `intermediate' statements are preceded by `begin' statements.
+Also, for production use it might be beneficial to do some hyperparameter tuning.
+
+% todo: general suggestions such as validate training data (find outliers and duplicates)
+% todo: check accuracy on datasets having more than intent and entity, but also part of speech tagging or whatever
