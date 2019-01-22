@@ -18,14 +18,18 @@ Some well-known tasks are:
     \item Translating texts or \textbf{machine translation}.
     \item \textbf{Question answering} which is NLP on question sentences only.
     \item Classifying words or parts of sentences is done by \textbf{part-of-speech tagging} (for example, nouns and verbs) and \textbf{named-entity recognition} (for example, dates and locations).
-    \item \textbf{Optical character recognition} can use NLP knowledge to improve accuracy.
+    \item \textbf{Optical character recognition} attempts to recognize characters in images and can use NLP knowledge to improve accuracy.
     \item Finding co-references like ``The \underline{house} is white, and \underline{it} is located on a hill.'' is done using \textbf{coreference resolution}.
     \item NLP is not limited to text, because it includes \textbf{speech recognition} which transforms speech to text.
+    \item \textbf{Entailment classification} contains examples such as ``People formed a line at the end of Pennsylvania Avenue.'' which is contained in (logically implied by) ``At the other end of Pennsylvania Avenue, people began to line up for a White House tour.''~\cite{williams2018}
+    \item Determining whether two sentences have the same meaning is called \textbf{semantic text similarity}.
+    \item \textbf{Sentence classification} is the broad tasks of classifying a sentence (for example, the sentiment or intention of user)
 \end{itemize}
+Intent classification, machine translation and named-entity recognition are introduced in section~\ref{subsec:mt} and~\ref{subsec:nlu}.
 
 \subsection{Language model}
 \label{subsec:language_model}
-To be able to explain more complex neural network architectures we first take a look at a simple language model.
+To be able to explain more complex language representations using neural network architectures we first take a look at a simple statistical language model.
 Language models try to capture the grammar of a language.
 Capturing grammar can be done by using probabilities for sentences or probabilities of upcoming words given a part of a sentence.
 It is based on the assumption that grammatically correct sentences occur more often than incorrect sentences.
@@ -40,10 +44,10 @@ The following three tasks and examples demonstrate the usefulness of probabiliti
 In the first example it is much more likely that the third word should be `broke' than `boke'.
 This is used by automatic spell checkers to correct mistakes.
 In machine translation knowledge about the expected order of words is used to improve translation accuracy.
-The speech recognition example shows that phonetically equivalent and grammatically incorrect phrases can be filtered.
+The speech recognition example shows that ambiguity introduced by phonetic similarity can be solved by choosing the most likely phrase.
 
 A simple approach is to use counters to calculate the sentence probabilities.
-This makes use of the chain rule.
+This makes use of the chain rule or `general product rule'.
 Let $W$ denote a sentence, or equivalently, sequence of words.
 For the probability of the sentence we have $P(W) = P(w_1, w_2, \ldots, w_n)$.
 The probability of the upcoming word $w_i$ is $P(w_i) = P(w_i \: | \: w_1, w_2, \ldots, w_{i-1})$.

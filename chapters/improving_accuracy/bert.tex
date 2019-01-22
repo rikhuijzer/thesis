@@ -10,19 +10,8 @@ BERT being SOTA is also supported by a maintained scoreboard for the Stanford Qu
 \subsection{Model description}
 \label{subsec:model_description}
 % empirical results
-Looking into the tasks we see that the results are obtained for a wide range of tasks, including:
-\begin{itemize}
-    \item Entailment classification.
-    For example, ``People formed a line at the end of Pennsylvania Avenue.''
-    is contained in (logically implied by) ``At the other end of Pennsylvania Avenue, people began to line up for a White House tour.''~\cite{williams2018}
-    \item Semantic text similarity.
-    For two sentences determine whether they mean the same thing.
-    \item Sentence classification.
-    Tasks involve classifying linguistic acceptability (correctness).
-    \item Question answering.
-    The Stanford Question answering dataset (SQuAD)~\cite{rajpurkar2018} contains questions and a segment of text.
-    The answer should be extracted from the segment if it answers the question.
-\end{itemize}
+Results are obtained for a wide range of tasks presented by various datasets.
+These tasks include entailment classification, semantic text similarity, sentence classification and question answering.
 
 % technical description
 The paper describes three reasons for the good results on the GLUE, MultiNLI and SQuAD datasets.
@@ -82,19 +71,16 @@ The results are interesting because it shows that the model is able to learn som
 \begin{figure}
     \centering
     \begin{minipage}{0.30\textwidth}
-        % \centering
         \includegraphics[width=0.9\textwidth]{figures/tensorboard_askubuntu.png}
         \caption*{\bert{base}}
     \end{minipage}
     \hspace*{3mm}
     \begin{minipage}{0.30\textwidth}
-        % \centering
         \includegraphics[width=0.9\textwidth]{figures/tensorboard_askubuntu_large.png}
         \caption*{\bert{large}}
     \end{minipage}
     \hspace*{3mm}
     \begin{minipage}{0.30\textwidth}
-        % \centering
         \includegraphics[width=0.9\textwidth]{figures/tensorboard_askubuntu_large_2.png}
         \caption*{\bert{large}, second run}
     \end{minipage}
@@ -220,21 +206,21 @@ The model would learn to ignore the named entity recognition if it would not inc
 \subsection{BERT joint training}
 \label{subsec:bert_joint_training}
 % why possible
-That joint training BERT is possible can be observed from figure~\ref{fig:bert_single_sentence} and figure~\ref{fig:bert_ner}.
-\begin{figure}[htbp]
-    \begin{center}
-        \includegraphics[scale=0.3]{figures/bert_single_sentence.png}
-    \end{center}
-    \caption{Single sentence classification task~\cite[Figure 3]{devlin2018}.}
-    \label{fig:bert_single_sentence}
-\end{figure}
+That joint training BERT is possible can be observed from figure~\ref{fig:bert_classification}.
 
-\begin{figure}[htbp]
-    \begin{center}
-        \includegraphics[scale=0.3]{figures/bert_ner.png}
-    \end{center}
-    \caption{Single sentence tagging task~\cite[Figure 3]{devlin2018}.}
-    \label{fig:bert_ner}
+\begin{figure}
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{figures/bert_single_sentence.png}
+        \caption*{Single sentence tagging}
+    \end{minipage}
+    \hspace*{3mm}
+    \begin{minipage}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{figures/bert_ner.png}
+        \caption*{Single sentence classification}
+    \end{minipage}
+    \caption{Two of the four single sentence tasks presented in the BERT publication~\cite[Figure 3]{devlin2018}.}
+    \label{fig:bert_classification}
 \end{figure}
 
 Let $A = A_1, A_2, \cdots, A_n$ denote the layer which is depicted below $C, T_1, \cdots, T_n$, and let $B = B_1, B_2, \cdots, B_n$ denote the layer below $A$.
