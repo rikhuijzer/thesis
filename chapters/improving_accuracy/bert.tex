@@ -88,7 +88,7 @@ The results are interesting because it shows that the model is able to learn som
     Here the horizontal axis denotes the number of steps.
     Accuracy and loss for the model trained on the test set is evaluated at fixed steps on the evaluation set.
     The plots show that BERT is in some cases able to converge to a correct local minimum after 100 steps (3200 examples shown to model).
-    The scores in these images should not be compared to the scores in section~\ref{sec:benchmark_results} since the metrics and the data split differ.}
+    The scores in these images should not be compared to the scores in Section~\ref{sec:benchmark_results} since the metrics and the data split differ.}
     \label{fig:tensorboard}
 \end{figure}
 Training the model for 5 steps or 80 examples takes at least a few hours on a modern computer.
@@ -110,7 +110,7 @@ Code which uses Google Colab for BERT is based on an example implementation prov
 Using Colab is a compromise between usability and costs.
 The costs are limited to the use of some storage in a Google Cloud Bucket.
 Usability is hindered by the usual constraints of online Jupyter Notebook editors, for example no unittests, no autocomplete and poor Git integration.
-To overcome these issues most of the code is written and tested locally and pushed to a Github repository called \textsc{improv}, see appendix~\ref{ch:improv}.
+To overcome these issues most of the code is written and tested locally and pushed to a Github repository called \textsc{improv}, see Appendix~\ref{ch:improv}.
 In the Colab the code is then pulled from the repository and main functions are called.
 Using Colab has benefits as well.
 Hyperparameters and output are visible and can easily be modified in the Notebook, this eases verification.
@@ -122,7 +122,7 @@ The plots in figure~\ref{fig:tensorboard} are created using the default TensorFl
 Generating these plots can be done by specifying a model and metrics using the TensorFlow Estimator API.
 The plots will not be generated for the rest of the runs for two reasons.
 Firstly, the Estimator API for TPUs does not natively support visualizing intermediate results~\citep{Lakshmanan2018tpu}.
-This is discussed further in appendix~\ref{ch:improv}.
+This is discussed further in Appendix~\ref{ch:improv}.
 Secondly, reporting intermediate results using a TPU takes a considerable amount of time.
 For each intermediate result (each point in the plot) the occurring actions are as follows.
 \begin{enumerate}
@@ -151,7 +151,7 @@ For the rest of this document all results are for the \bert{large} model since \
 One reason why neural networks are obtaining the best results for many fields is because networks are now deep.
 Deep networks have more layers and can therefore learn more complex tasks.
 One application of this is adding a larger portion of the pipeline to the model.
-For example, the code by~\citet{rasa2018config} for the default pipeline for \textsc{rasa-spacy}, as introduced in section~\ref{subsec:rasa}, contains the following steps.
+For example, the code by~\citet{rasa2018config} for the default pipeline for \textsc{rasa-spacy}, as introduced in Section~\ref{subsec:rasa}, contains the following steps.
 In these steps a featurizer denotes a system component which transforms text to vector representations~\citep{brutlag2000challenges}.
 \begin{enumerate}
     \item Tokenization which splits texts up in tokens.
@@ -212,12 +212,12 @@ That joint training BERT is possible can be observed from figure~\ref{fig:bert_c
     \centering
     \begin{minipage}{0.48\textwidth}
         \includegraphics[width=\textwidth]{figures/bert_single_sentence.png}
-        \caption*{Single sentence tagging}
+        \caption*{Single sentence classification}
     \end{minipage}
     \hspace*{3mm}
     \begin{minipage}{0.48\textwidth}
         \includegraphics[width=\textwidth]{figures/bert_ner.png}
-        \caption*{Single sentence classification}
+        \caption*{Single sentence tagging}
     \end{minipage}
     \caption{Two of the four single sentence tasks presented in the BERT publication~\cite[Figure 3]{devlin2018}.}
     \label{fig:bert_classification}

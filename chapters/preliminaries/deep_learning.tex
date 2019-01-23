@@ -94,7 +94,7 @@ At that point the entire sentence is captured in the hidden state $C$.
 The decoder starts generating words $y_1, y_2, \ldots, y_{T'}$ based on the previous decoder states and $C$.
 This is visualised by the arrows.
 The authors of the paper recognized that this approach has the same limitations as the basic RNN.
-Typically words in translation sentence pairs are somewhat aligned, as described in subsection~\ref{subsec:mt}.
+Typically words in translation sentence pairs are somewhat aligned, as described in subSection~\ref{subsec:mt}.
 For example, when generating the first word $y_1$ the algorithm mainly needs info from $x_1$, but has more recently seen the next words in the sequence $x_2, x_3, \cdots, x_{T'}$.
 Vanishing gradients will cause the network to forget its far history, so this methods does not work well for long sentences.
 To solve this the authors have also introduced gates to RNNs.
@@ -135,7 +135,7 @@ In practise LSTMs take longer to converge than GRUs~\citep{chung2014empirical}, 
 %See also CS224n including 'advanced attention' slides.
 One drawback of recurrent neural networks using the encoder-decoder model is that the decoder obtains all information from the final state of the encoder.
 A problem with this can be explained by looking at machine translation.
-When translating words are aligned as explained in section~\ref{subsec:mt}
+When translating words are aligned as explained in Section~\ref{subsec:mt}
 When generating the $n$-th word during decoding information we generally need mainly information from the $n$-th word which occurred during encoding.
 It makes more sense to focus the neural network \textit{attention} on the part of the sentence we actually need the most.
 To this end the neural net learns to choose what hidden states are important.

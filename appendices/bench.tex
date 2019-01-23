@@ -10,14 +10,14 @@ Python is conceived as a object oriented language.
 Over time it has included more and more functional programming ideas.
 The code in this project will aim to be adhering to functional programming.
 Reasons are pedagogic value, improved modularity, expressiveness, ease of testing, and brevity.
-Some general notes on functional programming in Python are listed in appendix~\ref{ch:fp}.
+Some general notes on functional programming in Python are listed in Appendix~\ref{ch:fp}.
 
 % final code remarks on fp and imports
 The functional programming constraints for the project are that we do not define any new classes.
 Specifically, we do not use the class keyword.
 Exceptions being NamedTuples and Enums.
 Both do provide functional APIs, but these are not fully supported by the autocomplete in PyCharm.
-The code prefers returning iterators over collections, the reason for this is explained in appendix~\ref{ch:demonstration}.
+The code prefers returning iterators over collections, the reason for this is explained in Appendix~\ref{ch:demonstration}.
 A final remark is about the imports.
 When importing an attempt is made to explicitly import using `from $<$module$>$ import $<$class$>$`.
 When more implicit imports are used `import $<$module$>$` this is can have multiple causes.
@@ -41,7 +41,7 @@ If one wants to check accuracy for an open-source system then run the following 
 \textsc{docker-compose} will read `docker-compose.yml' and use that information to spin up various Docker containers.
 All dockers listed in the file are available from Docker Hub.
 This avoids having to build Dockers manually.
-DeepPavlov has been removed from the configuration file, since it was found to be unstable, see section~\ref{subsec:deeppavlov}.
+DeepPavlov has been removed from the configuration file, since it was found to be unstable, see Section~\ref{subsec:deeppavlov}.
 
 % final parameters and run
 After the set-up the program can be executed by running `bench.py'.
@@ -97,7 +97,7 @@ Some generic functions are listed in \textsc{src.utils} and used through the ent
 The project makes use of type hints as introduced in Python 3 (and via comments in Python 2.7).
 Also, the project does not use classes and therefore tends to pass more data through functions.
 To define containers for these data NamedTuples are used.
-A more in-depth explanation of why these are needed can be found in section~\ref{sec:named_tuple}.
+A more in-depth explanation of why these are needed can be found in Section~\ref{sec:named_tuple}.
 All NamedTuples or `types' are defined in \textsc{src.typ}.
 The module also contains enumerable's or `Enums'.
 These are used in cases where function behaviour depends on some parameter from a fixed set of options.
@@ -108,7 +108,7 @@ The real work of the project is done by \textsc{src.dataset}, \textsc{src.system
 Input files here denote the original dataset files as created by the dataset publishers.
 For the internal representation a Rasa Message is used, specifically \textsc{rasa\_nlu.training\_data.message.Message}.
 The benefit of this is that it avoids defining the same structure and that it can be used in combination with Rasa code.
-For example, \textsc{src.dataset.convert\_message\_to\_annotated\_str} uses Rasa code to print the internal data representation as a sentence in Markdown format (section~\ref{subsec:format}).
+For example, \textsc{src.dataset.convert\_message\_to\_annotated\_str} uses Rasa code to print the internal data representation as a sentence in Markdown format (Section~\ref{subsec:format}).
 Next, the data reaches \textsc{src.system}.
 Here it is passed to the system under consideration, either in training or prediction mode.
 For the predictions this is done by finding out which function can convert \textsc{src.typ.Query} to \textsc{src.typ.Response}.
