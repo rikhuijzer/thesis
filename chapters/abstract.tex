@@ -4,28 +4,33 @@
 In the last few years artificial intelligence has considerably advanced the natural language processing (NLP) field.
 The graduation company is interested in seeing whether this can be used to automate customer support.
 NLP has evolved to contain many tasks.
-The intent classification combined with named-entity recognition (NER) are the most interesting due to the following practical constraints.
-Intents and entities are used by chatbots and should therefore classify in real-time.
-Also, the training data typically contains only a few dozen examples.
+Intent classification is used to classify the intent of a sentence like `what is the weather in London tomorrow?'.
+The intent for this sentence could be `get\_weather'.
+Named-entity recognition (NER) aims to extract information from subparts of the sentence.
+For example, `London' is a location and `tomorrow' is a date.
+Intents and entities are used by chatbots to understand the text written by users.
+This has caused intent classification and NER to have the following practical constraints.
+The text should be analysed in real-time and training data consists of a few dozen training examples.
+The latter makes it an interesting problem from a machine learning perspective.
 
 Multiple systems and services provide intent classification and NER.
 Accuracy of classification differs per system.
 Higher accuracy means responding correctly to customer utterances more often.
 Many systems claim to make the fewest mistakes during classification when comparing their system to others.
 To validate this a benchmarking tool is created.
-The tool is aimed on creating comparisons in such a way that users can easily run new or re-run existing evaluations.
+This tool is aimed on creating comparisons in such a way that users can easily run new or re-run existing evaluations.
 The code can be extended to allow comparison of more datasets and systems.
 
-To improve the accuracy of intent and named-entity classification deep learning architectures for NLP have been investigated.
+To improve the accuracy of intent classification and NER, deep learning architectures for NLP have been investigated.
 New accuracy records are set every few months for various NLP tasks.
 One of the most promising systems at the time of writing is considered.
-The system, Google BERT, uses context from both sides of some word to predict the meaning of the word.
-For examples, the meaning of the word `bank' differs in the sentences `river bank' and `bank account'.
+This system, Google BERT, uses context from both sides of some word to predict the meaning of the word.
+For example, the meaning of the word `bank' differs in the sentences `river bank' and `bank account'.
 BERT has shown state-of-the-art results for eleven NLP tasks.
-An attempt is made to increase that number by applying the model to intent classification.
-Compared to baseline models applied by industry this obtained significant increases in running time, but not in accuracy.
-A second attempt trained the system jointly on intent classification and named-entity recognition.
+An attempt is made to apply the model to intent classification.
+Compared to baseline models applied by industry, this obtained significant increases in running time, but not in accuracy.
+A second attempt trained the system jointly on intent classification and NER.
 BERT is well-suited for joint training, because it uses context in all hidden layers of the network.
-Information from the intent classification task is used for making NER predictions and vice versa.
+Information from the intent classification task is used, in all layers, for making NER predictions and vice versa.
 It is shown that joint training with BERT is feasible, and can be used to lower training time when compared to separate training of BERT.
 Future work is needed to see whether the improvements in accuracy are significant.

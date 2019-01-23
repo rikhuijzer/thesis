@@ -27,9 +27,7 @@ Remarkable about the context is the speed in which the field evolves.
 Picking up a book as recent as 2010 will not list many common practises applied nowadays.
 The newer NLP approaches use deep learning (to do NLP from scratch) as introduced by~\citet{collobert2011natural} in 2011.
 In 2013 vector representations for words became dense by the introduction of word2vec~\citep{mikolov2013distributed}.
-These has been ``producing superior results on various NLP tasks''~\citep{young2018recent}.
-A recent review paper for deep learning and NLP~\citep{young2018recent} still see lots of potential.
-They expect better models for unlabelled data, reinforcement learning, zero-shot learning and network memory enrichment via a knowledge base.
+These dense vectors have been ``producing superior results on various NLP tasks''~\citep{young2018recent}.
 
 % implications of evolving speed (more hyperrefs and blog references)
 The fast pace of the field and the popularity of machine learning causes this thesis to be in certain aspects unconventional.
@@ -40,10 +38,10 @@ It is tried to regard these sources with more than usual skepticism.
 \section{Problem description}
 \label{sec:problem_description}
 % why intent classification
-The graduation company would preferably see a system that is automatically trained on various sets of a few dozen text documents to answer customer questions.
+Spindle would want to see a system that is automatically trained on various sets of a few dozen text documents to answer customer questions.
 Research in NLP has focused their efforts on various tasks.
-To solve the problem defined above we require a task which is able to interpret questions in real-time using few training data.
-Natural language understanding (NLU), which maps text to meaning~\citep{jurafsky2014speech}, is working on interpretation of text.
+To solve the problem defined above, we require a task which is able to interpret questions in real-time using little training data.
+Natural language understanding (NLU), which maps text to its meaning~\citep{jurafsky2014speech}, is working on interpretation of text.
 Specifically, chatbots are using intent classification to understand the intention of a user when the user utters some sentence~\citep{bocklisch2017rasa,burtsev2018,zhou2018design}.
 The IBM sales department claims that Autodesk using chatbots cut down their resolution time ``from 1.5 days to 5.4 minutes for most inquiries''~\citep{ibm2018autodesk}.
 
@@ -52,16 +50,16 @@ Various parties run benchmarks and use this to draw conclusions about the best p
 Issues can be pointed out which question the validity of these conclusions.
 A methodology and three datasets for benchmarking intent classification and named-entity recognition (NER) are created and published by~\citet{braun2017}.
 NER aims to detect information like dates, locations and person names from text.
-The paper compares accuracy for Microsoft LUIS~\citep{microsoft2019luis}, IBM Watson Conversation (now Watson Assistant~\citep{ibm2019assistant}), API.ai (now Google DialogFlow~\citep{google2019dialogflow}), Wit.ai~\citep{facebook2019wit}, Amazon Lex~\citep{amazon2019lex} and Rasa~\citep{bocklisch2017rasa}.
+The paper compares accuracy for Microsoft LUIS~\citep{microsoft2019luis}, IBM Watson Conversation (now Watson Assistant~\citep{ibm2019assistant}), Api.ai (now Google DialogFlow~\citep{google2019dialogflow}), Wit.ai~\citep{facebook2019wit}, Amazon Lex~\citep{amazon2019lex} and Rasa~\citep{bocklisch2017rasa}.
 When knowing that the field is rapidly advancing~\citep{young2018recent} it becomes clear that the scores from this paper are outdated.
 Snips~\citep{snips2019voice} show that they outperform the competition by a large margin~\citep{snips2017benchmarking}.
-The competition consists of api.ai, Wit.ai, Luis.ai and Amazon Alexa (now Amazon Lex~\citep{amazon2019lex}).
+The competition consists of Api.ai, Wit.ai, Luis.ai and Amazon Alexa (now Amazon Lex~\citep{amazon2019lex}).
 Their small benchmark tests the systems against 70 queries per intent on their own dataset.
 Snips claim to score 79\% accuracy, while the second best scores 73\%.
 Also, via sentence examples Snips show that some named-entities are classified incorrectly by systems other than Snips.
-Although the authors ``guarantee transparency'' about the benchmark~\citep{snips2017dataset}, the dataset could still be cherry picked.
+Although the authors ``guarantee transparency'' about the benchmark~\citep{snips2017dataset}, the dataset could still be cherry-picked.
 DeepPavlov~\citep{burtsev2018} reports another high score for intent classification.
-It is based on the Snips dataset~\citep{snips2017dataset} and compared against API.ai, Watson Conversation, Microsoft LUIS, Wit.ai, Snips, Recast.ai (now SAP Conversational AI~\citep{sap2019conversational}) and Amazon Lex.
+It is based on the Snips dataset~\citep{snips2017dataset} and compared against Api.ai, Watson Conversation, Microsoft LUIS, Wit.ai, Snips, Recast.ai (now SAP Conversational AI~\citep{sap2019conversational}) and Amazon Lex.
 Their model uses embeddings trained on the DSTC2 dataset~\citep{baymurzina2019classifiers,baymurzina2019intents}.
 DSTC2 contains communications with users or `calls'~\citep{henderson2014second}.
 The dataset includes roughly 500 dialogs with 7.88 turns on average in each condition for 6 conditions~\citep{henderson2014second}, hence about 20.000 turns or utterances.
@@ -95,14 +93,13 @@ The goal related to the first research question is as follows.\\
 
 \rgone \\
 
-\noindent To not let our guard down the goal related to the second research question is stated ambitiously.\\
+\noindent The goal related to the second research question is stated ambitiously.\\
 
 \rgtwo \\
 
 % outline
 The first research question is discussed in Chapter~\ref{ch:benchmarking}.
-It is working on benchmarking various NLP systems for specific NLP tasks.
-NLP and its tasks are introduced in Chapter~\ref{ch:preliminaries}, specifically in Section~\ref{sec:nlp}.
+NLP and NLU are introduced in detail in Chapter~\ref{ch:preliminaries}, specifically in Section~\ref{sec:nlp}.
 The second research question is discussed in Chapter~\ref{ch:improving_accuracy}.
 To be able to compare the introduced deep learning model with existing models one need to know about the existing models.
 Well-known models in NLP are explained in Chapter~\ref{ch:preliminaries}, specifically in Section~\ref{sec:deep_learning}.
