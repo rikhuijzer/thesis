@@ -26,7 +26,7 @@ This allowed the BERT researchers to train a model having 340 million parameters
 Lastly, the model is presented as being `deeply bidirectional'.
 The bidirectionality allows the model to use context from both sides to determine the meaning of a word.
 Deep bidirectionality denotes that the model uses left and right context in all layers of the model.
-This is visualised and compared to ELMo~\citep{peters2018} and OpenAI GPT~\citep{radford2018improving} in figure~\ref{fig:bert_comparison}.
+This is visualised and compared to ELMo~\citep{peters2018} and OpenAI GPT~\citep{radford2018improving} in Figure~\ref{fig:bert_comparison}.
 \begin{figure}[htbp]
     \begin{center}
         \includegraphics[width=\textwidth]{figures/deeply_bidirectional.png}
@@ -63,7 +63,7 @@ Based on the example code provided by Google researchers the number of epochs is
 So, it is advised to show the system $3000$ examples.
 For our smaller datasets of around 50 examples this means running $3000 / 50 = 60$ epochs.
 When measuring the training time in steps it means running $3000 / 16 \approx 188$ steps for a batch size of 16.
-Preliminary experiments on the AskUbuntu dataset (having 53 training examples) with a batch size of 32 confirm this estimate, see figure~\ref{fig:tensorboard}.
+Preliminary experiments on the AskUbuntu dataset (having 53 training examples) with a batch size of 32 confirm this estimate, see Figure~\ref{fig:tensorboard}.
 The images show that the system does not converge smoothly, and can even have a sudden drop in performance.
 One possible explanation for the performance drop is that the model moved into an non-generalizing local minimum.
 
@@ -118,7 +118,7 @@ Reproducibility is possible by opening the Notebook and running all cells.
 The first cell will ask to link the Colab to a Google account, make sure this account has access to a Google Cloud Bucket.
 
 % from now on some constraints
-The plots in figure~\ref{fig:tensorboard} are created using the default TensorFlow visualisation tool TensorBoard.
+The plots in Figure~\ref{fig:tensorboard} are created using the default TensorFlow visualisation tool TensorBoard.
 Generating these plots can be done by specifying a model and metrics using the TensorFlow Estimator API.
 The plots will not be generated for the rest of the runs for reasons explained in Section~\ref{sec:tpu_and_api}.
 For the rest of this document all results are for the \bert{large} model since \bert{base} is only created for a fair comparison with OpenAI GPT~\citep{devlin2018}.
@@ -184,7 +184,7 @@ The model would learn to ignore the named entity recognition if it would not inc
 \subsection{BERT joint training}
 \label{subsec:bert_joint_training}
 % why possible
-That joint training BERT is possible can be observed from figure~\ref{fig:bert_classification}.
+That joint training BERT is possible can be observed from Figure~\ref{fig:bert_classification}.
 
 \begin{figure}
     \centering

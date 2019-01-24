@@ -109,7 +109,7 @@ and
 \vspace*{1mm}
 The first five words of the sentences are perfectly aligned.
 The last five words of the sentences are not.
-Alignment is visualised in figure~\ref{fig:alignment}.
+Alignment is visualised in Figure~\ref{fig:alignment}.
 Non-perfect alignment can also be observed from the fact that the number of words in English sentence is higher.
 
 \begin{figure}[htbp]
@@ -139,9 +139,10 @@ For example consider the following sentence:
 \end{center}
 
 In this sentence the intent of the user is to book a ticket.
-Conversational agents which handle these requests have some related slots which need to be filled.
+Often the chatbot needs to know more than just the intent.
 For this book ticket example the system needs to know the destination of the user and when the user wants to arrive.
 Named-entity recognition (NER) can be used to find this information.
-A NER classifier can be trained to classify London as a destination and tomorrow as a date.
+A named-entity classifier can be trained to classify London as a destination and tomorrow as a date.
 Most systems allow entities to be defined by examples and regular expressions.
-The examples can be used for keyword matching or entities similar to the examples can be detected by using machine learning.
+The examples can be used for keyword matching by a simple system.
+More sophisticated systems use machine learning and language knowledge to not only find exact (keyword) matches, but also texts similar to the examples.

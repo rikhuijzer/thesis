@@ -8,7 +8,6 @@ list f1 formula?
 preliminaries
 fix improv description
 describe nlu_datsets
-fix BERT section (and why bert is suited for joint)
 feedback hylke
 feedback jukka
 future work in results

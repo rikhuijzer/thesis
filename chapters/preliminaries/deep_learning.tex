@@ -3,7 +3,7 @@
 
 As with many computer science subfields deep learning has outperformed manual feature engineering on many NLP tasks.
 For the last few years the best performing NLP systems have been neural networks.
-This section will provide a basic overview of the most important model architectures.
+This section will provide a basic overview of the most important model architectures for NLP.
 % TODO: Explain encoder decoder.
 % TODO: Explain transfer learning? (used for ELMo)
 
@@ -24,20 +24,22 @@ The goal of this is being able to estimate suitability of certain approaches for
 
 \subsection{Vanishing gradient problem}
 \label{subsec:vanishing_gradient_problem}
-The vanishing gradient problem has for a long time halted the progress of neural networks with many layers, also known as deep neural networks.
-Backpropagation updates the weights in the network by sending information from the output layer in the direction of the input layer.
+The vanishing gradient problem, as recognized by~\citet{hochreiter2001gradient}, is one of the main issues for training neural networks.
+The backpropagation algorithm updates the weights in the network by sending information from the output layer in the direction of the input layer.
 The problem relates to vanishing and exploding updates to weights in the layers further from the output layer.
 These extreme updates are caused by the backpropagation algorithm.
 Consider some weight $w$ which is near the input layer of some network.
 Say this weight is updated by the following partial derivative $w = d_1 \cdot d_2 \cdot \ldots \cdot d_i$.
-Here $i$ denotes the number of layers in the network.
+Here $i$ corresponds to the number of layers in the network.
 These partial derivatives $d_x$ can become small $(0 \leq d_x < 1)$ or large $(1 \ll d_x)$.
 Typically the learning rate has an order of magnitude of \num{1e-3}.
 When one derivative is small the weight update when multiplied by learning rate might become very small.
 Conversely when one derivative is big the update might become very big.
-Since the weight is near the input layer $i$ is big.
+Since the weight is near the input layer, $i$ is big.
 Thus, the chance that weights further away from the output layer vanish or explode increase by increment of $i$.
-Effectively the problem causes layers which are have a long distance from the output layer to stop learning.
+Exploding gradients can be solved by putting a threshold on the update~\citep{mikolov2013distributed}.
+Vanishing gradients are more difficult since it is unknown whether an update is small due to vanishing gradients or due to the fact that the weight should not be changed according to the loss function.
+Effectively the vanishing gradient problem causes layers which are have a long distance from the output layer to stop learning.
 
 \subsection{Recurrent neural networks}
 \label{subsec:rnn}
@@ -45,32 +47,31 @@ Effectively the problem causes layers which are have a long distance from the ou
     \begin{center}
         \includegraphics[width=0.5\textwidth]{figures/rnn.jpg}
     \end{center}
-    \caption{Recurrent neural network~\cite[Figure 5]{lecun2015deep}.}
+    \caption{Recurrent neural network unfolded in time~\cite[Figure 5]{lecun2015deep}.}
     \label{fig:rnn}
 \end{figure}
 A recurrent neural network (RNN) is an extension on neural networks which allows the network to have memory.
-Simply put the network remembers a summary of information from all previous states.
-A common way to visualize this is depicted in figure~\ref{fig:rnn}.
+This is effective for problems where the data is sequential.
+In an RNN the information from the state of the network is passed to the next state, see Figure~\ref{fig:rnn}.
+This state contains information from previous states, we call this a `summary', denoted $W$ in the image.
 On the right side the model is unfolded in time.
-The unfolded representation shows the state of the network and the flow of information for three consecutive points in time.
-To access this history the neural network in current state $s_t$ obtains a `summary' from the previous state $s_{t-1}$.
+The unfolded representation shows the states of the network and the flow of information for three consecutive points in time.
+To know its history the neural network in current state $s_t$ obtains the summary $W$ from the previous state $s_{t-1}$.
 Suppose we are training a RNN in an unsupervised way.
 The model trains on real-world texts.
 For each word $w_i$ it is asked to predict $w_i$ based only on previous words $w_1, w_2, \ldots, w_{i-1}$.
 In the image $w_i$ is denoted as input $x_i$.
-After predicting the prediction is compared to the correct word, if these are not equal the loss is backpropagated.
+The prediction is compared to the correct word, if these are not equal the loss is backpropagated.
 The backpropagation is then able to `change history' to improve prediction accuracy.
 
-The benefit of this architecture over n-grams is that the information is compressed inside the neural network.
+The benefit of this architecture over n-grams, as presented in Section~\ref{subsec:language_model}, is that the information is compressed inside the neural network.
 Also, there is a certain sense of importance since the weights are not uniformly updated for all previous states (words).
 Take, for example, `the car, which is green, broke'.
 For this sentence the word `broke' can more easily be predicted based on `the car' than on `which is green'.
 
 In practice RNNs are not using the complete history.
-The cause for this are vanishing and exploding gradients.
-Large updates can be detected and solved by putting a threshold on the updates~\citep{mikolov2014learning}.
-Small updates however can either be caused by vanishing gradients or by the fact that the weight should not be updated.
-In practise gradients vanish and simple RNNs become like 7-grams for most words~\citep{manning2017lectures}.
+The cause for this are vanishing gradients.
+``In practise gradients vanish and simple RNNs become like 7-grams for most words''~\citep{manning2017lectures}.
 
 \subsection{Gated recurrent units and LSTMs}
 \label{subsec:gru}
@@ -78,12 +79,19 @@ Basic RNNs do not yet provide a way to translate languages.
 Machine translation requires to convert some sentence from a source language to a target language.
 To this end a RNN encoder-decoder has been proposed by~\citet{cho2014learning}.
 
-\begin{figure}[htbp]
-    \begin{center}
-        \includegraphics[width=0.5\textwidth]{figures/encoder_decoder.png}
-    \end{center}
-    \caption{RNN Encoder-decoder~\cite[Figure 1]{cho2014learning}.}
+\begin{figure}
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{figures/encoder_decoder.png}
+        \caption{RNN Encoder-decoder~\cite[Figure 1]{cho2014learning}.}
     \label{fig:encoder_decoder}
+    \end{minipage}
+    \hspace*{3mm}
+    \begin{minipage}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{figures/gru.png}
+        \caption{GRU hidden activation function~\cite[Figure 2]{cho2014learning}.}
+    \label{fig:gru}
+    \end{minipage}
 \end{figure}
 
 Similar to the basic RNN the decoder at some time has access to only the previous state, see figure~\ref{fig:encoder_decoder}.
@@ -98,14 +106,6 @@ Typically words in translation sentence pairs are somewhat aligned, as described
 For example, when generating the first word $y_1$ the algorithm mainly needs info from $x_1$, but has more recently seen the next words in the sequence $x_2, x_3, \cdots, x_{T'}$.
 Vanishing gradients will cause the network to forget its far history, so this methods does not work well for long sentences.
 To solve this the authors have also introduced gates to RNNs.
-
-\begin{figure}[htbp]
-    \begin{center}
-        \includegraphics[width=0.5\textwidth]{figures/gru.png}
-    \end{center}
-    \caption{GRU hidden activation function~\cite[Figure 2]{cho2014learning}.}
-    \label{fig:gru}
-\end{figure}
 
 Gated recurrent units (GRUs) have gates which automatically learn to open and close for some hidden state.
 This can be visualised by looking at the information which is passed through the states.
