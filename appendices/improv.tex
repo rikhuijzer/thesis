@@ -32,7 +32,55 @@ When errors occur make sure that the correct versions are cloned or installed.
 \section{Overview}
 \label{sec:improv_overview}
 Since the code is in need of refactoring this section will only describe the most important parts of the project.
-
+% todo: do this inside report
 \fi
 
-% todo: describe estimator API and why it does not work
+\section{TPU and the Estimator API}
+\label{sec:tpu_and_api}
+Visualisation of the training is supported by TensorFlow's module called TensorBoard.
+It allows users to define metrics in the model definition which are used by TensorBoard to generate advanced plots.
+The plots contain not only the metrics (for example, accuracy and loss), but also timestamps for each point and sliders to set area to plot.
+TensorBoard is included in the default models for TensorFlow and included in the \textsc{Estimator} API.
+The \textsc{Estimator} API is a class which can be used to define a model.
+One has to create an \textsc{input\_fn} and \textsc{model\_fn} which respectively define data import and the model.
+Training is then simply a matter of calling \textsc{estimator.train(input\_fn, ...)}.
+Evaluation and prediction are similar.
+
+Unfortunately, this is not supported for TPUs:
+``TensorBoard summaries [as shown in Figure~\ref{fig:tensorboard}] are a great way to inside your model.
+A minimal set of basic summaries are automatically recorded by the \textsc{TPUEstimator}, to \textsc{event} files in the \textsc{model\_dir}.
+Custom summaries, however, are currently unsupported when training on a Cloud TPU.''~\citep{google2019tpu}.
+Two reasons for not supporting TensorBoard summaries in TPUs are likely.
+Firstly, it seems that the TPUs are mainly used for inference~\citep{lakshmanan2018tpu}.
+Secondly, the TPUs are a type of application-specific integrated circuit (ASIC) meaning that TensorBoard summaries are omitted due to technically issues.
+The code has used the workaround presented by~\citet{lakshmanan2018tpu}.
+The workaround increased running time for the following reason.
+For each intermediate result (each point in the plot) the occurring actions are as follows.
+\begin{enumerate}
+    \item Transfer model checkpoint from TPU to Google Bucket.
+    \item Shutdown TPU.
+    \item Initialize TPU.
+    \item Transfer model checkpoint from Google Bucket to TPU.
+    \item Evaluate.
+    \item Transfer model checkpoint from TPU to Google Bucket.
+    \item Shutdown TPU.
+    \item Initialize TPU.
+    \item Transfer model checkpoint from Google Bucket to TPU.
+\end{enumerate}
+The shutdown and initialization takes about 30 seconds.
+Transferring data (around 1.2 GB) takes about 10 seconds.
+Hence, calculating one intermediate result takes about one and a half minute.
+Note that this can not be optimalized by running evaluation on the Google Colab machine (CPU) since it will run out of memory.
+(For a local machine with 16 GB RAM evaluation or `inference' on \bert{base} is possible and requires only a few minutes when setting batch size to 16.)
+This workaround made the code more complex and execution slower which hindered the experiments.
+So, it was decided to stop using the workaround.
+
+\section{Additional experiment}
+\label{sec:additional_experiments}
+In Section~\ref{sec:results} the intent accuracy score for Snips2017 is near zero for runs using batch size 8 and 32.
+During the run on batch size 8 the loss on the test set was 0.07 at step 1000\footnote{\url{https://github.com/rikhuijzer/improv/blob/master/runs/snips2017/2018-12-20 snips intent batch size 8.ipynb}}.
+When comparing this to loss scores in other runs this suggests that the accuracy is not near zero.
+The loss is in between 1 and 5 for step $2000, 3000, \cdots, 6000$.
+This leads to the hypothesis that the model is training too much.
+Three runs using the same hyperparameters, but reduced to 1000 steps\footnote{\url{https://github.com/rikhuijzer/improv/tree/master/runs/2019-01-23 snips}} indicate that the hypothesis is false.
+It seems that the model found a suitable local minimum by chance.

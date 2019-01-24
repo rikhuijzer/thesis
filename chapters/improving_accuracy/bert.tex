@@ -84,7 +84,7 @@ The results are interesting because it shows that the model is able to learn som
         \includegraphics[width=0.9\textwidth]{figures/tensorboard_askubuntu_large_2.png}
         \caption*{\bert{large}, second run}
     \end{minipage}
-    \caption{TensorBoard visualisation for fine-tuning pre-trained models on AskUbuntu.
+    \caption{TensorBoard visualisation or `summaries' for fine-tuning pre-trained models on AskUbuntu.
     Here the horizontal axis denotes the number of steps.
     Accuracy and loss for the model trained on the test set is evaluated at fixed steps on the evaluation set.
     The plots show that BERT is in some cases able to converge to a correct local minimum after 100 steps (3200 examples shown to model).
@@ -117,32 +117,10 @@ Hyperparameters and output are visible and can easily be modified in the Noteboo
 Reproducibility is possible by opening the Notebook and running all cells.
 The first cell will ask to link the Colab to a Google account, make sure this account has access to a Google Cloud Bucket.
 
-% tensorboard ignored from now
+% from now on some constraints
 The plots in figure~\ref{fig:tensorboard} are created using the default TensorFlow visualisation tool TensorBoard.
 Generating these plots can be done by specifying a model and metrics using the TensorFlow Estimator API.
-The plots will not be generated for the rest of the runs for two reasons.
-Firstly, the Estimator API for TPUs does not natively support visualizing intermediate results~\citep{Lakshmanan2018tpu}.
-This is discussed further in Appendix~\ref{ch:improv}.
-Secondly, reporting intermediate results using a TPU takes a considerable amount of time.
-For each intermediate result (each point in the plot) the occurring actions are as follows.
-\begin{enumerate}
-    \item Transfer model checkpoint from TPU to Google Bucket.
-    \item Shutdown TPU.
-    \item Initialize TPU.
-    \item Transfer model checkpoint from Google Bucket to TPU.
-    \item Evaluate.
-    \item Transfer model checkpoint from TPU to Google Bucket.
-    \item Shutdown TPU.
-    \item Initialize TPU.
-    \item Transfer model checkpoint from Google Bucket to TPU.
-\end{enumerate}
-The shutdown and initialization takes about 30 seconds.
-Transferring data (around 1.2 GB) takes about 10 seconds.
-Hence, calculating one intermediate result takes about one and a half minute.
-Note that this can not be optimalized by running evaluation on the Google Colab machine (CPU) since it will run out of memory.
-(For a local machine with 16 GB RAM evaluation or `inference' on \bert{base} is possible and requires only a few minutes when setting batch size to 16.)
-
-% bert-large from now
+The plots will not be generated for the rest of the runs for reasons explained in Section~\ref{sec:tpu_and_api}.
 For the rest of this document all results are for the \bert{large} model since \bert{base} is only created for a fair comparison with OpenAI GPT~\citep{devlin2018}.
 
 \subsection{Joint training}

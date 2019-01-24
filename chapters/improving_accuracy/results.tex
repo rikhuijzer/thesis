@@ -52,13 +52,17 @@ Running time differences between runs are small, since most time is spent on tra
         Snips2017           & & & & Rasa & 0.99\\
                             & 1500 (twice) & 32 & 22.9 (twice) & separate & 0.03 & 0.83\\
                             & 1500 & 32 & 22.9 & joint & 0.97 & 0.85\\
+                            & 6000 & 8 & 22.9 (twice) & separate & 0.03 & 0.84 \\
+                            & 6000 & 8 & 22.9 & joint & 0.99 & 0.86 \\
         \hline
     \end{tabular}
     \caption{Weighted f1 accuracy scores for separate and joint training on four datasets.}
     \label{tab:runs_scores}
 \end{table}
 
-The code to reproduce the results the logs (including predictions) can be found at the links provided in table~\ref{tab:runs_urls}.
+The code to reproduce the results and the logs (including predictions) can be found at the links provided in table~\ref{tab:runs_urls}.
+Further experiments on the near zero score on Snips2017 separate intent are located in Section~\ref{sec:additional_experiments}.
+
 \begin{table}[htbp]
     \centering
     \begin{tabular}{l l}
