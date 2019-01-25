@@ -5,10 +5,15 @@ In Section~\ref{sec:results} the results for the Google BERT runs are summarized
 The runs on which the summary is based are listed in this appendix.
 Details can be found in the associated Github repository\footnote{https://github.com/rikhuijzer/improv/blob/master/runs}.\\
 
+\section{WebApplications}
+\label{sec:runs_webapplications}
 \begin{center}
     \begin{tabular}{l l l l l l l}
         \textbf{Dataset} & \textbf{Steps} & \textbf{Batch size} & \textbf{Task} & \textbf{Run} & \textbf{Intent} & \textbf{Entity} \\
         \hline
+        WebApplications & & & Rasa & 1 & 0.674 \\
+        WebApplications & & & Rasa & 2 & 0.722 \\
+        WebApplications & & & Rasa & 3 & 0.625 \\
         WebApplications & 250 & 32 & intent & 1 & 0.000 \\
         WebApplications & 250 & 32 & intent & 2 & 0.679 \\
         WebApplications & 250 & 32 & intent & 3 & 0.597 \\
@@ -18,17 +23,62 @@ Details can be found in the associated Github repository\footnote{https://github
         WebApplications & 250 & 32 & joint & 1 & 0.658 & 0.819 \\
         WebApplications & 250 & 32 & joint & 2 & 0.734 & 0.842 \\
         WebApplications & 250 & 32 & joint & 3 & 0.679 & 0.824 \\
-        WebApplications & & & Rasa & 1 & 0.674 \\
-        WebApplications & & & Rasa & 2 & 0.722 \\
-        WebApplications & & & Rasa & 3 & 0.625 \\
+    \end{tabular}
+\end{center}
+
+\noindent Source: \url{https://github.com/rikhuijzer/improv/tree/master/runs/webapplications}.
+
+\section{AskUbuntu}
+\label{sec:runs_askubuntu}
+\begin{center}
+    \begin{tabular}{l l l l l l l}
+        \textbf{Dataset} & \textbf{Steps} & \textbf{Batch size} & \textbf{Task} & \textbf{Run} & \textbf{Intent} & \textbf{Entity} \\
+        \hline
         AskUbuntu & & & Rasa & 1 & 0.834 \\
         AskUbuntu & & & Rasa & 2 & 0.833 \\
         AskUbuntu & & & Rasa & 3 & 0.843 \\
-        Chatbot & & & Rasa & 1 & 0.981 \\
-        Chatbot & & & Rasa & 2 & 0.981 \\
-        Chatbot & & & Rasa & 3 & 0.981 \\
+    \end{tabular}
+\end{center}
+
+\noindent Source: \url{https://github.com/rikhuijzer/improv/tree/master/runs/askubuntu}.
+
+\section{Chatbot}
+\label{sec:runs_chatbot}
+\begin{center}
+    \begin{tabular}{l l l l c c c c c c}
+        & \textbf{Batch} & \textbf{Meth-}\\
+        \textbf{Dataset} & \textbf{size} & \textbf{od} & \textbf{Run} & \multicolumn{3}{c}{\textbf{Loss}} & \textbf{Intent} & \textbf{Entity} \\
+        \hline
+        & & & & 200 & 400 & 600 & 600 & 600 \\
+        & & & & steps & steps & steps & steps & steps\\
+        \hline
+        Chatbot & & Rasa & 1 & & & & 0.981 \\
+        Chatbot & & Rasa & 2 & & & & 0.981 \\
+        Chatbot & & Rasa & 3 & & & & 0.981 \\
+        Chatbot & 32 & intent & 1 & \scit{4.65}{-6} & \scit{1.10}{-6} & \scit{1.61}{-6} & 0.991 &  \\
+        Chatbot & 32 & intent & 2 & \scit{1.30}{-5} & \scit{1.36}{-5} & \scit{8.11}{-6} & 0.991 &  \\
+        Chatbot & 32 & intent & 3 & 0.938 & 0.796 & 0.597 & 0.537 &  \\
+        Chatbot & 32 & ner & 1 & \scit{2.01}{-3} & \scit{8.56}{-4} & 1.45 & & 0.755 \\
+        Chatbot & 32 & ner & 2 & \scit{1.03}{-3} & \scit{3.65}{-4} & \scit{3.78}{-4} & & 0.759 \\
+        Chatbot & 32 & ner & 3 & \scit{6.48}{-4} & \scit{2.91}{-4} & \scit{2.64}{-4} & & 0.760 \\
+        Chatbot & 32 & joint & 1 & \scit{1.46}{-3} & \scit{4.12}{-4} & \scit{5.07}{-4} & 0.990 & 0.791 \\
+        Chatbot & 32 & joint & 2 & \scit{2.25}{-3} & \scit{6.31}{-4} & \scit{2.93}{-4} & 0.991 & 0.787 \\
+        Chatbot & 32 & joint & 3 & 2.92 & \scit{1.25}{-3} & \scit{1.06}{-3} & 0.971 & 0.783 \\
+    \end{tabular}
+\end{center}
+
+\noindent Source: \url{https://github.com/rikhuijzer/improv/tree/master/runs/chatbot}.
+
+\section{Snips2017}
+\label{sec:runs_snips}
+\begin{center}
+    \begin{tabular}{l l l l l l l}
+        \textbf{Dataset} & \textbf{Steps} & \textbf{Batch size} & \textbf{Task} & \textbf{Run} & \textbf{Intent} & \textbf{Entity} \\
+        \hline
         Snips2017 & & & Rasa & 1 & 0.991 \\
         Snips2017 & & & Rasa & 2 & 0.990 \\
         Snips2017 & & & Rasa & 3 & 0.990 \\
     \end{tabular}
 \end{center}
+
+\noindent Source: \url{https://github.com/rikhuijzer/improv/tree/master/runs/snips2017}.

@@ -1,12 +1,10 @@
 
-update conclusions!!!
-
 report standard deviation for results
 check whether the zero results were obtained for runs using old intent code
-rephrase impractical to shortcomings and requirements
 move bench overview into core and add diagram
-defend fixed number of steps used for training (validate that it is sufficient by doing the runs and reporting intermediate results)
-list f1 formula?
+defend / validate fixed number of steps used for training (validate that it is sufficient by doing the runs and reporting intermediate results)
+    how about using intent to choose number of steps and going further to other tasks based on THE SAME NR OF STEPS
+finish f1 formula
 
 preliminaries
 fix improv description

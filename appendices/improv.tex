@@ -50,9 +50,12 @@ Unfortunately, this is not supported for TPUs:
 ``TensorBoard summaries [as shown in Figure~\ref{fig:tensorboard}] are a great way to inside your model.
 A minimal set of basic summaries are automatically recorded by the \textsc{TPUEstimator}, to \textsc{event} files in the \textsc{model\_dir}.
 Custom summaries, however, are currently unsupported when training on a Cloud TPU.''~\citep{google2019tpu}.
+
 Two reasons for not supporting TensorBoard summaries in TPUs are likely.
 Firstly, it seems that the TPUs are mainly used for inference~\citep{lakshmanan2018tpu}.
 Secondly, the TPUs are a type of application-specific integrated circuit (ASIC) meaning that TensorBoard summaries are omitted due to technically issues.
+
+\iffalse
 The code has used the workaround presented by~\citet{lakshmanan2018tpu}.
 The workaround increased running time for the following reason.
 For each intermediate result (each point in the plot) the occurring actions are as follows.
@@ -74,6 +77,7 @@ Note that this can not be optimalized by running evaluation on the Google Colab 
 (For a local machine with 16 GB RAM evaluation or `inference' on \bert{base} is possible and requires only a few minutes when setting batch size to 16.)
 This workaround made the code more complex and execution slower which hindered the experiments.
 So, it was decided to stop using the workaround.
+\fi
 
 \section{Additional experiment}
 \label{sec:additional_experiments}

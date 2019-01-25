@@ -32,7 +32,7 @@ Consider some weight $w$ which is near the input layer of some network.
 Say this weight is updated by the following partial derivative $w = d_1 \cdot d_2 \cdot \ldots \cdot d_i$.
 Here $i$ corresponds to the number of layers in the network.
 These partial derivatives $d_x$ can become small $(0 \leq d_x < 1)$ or large $(1 \ll d_x)$.
-Typically the learning rate has an order of magnitude of \num{1e-3}.
+Typically the learning rate has an order of magnitude of \numb{1}{-3}.
 When one derivative is small the weight update when multiplied by learning rate might become very small.
 Conversely when one derivative is big the update might become very big.
 Since the weight is near the input layer, $i$ is big.
