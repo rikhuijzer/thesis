@@ -53,8 +53,8 @@ So, based on the Docker configuration one can also specify `rasa-tensorflow', `r
 The corpus (dataset) to run the bench on is specified by an enumerable, see \textsc{src.typ.Corpus} for possible options.
 When running the script in a modern IDE autocomplete will suggest the possible corpora.
 Slightly more convenient would be to have the script take input arguments using \textsc{sys.argv}.
-After setting the two parameters the script can be executed and will display all predictions as well as micro, macro and weighted f1 scores.
-The predictions and f1 scores will also be written to files, see the `results' folder.
+After setting the two parameters the script can be executed and will display all predictions as well as micro, macro and weighted $\text{F}_1$ scores.
+The predictions and $\text{F}_1$ scores will also be written to files, see the `results' folder.
 
 \section{Overview}
 \label{sec:overview}
@@ -118,5 +118,5 @@ PyCharm is known to have the best type inference for Python.
 The IDE is not yet able to infer function type for a function mapping, even when all functions have the same input and output type.
 A workaround is to manually define the type of the function returned by the mapping as \verb|func: Callable[[tp.Query], tp.Response] =| $\cdots$.
 \textsc{src.evaluate} takes all responses \textsc{tp.Response} evaluates the performance of the system under consideration.
-Printing f1 score is a matter of three functions and about a dozen lines of code.
+Printing $\text{F}_1$ score is a matter of three functions and about a dozen lines of code.
 At one point more advanced logging has been included which is responsible for the other 12 functions and 110 lines of code.

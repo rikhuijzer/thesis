@@ -1,4 +1,7 @@
 
+update text inside issues
+update conclusions!!!
+
 report standard deviation for results
 rephrase impractical to shortcomings and requirements
 move bench overview into core and add diagram

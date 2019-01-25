@@ -1,7 +1,7 @@
-\chapter{Intent f1 score calculations}
+\chapter{Intent F1 score calculations}
 \label{ch:intent_f1_score_calculations}
 
-The f1 score calculation by~\citep{braun2017} uses micro averaging.
+The $\text{F}_1$ score calculation by~\citep{braun2017} uses micro averaging.
 For two reasons this appendix focuses these calculations on intent only.
 The first reason is that these results are compared against benchmarks from the \textsc{bench} project in Section~\ref{sec:benchmark_results}.
 Secondly, micro averages could be skewed when the number of intents and entities differ, as described in Section~\ref{subsec:methodology}.
@@ -14,7 +14,7 @@ This appendix lists calculations for Rasa in Section~\ref{sec:recalculations_ras
 
 \begin{center}
     \begin{tabular}{l l l l l l l l}
-        \textbf{Corpus} & \textbf{Intent} & \textbf{True +} & \textbf{False -} & \textbf{False +} & \textbf{Prec-} & \textbf{Recall} & \textbf{F1}\\
+        \textbf{Corpus} & \textbf{Intent} & \textbf{True +} & \textbf{False -} & \textbf{False +} & \textbf{Prec-} & \textbf{Recall} & \textbf{$\text{F}_1$}\\
         & & & & & \textbf{ision} & & \textbf{score} \\
         \hline
         \multirow{3}{*}{Chatbot} & DepartureTime & 34 & 1 & 1 & 0.971 & &  \\
@@ -47,7 +47,7 @@ This appendix lists calculations for Rasa in Section~\ref{sec:recalculations_ras
 
 \begin{center}
     \begin{tabular}{l l l l l l l l}
-        \textbf{Corpus} & \textbf{Intent} & \textbf{True +} & \textbf{False -} & \textbf{False +} & \textbf{Prec-} & \textbf{Recall} & \textbf{F1}\\
+        \textbf{Corpus} & \textbf{Intent} & \textbf{True +} & \textbf{False -} & \textbf{False +} & \textbf{Prec-} & \textbf{Recall} & \textbf{$\text{F}_1$}\\
         & & & & & \textbf{ision} & & \textbf{score} \\
         \hline
         \multirow{3}{*}{Chatbot} & DepartureTime & 33 & 2 & 1 & 0.971 & 0.943 & 0.957 \\
@@ -80,7 +80,7 @@ This appendix lists calculations for Rasa in Section~\ref{sec:recalculations_ras
 
 \begin{center}
     \begin{tabular}{l l l l l l l l}
-        \textbf{Corpus} & \textbf{Intent} & \textbf{True +} & \textbf{False -} & \textbf{False +} & \textbf{Prec-} & \textbf{Recall} & \textbf{F1}\\
+        \textbf{Corpus} & \textbf{Intent} & \textbf{True +} & \textbf{False -} & \textbf{False +} & \textbf{Prec-} & \textbf{Recall} & \textbf{$\text{F}_1$}\\
         & & & & & \textbf{ision} & & \textbf{score} \\
         \hline
         \multirow{3}{*}{Chatbot} & DepartureTime & 34 & 1 & 1 & 0.971 & 0.971 & 0.971 \\
