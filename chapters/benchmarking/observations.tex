@@ -8,7 +8,7 @@ Section~\ref{subsec:methodology} points out some observations which could improv
 \subsection{Benchmarking system}
 \label{subsec:benchmarking_system}
 % data, dependencies, payments, depending on use case, also company preferences matter
-While developing the benchmarking system, various observations are made about possible improvements.
+While developing the benchmarking system, it is observed that the current implementation requires further work.
 The observations are as follows.
 Few datasets are publicly available.
 Current datasets are either small (AskUbuntu, Chatbot, WebApplications) or domain specific (Snips2017).
@@ -65,9 +65,8 @@ So, when using micro $\text{F}_1$ on AskUbuntu the score is based somewhat equal
 For WebApplications the score is based for about one thirds on intents and two thirds on entities.
 This could mean that some system has scored significantly better that others simply because it labels entities in WebApplications particularly well.
 Another reason which makes this score odd is that users interested in either intent or entity classification are not well informed.
-Better seems to be using weighted $\text{F}_1$ and reporting separate intent and entity scores.
-Here the $\text{F}_1$ score for each class is multiplied (weighted) by the number of elements in that particular class.
-Imbalances can also be handled by calculating a macro $\text{F}_1$ score, but this is more computational expensive.
+Better seems to be using macro or weighted $\text{F}_1$ and reporting separate intent and entity scores.
+Macro averaging (and by that weighted averaging) is better suited to ``get a sense of effectiveness on small classes''\citep{schutze2008introduction}.
 Rasa, for example, uses the weighted average in their evaluation according to their code on Github.
 
 % non-deterministic probalistic models, showing detailed information is misleading

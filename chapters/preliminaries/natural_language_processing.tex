@@ -146,3 +146,54 @@ A named-entity classifier can be trained to classify London as a destination and
 Most systems allow entities to be defined by examples and regular expressions.
 The examples can be used for keyword matching by a simple system.
 More sophisticated systems use machine learning and language knowledge to not only find exact (keyword) matches, but also texts similar to the examples.
+
+\subsection{F1 score}
+\label{subsec:f1_score}
+% intro
+A common way to calculate system performance for NLU is the \fone score.
+It is based on the confusion matrix, see Table~\ref{tab:confusion}.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{l l c c}
+        \textbf{Class \textbackslash \: Recognized} & \vline & \textbf{as Positive} & \textbf{as Negative}\\
+        \hline
+        \textbf{Positive} & \vline & $tp$ & $fn$\\
+        \textbf{Negative} & \vline & $fp$ & $tn$\\
+    \end{tabular}
+    \caption{Confusion matrix for binary classification~\cite[Table 1]{sokolova2006beyond}.}
+    \label{tab:confusion}
+\end{table}
+
+\noindent The confusion matrix can be used to define precision $\pi$ and recall (or sensitivity) $\rho$ as~\citep{sokolova2006beyond}.
+\[
+    \pi = \frac{tp}{tp + fp}, \hspace*{3mm} \rho = \frac{tp}{tp + fn}
+\]
+Then, the F score is defined as~\citep{debole2004supervised}
+\[
+    F_\beta = \frac{(\beta^2 + 1) \pi \rho}{\beta^2 \pi + \rho}
+\]
+where $\beta = 1$ to obtain the \fone score.
+
+% averages
+The metric has evolved to be used for three different averages, namely micro, macro and weighted.
+\iffalse
+% Macro-averaged results can be computed as indicated by~\citep{van2013macro}:
+Let $L = \{\lambda_j : j = 1 \cdots q\}$ be the set of all labels.
+Consider a binary evaluation measure $B(tp, tn, fp, fn)$.
+Let $tp_\lambda, fp_\lambda, tn_\lambda$ and $fn_\lambda$ be the number of true positives, false positives, true negatives and false negatives after binary evaluation for a label \lambda.
+
+Then~\citep{van2013macro}
+\[
+    B_{macro} = \frac{1}{q} \sum_{\lambda=1}^q B(tp_\lambda, fp_\lambda, tn_\lambda, fn_\lambda)
+\]
+and~\citep{van2013macro}
+\[
+    B_{micro} = B \left( \sum_{\lambda=1}^q tp_\lambda, \sum_{\lambda=1}^q fp_\lambda, \sum_{\lambda=1}^q tn_\lambda, \sum_{\lambda=1}^q fn_\lambda \right)
+\]
+
+Here the $\text{F}_1$ score for each class is multiplied (weighted) by the number of elements in that particular class.
+Imbalances can also be handled by calculating a macro $\text{F}_1$ score, but this is more computational expensive.
+\fi
+% how applied
+In the thesis the weighted \fone scores are used as implemented by Scikit-learn version 0.20.0~\citep{scikit2018classification}.
