@@ -194,6 +194,8 @@ and~\citep{van2013macro}
 
 Here the $\text{F}_1$ score for each class is multiplied (weighted) by the number of elements in that particular class.
 Imbalances can also be handled by calculating a macro $\text{F}_1$ score, but this is more computational expensive.
+
+For the computation of macroaveraging it is common to set $\pi_i$ (respectively $rho_i$) to 1 when the denominator $tp_i + fp_i$ respectively $tp_i + fn_i$ is 0.~\citep{debole2004supervised}.
 \fi
 % how applied
 In the thesis the weighted \fone scores are used as implemented by Scikit-learn version 0.20.0~\citep{scikit2018classification}.

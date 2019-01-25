@@ -15,14 +15,18 @@ This gives rise to the following research question and goal.\\
 
 \rgone\\
 
-The answer for the first research question is that it is possible, but impractical.
-Main issue is that to test a service one has to make API calls.
-This requires the user of a benchmark tool to have an user account for each service and it forces the tool to update for each changing service.
-Another issue is that evaluation of results is done on standard datasets.
-This does not guarantee that some system is indeed the best choice for some problem at hand.
-It could be that the standard dataset contains more training data, is in another domain or uses another language.
-Even when using the benchmarking tool with some use-case specific dataset knowing the best system is not very useful.
-Services push new models into production without letting users know, so benchmark results can become invalid at any moment.
+The answer for the first research question is that it is possible.
+However, stronger requirements are needed to make the tool more useful.
+The tool is required to be continuously maintained to adapt to changing APIs for NLU services and software.
+It would require to offer an API key, or let users add their own keys.
+Furthermore it should offer better metrics.
+Deciding on a product depends not only on accuracy, but also depends on at least pricing, memory usage and running time.
+The system should include more metrics to reflect these properties.
+Currently the accuracy metric is based on the last run.
+Training is probabilistic, meaning that accuracy may vary for each training run.
+Reporting only the last run can lead to incorrect conclusions, so the program should execute multiple runs and summarize the results.
+Lastly, the used datasets are small or domain specific.
+More and bigger datasets would allow for more powerful conclusions.
 
 %research question two
 Next, the tool (and knowledge obtained by creating the tool) is used to work on the following research question and goal.\\
