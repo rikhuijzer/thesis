@@ -1,18 +1,15 @@
 \chapter{Intent F1 score calculations}
 \label{ch:intent_f1_score_calculations}
 
-The $\text{F}_1$ score calculation by~\citep{braun2017} uses micro averaging.
+The \fone score calculation by~\citep{braun2017} uses micro averaging.
 For two reasons this appendix focuses these calculations on intent only.
 The first reason is that these results are compared against benchmarks from the \textsc{bench} project in Section~\ref{sec:benchmark_results}.
 Secondly, micro averages could be skewed when the number of intents and entities differ, as described in Section~\ref{subsec:methodology}.
 It is interesting to compare the differences.
-This appendix lists calculations for Rasa in Section~\ref{sec:recalculations_rasa}, Watson Conversation in Section~\ref{sec:recalculations_watson} and Microsoft LUIS in Section~\ref{sec:recalculations_luis}.
+This appendix lists calculations for Rasa in Table~\ref{tab:recalculations_rasa}, Watson Conversation in Table~\ref{tab:recalculations_watson} and Microsoft LUIS in Table~\ref{tab:recalculations_luis}.
 
-\section{Rasa}
-\label{sec:recalculations_rasa}
-\vspace*{1cm}
-
-\begin{center}
+\begin{table}[htbp]
+    \centering
     \begin{tabular}{l l l l l l l l}
         \textbf{Corpus} & \textbf{Intent} & \textbf{True +} & \textbf{False -} & \textbf{False +} & \textbf{Prec-} & \textbf{Recall} & \textbf{$\text{F}_1$}\\
         & & & & & \textbf{ision} & & \textbf{score} \\
@@ -39,13 +36,12 @@ This appendix lists calculations for Rasa in Section~\ref{sec:recalculations_ras
         & $\Sigma$ & 94 & 15 & 15 & 0.862 & 0.862 & \textbf{0.862}\\
         \hline
     \end{tabular}
-\end{center}
+    \caption{Rasa micro \fone score calculation.}
+    \label{tab:recalculations_rasa}
+\end{table}
 
-\section{Watson Conversation}
-\label{sec:recalculations_watson}
-\vspace*{1cm}
-
-\begin{center}
+\begin{table}[htbp]
+    \centering
     \begin{tabular}{l l l l l l l l}
         \textbf{Corpus} & \textbf{Intent} & \textbf{True +} & \textbf{False -} & \textbf{False +} & \textbf{Prec-} & \textbf{Recall} & \textbf{$\text{F}_1$}\\
         & & & & & \textbf{ision} & & \textbf{score} \\
@@ -72,13 +68,12 @@ This appendix lists calculations for Rasa in Section~\ref{sec:recalculations_ras
         & $\Sigma$ & 100 & 9 & 9 & 0.917 & 0.917 & \textbf{0.917}\\
         \hline
     \end{tabular}
-\end{center}
+    \caption{IBM Watson Conversation micro \fone score calculation.}
+    \label{tab:recalculations_watson}
+\end{table}
 
-\section{Microsoft LUIS}
-\label{sec:recalculations_luis}
-\vspace*{1cm}
-
-\begin{center}
+\begin{table}[htbp]
+    \centering
     \begin{tabular}{l l l l l l l l}
         \textbf{Corpus} & \textbf{Intent} & \textbf{True +} & \textbf{False -} & \textbf{False +} & \textbf{Prec-} & \textbf{Recall} & \textbf{$\text{F}_1$}\\
         & & & & & \textbf{ision} & & \textbf{score} \\
@@ -105,4 +100,6 @@ This appendix lists calculations for Rasa in Section~\ref{sec:recalculations_ras
         & $\Sigma$ & 98 & 11 & 11 & 0.899 & 0.899 & \textbf{0.899}\\
         \hline
     \end{tabular}
-\end{center}
+    \caption{Microsoft LUIS micro \fone score calculation.}
+    \label{tab:recalculations_luis}
+\end{table}

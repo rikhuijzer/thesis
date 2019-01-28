@@ -36,24 +36,20 @@ Running time differences between runs are small, since most time is spent on tra
         \textbf{Dataset}    & \textbf{Steps}  & \textbf{Batch size} & \textbf{Epochs}  & \textbf{Method}   & \textbf{Intent}  & \textbf{Entity}\\
         \hline
         AskUbuntu           & & & & Rasa & $0.84 \pm 0.00$ \\
-                            & 250 (twice) & 32 & 151 (twice) &  separate & 0.74 & 0.99\\
-                            & 250 & 32 & 151 & joint & 0.98 & 0.79\\
+                            & 600 (twice) & 32 & 000 (twice) & separate & $0.82 \pm 0.05$ & $0.81 \pm 0.01$\\
+                            & 600 & 32 & 000 & joint & $0.87 \pm 0.01$ & $0.83 \pm 0.00$\\
         \hline
         WebApplications     & & & & Rasa & $0.67 \pm 0.04$\\
-                            & 250 (twice) & 32 & 267 (twice) & separate & $0.43 \pm 0.30$ & $0.80 \pm 0.01$ \\
-                            & 250 & 32 & 267 & joint & $0.69 \pm 0.03$ & $0.83 \pm 0.01$ \\
-                            & 1000 (twice) & 8 & 267 (twice) & separate & 0.72 & 0.79\\
-                            & 1000 & 8 & 267 & joint & 0.53 & 0.80\\
+                            & 600 (twice) & 32 & 000 (twice) & separate & $0.72 \pm 0.03$ & $0.81 \pm 0.01$ \\
+                            & 600 & 32 & 000 & joint & $0.76 \pm 0.07$ & $0.82 \pm 0.01$ \\
         \hline
         Chatbot             & & & & Rasa & $0.98 \pm 0.00$ \\
-                            & 250 (twice) & 16 & 40 (twice) & separate & 0.99 & 0.74\\
-                            & 250 & 16 & 40 & joint & 0.98 & 0.79\\
+                            & 600 (twice) & 32 & 000 (twice) & separate & $0.84 \pm 0.21$ & $0.76 \pm 0.00$\\
+                            & 600 & 32 & 000 & joint & $0.98 \pm 0.00$ & $0.79 \pm 0.00$\\
         \hline
         Snips2017           & & & & Rasa & $0.99 \pm 0.00$\\
-                            & 1500 (twice) & 32 & 22.9 (twice) & separate & 0.03 & 0.83\\
-                            & 1500 & 32 & 22.9 & joint & 0.97 & 0.85\\
-                            & 6000 (twice) & 8 & 22.9 (twice) & separate & 0.03 & 0.84 \\
-                            & 6000 & 8 & 22.9 & joint & 0.99 & 0.86 \\
+                            & 6000 (twice) & 32 & 000 (twice) & separate & $0.04 \pm 0.00$ & $0.84 \pm 0.00$\\
+                            & 6000 & 32 & 000 & joint & $0.98 \pm 0.02$ & $0.86 \pm 0.00$\\
         \hline
     \end{tabular}
     \caption{Weighted $\text{F}_1$ accuracy scores ($\text{mean} \: \pm \: \text{standard deviation}$, over three runs) for separate and joint training on four datasets.

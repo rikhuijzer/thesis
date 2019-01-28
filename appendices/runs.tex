@@ -3,45 +3,9 @@
 
 In Section~\ref{sec:results} the results for the Google BERT runs are summarized.
 The runs on which the summary is based are listed in this appendix.
-Details can be found in the associated Github repository\footnote{https://github.com/rikhuijzer/improv/blob/master/runs}.\\
+For AskUbuntu, WebApplications, Chatbot and Snips2017 see respectively Table~\ref{tab:runs_webapplications},~\ref{tab:runs_askubuntu},~\ref{tab:runs_chatbot} and~\ref{tab:runs_snips}.
 
-\section{WebApplications}
-\label{sec:runs_webapplications}
-\begin{table}
-    \centering
-    \begin{tabular}{l l l l l l c c}
-        & \textbf{Batch}\\
-        \textbf{Method} & \textbf{size} & \textbf{Run} & \multicolumn{3}{l}{\textbf{Loss}} & \textbf{Intent} & \textbf{Entity} \\
-        \hline
-        Rasa & & 1 & & & 0.674 & \\
-        Rasa & & 2 & & & 0.722 & \\
-        Rasa & & 3 & & & 0.625 & \\
-        \\
-        & & & 200 & 400 & 600 & 600 & 600 \\
-        & & & steps & steps & steps & steps & steps\\
-        \hline
-        intent & 32 & 1 & \scit{}{} & \scit{}{} & \scit{}{} &  &  \\
-        intent & 32 & 2 & \scit{}{} & \scit{}{} & \scit{}{} &  &  \\
-        intent & 32 & 3 &  &  &  &  &  \\
-        \\
-        ner & 32 & 1 & \scit{}{} & \scit{}{} & \scit{}{} &  &  \\
-        ner & 32 & 2 & \scit{}{} & \scit{}{} & \scit{}{} &  &  \\
-        ner & 32 & 3 & \scit{}{} & \scit{}{} & \scit{}{} &  &  \\
-        \\
-        joint & 32 & 1 & \scit{}{} & \scit{}{} & \scit{}{} &  &  \\
-        joint & 32 & 2 & \scit{}{} & \scit{}{} & \scit{}{} &  &  \\
-        joint & 32 & 3 & \scit{}{} & \scit{}{} & \scit{}{} &  &  \\
-    \end{tabular}
-    \caption{Training loss, intent classification score and NER score for WebApplications.
-    Loss is determined using the training set.
-    Both scores are weighted F1 as determined using the evaluation set.}
-\end{table}
-
-\noindent Source: \url{https://github.com/rikhuijzer/improv/tree/master/runs/webapplications}.
-
-\section{AskUbuntu}
-\label{sec:runs_askubuntu}
-\begin{table}
+\begin{table}[htbp]
     \centering
     \begin{tabular}{l l l l l l c c}
         & \textbf{Batch}\\
@@ -68,14 +32,44 @@ Details can be found in the associated Github repository\footnote{https://github
     \end{tabular}
     \caption{Training loss, intent classification score and NER score for AskUbuntu.
     Loss is determined using the training set.
-    Both scores are weighted F1 as determined using the evaluation set.}
+    Both scores are weighted F1 as determined using the evaluation set.
+    Source: \url{https://github.com/rikhuijzer/improv/tree/master/runs/askubuntu}.}
+    \label{tab:runs_askubuntu}
 \end{table}
 
-\noindent Source: \url{https://github.com/rikhuijzer/improv/tree/master/runs/askubuntu}.
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{l l l l l l c c}
+        & \textbf{Batch}\\
+        \textbf{Method} & \textbf{size} & \textbf{Run} & \multicolumn{3}{l}{\textbf{Loss}} & \textbf{Intent} & \textbf{Entity} \\
+        \hline
+        Rasa & & 1 & & & & 0.674 & \\
+        Rasa & & 2 & & & & 0.722 & \\
+        Rasa & & 3 & & & & 0.625 & \\
+        \\
+        & & & 200 & 400 & 600 & 600 & 600 \\
+        & & & steps & steps & steps & steps & steps\\
+        \hline
+        intent & 32 & 1 & \scit{5.66}{-5} & \scit{1.11}{-4} & \scit{8.00}{-5} & 0.682 &  \\
+        intent & 32 & 2 & \scit{6.15}{-5} & \scit{4.88}{-5} & \scit{3.85}{-5} & 0.742 &  \\
+        intent & 32 & 3 & \scit{1.13}{-4} & \scit{7.04}{-5} & \scit{5.21}{-5} & 0.734 &  \\
+        \\
+        ner & 32 & 1 & \scit{3.21}{-4} & \scit{2.34}{-4} & \scit{1.20}{-4} &  & 0.815 \\
+        ner & 32 & 2 & \scit{3.31}{-4} & \scit{1.76}{-4} & \scit{1.31}{-4} &  & 0.815 \\
+        ner & 32 & 3 & \scit{4.43}{-4} & \scit{1.94}{-4} & \scit{1.39}{-4} &  & 0.793 \\
+        \\
+        joint & 32 & 1 & \scit{1.03}{1} & \scit{3.47}{-4} & \scit{2.12}{-4} & 0.668 & 0.826 \\
+        joint & 32 & 2 & \scit{3.20}{-3} & \scit{1.11}{-3} & \scit{8.23}{-4} & 0.761 & 0.816 \\
+        joint & 32 & 3 & \scit{6.10}{-4} & \scit{3.92}{-4} & \scit{2.57}{-4} & 0.839 & 0.829 \\
+    \end{tabular}
+    \caption{Training loss, intent classification score and NER score for WebApplications.
+    Loss is determined using the training set.
+    Both scores are weighted F1 as determined using the evaluation set.
+    Source: \url{https://github.com/rikhuijzer/improv/tree/master/runs/webapplications}.}
+    \label{tab:runs_webapplications}
+\end{table}
 
-\section{Chatbot}
-\label{sec:runs_chatbot}
-\begin{table}
+\begin{table}[htbp]
     \centering
     \begin{tabular}{l l l l l l c c}
         & \textbf{Batch}\\
@@ -102,14 +96,12 @@ Details can be found in the associated Github repository\footnote{https://github
     \end{tabular}
     \caption{Training loss, intent classification score and NER score for Chatbot.
     Loss is determined using the training set.
-    Both scores are weighted F1 as determined using the evaluation set.}
+    Both scores are weighted F1 as determined using the evaluation set.
+    Source: \url{https://github.com/rikhuijzer/improv/tree/master/runs/chatbot}.}
+    \label{tab:runs_chatbot}
 \end{table}
 
-\noindent Source: \url{https://github.com/rikhuijzer/improv/tree/master/runs/chatbot}.
-
-\section{Snips2017}
-\label{sec:runs_snips}
-\begin{table}
+\begin{table}[htbp]
     \centering
     \begin{tabular}{l l l l l l c c}
         & \textbf{Batch}\\
@@ -122,7 +114,9 @@ Details can be found in the associated Github repository\footnote{https://github
         & & & 2000 & 4000 & 6000 & 6000 & 6000 \\
         & & & steps & steps & steps & steps & steps\\
         \hline
-        intent & 8 & 1 & \scit{0.00}{0} & \scit{}{} & \scit{}{} & & \\
+        intent & 8 & 1 & \scit{2.07}{-1} & \scit{7.80}{-2} & \scit{2.06}{0} & 0.036 & \\
+        intent & 8 & 2 & \scit{6.14}{-1} & \scit{1.65}{0} & \scit{1.92}{0} & 0.036 & \\
+        intent & 8 & 3 & \scit{3.27}{0} & \scit{4.60}{-1} & \scit{2.37}{0} & 0.036 & \\
         \\
         & & & & 1000 & 1500 & 1500 & 1500 \\
         & & & & steps & steps & steps & steps\\
@@ -141,7 +135,7 @@ Details can be found in the associated Github repository\footnote{https://github
     \end{tabular}
     \caption{Training loss, intent classification score and NER score for Snips2017.
     Loss is determined using the training set.
-    Both scores are weighted F1 as determined using the evaluation set.}
+    Both scores are weighted F1 as determined using the evaluation set.
+    Source: \url{https://github.com/rikhuijzer/improv/tree/master/runs/snips2017}.}
+    \label{tab:runs_snips}
 \end{table}
-
-\noindent Source: \url{https://github.com/rikhuijzer/improv/tree/master/runs/snips2017}.
