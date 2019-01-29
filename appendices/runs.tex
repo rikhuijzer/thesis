@@ -3,39 +3,7 @@
 
 In Section~\ref{sec:results} the results for the Google BERT runs are summarized.
 The runs on which the summary is based are listed in this appendix.
-For AskUbuntu, WebApplications, Chatbot and Snips2017 see respectively Table~\ref{tab:runs_webapplications},~\ref{tab:runs_askubuntu},~\ref{tab:runs_chatbot} and~\ref{tab:runs_snips}.
-
-\begin{table}[htbp]
-    \centering
-    \begin{tabular}{l l l l l l c c}
-        & \textbf{Batch}\\
-        \textbf{Method} & \textbf{size} & \textbf{Run} & \multicolumn{3}{l}{\textbf{Loss}} & \textbf{Intent} & \textbf{Entity} \\
-        \hline
-        Rasa & & 1 & & & & 0.834 & \\
-        Rasa & & 2 & & & & 0.833 & \\
-        Rasa & & 3 & & & & 0.843 & \\
-        \\
-        & & & 200 & 400 & 600 & 600 & 600 \\
-        & & & steps & steps & steps & steps & steps\\
-        \hline
-        intent & 32 & 1 & \scit{3.51}{-5} & \scit{6.02}{-5} & \scit{1.93}{-5} & 0.813 &  \\
-        intent & 32 & 2 & \scit{2.17}{-4} & \scit{8.67}{-5} & \scit{1.49}{-5} & 0.752 &  \\
-        intent & 32 & 3 & \scit{2.88}{-5} & \scit{3.54}{-5} & \scit{3.28}{-5} & 0.881 &  \\
-        \\
-        ner & 32 & 1 & \scit{1.37}{-3} & \scit{2.82}{-4} & \scit{2.69}{-4} &  & 0.805 \\
-        ner & 32 & 2 & \scit{9.02}{0} & \scit{2.75}{-4} & \scit{3.07}{-4} &  & 0.802 \\
-        ner & 32 & 3 & \scit{9.17}{-4} & \scit{2.16}{-4} & \scit{1.74}{-4} &  & 0.816 \\
-        \\
-        joint & 32 & 1 & \scit{7.62}{-3} & \scit{8.80}{-4} & \scit{7.58}{-4} & 0.892 & 0.830 \\
-        joint & 32 & 2 & \scit{1.32}{1} & \scit{4.47}{-3} & \scit{2.05}{-3} & 0.859 & 0.824 \\
-        joint & 32 & 3 & \scit{1.01}{-3} & \scit{3.71}{-4} & \scit{1.40}{-3} & 0.870 & 0.825 \\
-    \end{tabular}
-    \caption{Training loss, intent classification score and NER score for AskUbuntu.
-    Loss is determined using the training set.
-    Both scores are weighted F1 as determined using the evaluation set.
-    Source: \url{https://github.com/rikhuijzer/improv/tree/master/runs/askubuntu}.}
-    \label{tab:runs_askubuntu}
-\end{table}
+For WebApplications, AskUbuntu, Chatbot and Snips2017 see respectively Table~\ref{tab:runs_webapplications},~\ref{tab:runs_askubuntu},~\ref{tab:runs_chatbot} and~\ref{tab:runs_snips}.
 
 \begin{table}[htbp]
     \centering
@@ -67,6 +35,38 @@ For AskUbuntu, WebApplications, Chatbot and Snips2017 see respectively Table~\re
     Both scores are weighted F1 as determined using the evaluation set.
     Source: \url{https://github.com/rikhuijzer/improv/tree/master/runs/webapplications}.}
     \label{tab:runs_webapplications}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{l l l l l l c c}
+        & \textbf{Batch}\\
+        \textbf{Method} & \textbf{size} & \textbf{Run} & \multicolumn{3}{l}{\textbf{Loss}} & \textbf{Intent} & \textbf{Entity} \\
+        \hline
+        Rasa & & 1 & & & & 0.834 & \\
+        Rasa & & 2 & & & & 0.833 & \\
+        Rasa & & 3 & & & & 0.843 & \\
+        \\
+        & & & 200 & 400 & 600 & 600 & 600 \\
+        & & & steps & steps & steps & steps & steps\\
+        \hline
+        intent & 32 & 1 & \scit{3.51}{-5} & \scit{6.02}{-5} & \scit{1.93}{-5} & 0.813 &  \\
+        intent & 32 & 2 & \scit{2.17}{-4} & \scit{8.67}{-5} & \scit{1.49}{-5} & 0.752 &  \\
+        intent & 32 & 3 & \scit{2.88}{-5} & \scit{3.54}{-5} & \scit{3.28}{-5} & 0.881 &  \\
+        \\
+        ner & 32 & 1 & \scit{1.37}{-3} & \scit{2.82}{-4} & \scit{2.69}{-4} &  & 0.805 \\
+        ner & 32 & 2 & \scit{9.02}{0} & \scit{2.75}{-4} & \scit{3.07}{-4} &  & 0.802 \\
+        ner & 32 & 3 & \scit{9.17}{-4} & \scit{2.16}{-4} & \scit{1.74}{-4} &  & 0.816 \\
+        \\
+        joint & 32 & 1 & \scit{7.62}{-3} & \scit{8.80}{-4} & \scit{7.58}{-4} & 0.892 & 0.830 \\
+        joint & 32 & 2 & \scit{1.32}{1} & \scit{4.47}{-3} & \scit{2.05}{-3} & 0.859 & 0.824 \\
+        joint & 32 & 3 & \scit{1.01}{-3} & \scit{3.71}{-4} & \scit{1.40}{-3} & 0.870 & 0.825 \\
+    \end{tabular}
+    \caption{Training loss, intent classification score and NER score for AskUbuntu.
+    Loss is determined using the training set.
+    Both scores are weighted F1 as determined using the evaluation set.
+    Source: \url{https://github.com/rikhuijzer/improv/tree/master/runs/askubuntu}.}
+    \label{tab:runs_askubuntu}
 \end{table}
 
 \begin{table}[htbp]

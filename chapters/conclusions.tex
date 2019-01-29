@@ -47,8 +47,10 @@ The Google model is a good candidate for jointly training because it, unlike oth
 BERT has obtained state-of-the-art results in a wide range of tasks including named-entity recognition.
 These two facts imply that jointly training BERT should obtain state-of-the-art results on the joint intent classification and NER task.
 Basic experiments are conducted in which training BERT separately is compared to training it jointly.
-The experiments show that jointly training is possible and in some cases obtains higher accuracies than separate training.
-Future work is needed to see whether the improvements in accuracy are significant.
+The experiments show that jointly training is possible and compared to separate training obtains higher accuracies for intent classification and NER while requiring fewer training steps.
+Compared to a baseline the intent accuracy is equal or higher for datasets with around 100 training examples.
+For the dataset with 2100 training examples the intent classification accuracy is lower.
+Future work is needed to see whether the model implementation can be improved and whether the improvements in accuracy are significant.
 
 \iffalse
 % conclusions
