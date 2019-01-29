@@ -1,0 +1,30 @@
+\chapter{\textsc{bench} usage}
+\label{ch:usage}
+% set-up
+Installation is similar to other Python projects.
+Pull the code and in a terminal set the current working directory to the project folder.
+Install the required pip packages by running the following command.
+\begin{verbatim}
+    pip install -r requirements.txt
+\end{verbatim}
+If one wants to check accuracy for an open-source system then run the following command.
+\begin{verbatim}
+    docker-compose up
+\end{verbatim}
+\textsc{docker-compose} will read `docker-compose.yml' and use that information to spin up various Docker containers.
+All dockers listed in the file are available from Docker Hub.
+This avoids having to build Dockers manually.
+DeepPavlov has been removed from the configuration file, since it was found to be unstable, see Section~\ref{subsec:deeppavlov}.
+
+% final parameters and run
+After the set-up the program can be executed by running `bench.py'.
+To change on which system the benchmarking occurs, replace the first parameter in the \textsc{get\_system\_corpus} call.
+The prefix is used to determine which system is being tested.
+Possible prefix options are `mock', `rasa', `deeppavlov', `lex' and `dialogflow'.
+Rasa and DeepPavlov will use the complete string to find a matching port from `docker-compose.yml'.
+So, based on the Docker configuration one can also specify `rasa-tensorflow', `rasa-spacy' or `rasa-mitie'.
+The corpus (dataset) to run the bench on is specified by an enumerable, see \textsc{src.typ.Corpus} for possible options.
+When running the script in a modern IDE autocomplete will suggest the possible corpora.
+Slightly more convenient would be to have the script take input arguments using \textsc{sys.argv}.
+After setting the two parameters the script can be executed and will display all predictions as well as micro, macro and weighted $\text{F}_1$ scores.
+The predictions and $\text{F}_1$ scores will also be written to files, see the `results' folder.

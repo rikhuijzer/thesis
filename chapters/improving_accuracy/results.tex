@@ -100,7 +100,11 @@ The loss function for joint training needs to be reconsidered.
 Currently the importance of intent and all named-entities is the same, meaning one error in a intent or in a named-entity weights the same.
 It might be better for the model to have a higher importance for the intents, since the intent contains information about the entire sentence.
 Further tests are needed to see whether the increase in accuracy is significant.
-This requires more datasets.
+Comparing NER is currently non-trivial since the accuracy calculation is based on the tokenizer used by BERT.
+The BERT tokenizer (\textsc{FullTokenizer}) is based on the vocabulary file corresponding to the pre-trained BERT model.
+So, when trying to compare the score with, for example, Rasa one has to use the same tokenizer and vocabulary file to calculate the Rasa score.
+Better would be to use a more standard tokenizer as provided by NLTK~\citep{bird2004nltk}.
+Another thing needed to determine the significance of the accuracy improvements is more and more varied datasets.
 No dataset of around a few hundred distinct training examples has been evaluated, while this seems realistic for production use-cases.
 One could merge AskUbuntu, WebApplications and Chatbot, but this would be an unrealistic dataset.
 It would be a dataset where two thirds is related to software questions and one third is related to public transport information.
@@ -118,6 +122,8 @@ The model in its current implementation does use X to classify tokens.
 Less important improvements are using conditional code to fix I-\textsc{entity} statements appearing without a B-\textsc{entity}.
 This constraint is enforced by the BIO annotation standard, where `intermediate' statements are preceded by `begin' statements.
 Also, for production use it might be beneficial to do some hyperparameter tuning.
+
+% use more standard tokenization for determining accuracy score, this one is vocab based tokenization.
 
 % todo: general suggestions such as validate training data (find outliers and duplicates)
 % todo: check accuracy on datasets having more than intent and entity, but also part of speech tagging or whatever

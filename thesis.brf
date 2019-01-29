@@ -88,11 +88,11 @@
 \backcite {high2012era}{{18}{3.2.3}{subsection.3.2.3}}
 \backcite {manning2017lectures}{{18}{3.2.3}{subsection.3.2.3}}
 \backcite {dale2018text}{{19}{3.2.3}{subsection.3.2.3}}
-\backcite {braun2017}{{19}{3.3}{section.3.3}}
-\backcite {braun2017}{{19}{3.4}{section.3.4}}
-\backcite {nichol2018vectors}{{19}{3.4.1}{subsection.3.4.1}}
-\backcite {braun2017}{{20}{3.4.2}{subsection.3.4.2}}
-\backcite {schutze2008introduction}{{20}{3.4.2}{subsection.3.4.2}}
+\backcite {braun2017}{{20}{3.3.2}{subsection.3.3.2}}
+\backcite {braun2017}{{21}{3.4}{section.3.4}}
+\backcite {nichol2018vectors}{{21}{3.4.1}{subsection.3.4.1}}
+\backcite {braun2017}{{22}{3.4.2}{subsection.3.4.2}}
+\backcite {schutze2008introduction}{{22}{3.4.2}{subsection.3.4.2}}
 \backcite {cambria2014jumping}{{23}{4.1}{section.4.1}}
 \backcite {peters2018}{{23}{4.1}{section.4.1}}
 \backcite {young2018recent}{{23}{4.1}{section.4.1}}
@@ -153,6 +153,7 @@
 \backcite {devlin2018}{{28}{4.3}{figure.caption.16}}
 \backcite {devlin2018github}{{30}{4.3}{table.caption.17}}
 \backcite {kyzhouhzau2018ner}{{30}{4.3}{table.caption.17}}
+\backcite {bird2004nltk}{{31}{4.4}{section.4.4}}
 \backcite {devlin2018}{{31}{4.4}{section.4.4}}
 \backcite {devlin2018}{{33}{5}{chapter.5}}
 \backcite {lott2015}{{44}{B}{appendix.B}}
