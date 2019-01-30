@@ -147,10 +147,10 @@ Most systems allow entities to be defined by examples and regular expressions.
 The examples can be used for keyword matching by a simple system.
 More sophisticated systems use machine learning and language knowledge to not only find exact (keyword) matches, but also texts similar to the examples.
 
-\subsection{F1 score}
+\subsection{F score}
 \label{subsec:f1_score}
 % intro
-A common way to calculate system performance for NLU is the \fone score.
+A common way to calculate system performance for NLU is the F score, or specifically the \fone score.
 It is based on the confusion matrix, see Table~\ref{tab:confusion}.
 
 \begin{table}[htbp]
@@ -177,6 +177,30 @@ where $\beta = 1$ to obtain the \fone score.
 
 % averages
 The metric has evolved to be used for three different averages, namely micro, macro and weighted.
+\begin{itemize}
+    \item Let $y$ be the set of \textit{predicted} (sample, label) pairs,
+    \item $\hat{y}$ be the set of \textit{true} or \textit{gold standard} (sample, label) pairs,
+    \item $L$ the set of labels,
+    \item $y_l$ the subset of $y$ with label $l$, or formally: $y_l := \{ \: (s, l') \in y \: | \: l' = l \: \}$,
+    \item $P(A,B) := \dfrac{|A \cap B|}{|A|}$,
+    \item $R(A,B) := \dfrac{|A \cap B|}{|B|}$ (where $R(A,B) := 0$ and $P(A,B) := 0$ for $B = \emptyset$), \hspace*{2mm} and
+    \item $F_\beta(A, B) := (1 + \beta^2) \dfrac{P(A,B) \times R(A,B)}{\beta^2 P(A,B) + R(A,B)}$.
+\end{itemize}
+
+\noindent Then the metrics are defined as~\citep{scikit2019fscore}:
+
+\begin{center}
+    \begin{tabular}{l l}
+        $F_{\beta-micro}$ &= $F_\beta(y, \hat{y})$ \\[4mm]
+        $F_{\beta-macro}$ &= $\dfrac{1}{|L|} \sum_{l \in L} F_\beta(y_l, \hat{y}_l)$ \\[4mm]
+        $F_{\beta-weighted}$ &= $\dfrac{1}{\sum_{l \in L}{|\hat{y}_l}|} \sum_{l \in L} | \hat{y}_l | F_\beta(y_l, \hat{y}_l)$
+    \end{tabular}
+\end{center}
+
+% how applied
+In the thesis all F scores are calculated as described above.
+Where possible the implementation by Scikit-learn version 0.20.0~\citep{scikit2018classification} is used.
+
 \iffalse
 % Macro-averaged results can be computed as indicated by~\citep{van2013macro}:
 Let $L = \{\lambda_j : j = 1 \cdots q\}$ be the set of all labels.
@@ -197,5 +221,3 @@ Imbalances can also be handled by calculating a macro $\text{F}_1$ score, but th
 
 For the computation of macroaveraging it is common to set $\pi_i$ (respectively $rho_i$) to 1 when the denominator $tp_i + fp_i$ respectively $tp_i + fn_i$ is 0.~\citep{debole2004supervised}.
 \fi
-% how applied
-In the thesis the weighted \fone scores are used as implemented by Scikit-learn version 0.20.0~\citep{scikit2018classification}.
