@@ -1,4 +1,4 @@
-\section{Bench}
+\section{Tool and results}
 \label{sec:bench}
 % intro
 The benchmarking tool is called \textsc{bench} and located on Github\footnote{\url{https://github.com/rikhuijzer/bench}}.
@@ -66,14 +66,60 @@ Also, the project does not use classes and therefore tends to pass more data thr
 To define containers for these data NamedTuples are used.
 A more in-depth explanation of why these are needed can be found in Section~\ref{sec:named_tuple}.
 All NamedTuples or `types' are defined in \textsc{src.typ}.
-The module also contains enumerable's or `Enums'.
+An overview of the most important types is depicted in Figure~\ref{fig:types}.
+These types also contains enumerable's or `Enums'.
 These are used in cases where function behaviour depends on some parameter from a fixed set of options.
 Alternatively one could use strings for these cases depending on user-preference.
+Notable is the usage of \testsc{system} and by that \textsc{corpus} in \textsc{Query}, \textsc{SystemCorpus}, \textsc{Classification} and \textsc{F1Score}.
+This is caused by the fact that external systems (for example, DialogFlow) have a certain state which needs to be remembered.
+This state could be that the system has not yet seen the dataset, resulting in \textsc{Corpus.EMPTY}, or the system has trained on AskUbuntu, which results in \textsc{Corpus.ASKUBUNTU}.
+In, for example, \textsc{Classification} this is used to let some evaluation function know context for an input sentence.
+This context includes from what dataset the sentence came and what system has classified the sentence.
 
-The real work of the project is done by \textsc{src.dataset}, \textsc{src.system} and \textsc{src.evaluate}.
+% Define block styles
+\tikzstyle{block} = [rectangle, draw, fill=blue!20,
+    text width=6em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm, minimum height=2em]
+\tikzstyle{small_block} = [rectangle, draw, fill=blue!20,
+    text width=5em, text centered, rounded corners, minimum height=4em]
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[node distance = 3cm, auto]
+        % Place nodes
+        \node [small_block] (0) {System};
+        \node [small_block, left of=0] (10) {Corpus};
+        \node [small_block, below of=0] (1) {System-\\Corpus};
+        \node [small_block, left of=1] (2) {Query};
+        \node [small_block, right of=0] (3) {Response};
+        \node [small_block, right of=1] (4) {Classi-\\fication};
+        \node [small_block, right of=4] (5) {F1Score};
+
+        \node [small_block, below of=1] (6) {CSVStats};
+        \node [small_block, left of=6] (7) {CSVIntent};
+        \node [small_block, right of=6] (8) {CSVEntity};
+        \node [small_block, right of=8] (9) {CSV};
+
+        \path [line] (10) -- (0);
+        \path [line] (0) -- (1);
+        \path [line] (10) -- (1);
+        \path [line] (0) -- (2);
+        % to classification
+        \path [line] (0) -- (4);
+        \path [line] (3) -- (4);
+        % to f1 score
+        \path [line] (0) -- (5);
+    \end{tikzpicture}
+    \caption{Overview of most important type classes (NamedTuples and Enums) and their relations in \textsc{bench}.
+    Here a line from $A$ to $B$ means that $B$ is a type which includes $A$ ($B$ extends $A$).}
+    \label{fig:types}
+\end{figure}
+
+The real work of the project is done by \textsc{src.dataset}, \textsc{src.system} and \textsc{src.evaluate}, as shown in Figure~\ref{fig:flowchart}.
 `Dataset' takes input files and converts them to an internal representation as defined by \textsc{src.typ}.
 Input files here denote the original dataset files as created by the dataset publishers.
-For the internal representation a Rasa Message is used, specifically \textsc{rasa\_nlu.training\_data.message.Message}.
+For the internal representation a Rasa Message\footnote{\textsc{rasa\_nlu.training\_data.message.Message}} is used.
 The benefit of this is that it avoids defining the same structure and that it can be used in combination with Rasa code.
 For example, \textsc{src.dataset.convert\_message\_to\_annotated\_str} uses Rasa code to print the internal data representation as a sentence in Markdown format (Section~\ref{subsec:format}).
 Next, the data reaches \textsc{src.system}.
@@ -87,6 +133,28 @@ A workaround is to manually define the type of the function returned by the mapp
 \textsc{src.evaluate} takes all responses \textsc{tp.Response} evaluates the performance of the system under consideration.
 Printing $\text{F}_1$ score is a matter of three functions and about a dozen lines of code.
 At one point more advanced logging has been included which is responsible for the other 12 functions and 110 lines of code.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[node distance = 2cm, auto]
+        % Place nodes
+        \node [block] (srcdataset) {\textsc{src.dataset}};
+        \node [cloud, above of=srcdataset] (dataset) {dataset};
+        \node [block, below of=srcdataset] (srcsystem) {\textsc{src.system}};
+        \node [cloud, right of=srcsystem] (system) {system};
+        \node [block, below of=srcsystem] (srcevaluate) {\textsc{src.\\evaluate}};
+        \node [cloud, below of=srcevaluate] (score) {\fone score};
+        % Draw edges
+        \path [line] (dataset) -- (srcdataset);
+        \path [line] (srcdataset) -- (srcsystem);
+        \path [line] (srcsystem) -- (srcevaluate);
+        \path [line] (srcevaluate) -- (score);
+        \path [line] (srcsystem) -- (system);
+        \path [line] (system) -- (srcsystem);
+    \end{tikzpicture}
+    \caption{Diagram showing the dataflow in \textsc{bench}.}
+    \label{fig:flowchart}
+\end{figure}
 
 \subsection{Benchmark results}
 \label{subsec:benchmark_results}

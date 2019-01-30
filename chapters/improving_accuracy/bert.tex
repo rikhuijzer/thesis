@@ -240,7 +240,6 @@ This is counterintuitive because input examples have one position for the class 
 Typically sentences have around 10 tokens after tokenization.
 So, the loss is based on around one intent position and ten entities.
 This means that the model will learn entity recognition much quicker than intent classification.
-For situations where the model is able to learn the entities quickly this is not expected to affect the performance of the intent classification significantly.
+For situations where the model is able to learn the entities this is not expected to affect the performance of the intent classification significantly.
 % explain more
 It is expected that the only significant difference of this change is in the difficulty of the loss function.
-% explain morec

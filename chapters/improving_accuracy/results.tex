@@ -53,6 +53,7 @@ The reason for the relatively small increase in training time is that most time 
         \hline
     \end{tabular}
     \caption{Weighted $\text{F}_1$ accuracy scores ($\text{mean} \: \pm \: \text{standard deviation}$, over three runs) for separate and joint training on four datasets.
+    The NER accuracy calculation is based on the \textsc{FullTokenizer}~\citep{devlin2019tokenizer}.
     Details are listed in Appendix~\ref{ch:runs}.}
     \label{tab:runs_scores}
 \end{table}
@@ -65,8 +66,8 @@ Compared to the \textsc{rasa-spacy} baseline it performs better or similar on al
 The accuracy is slightly lower for Snips2017.
 The model accuracy will be near zero when training on intents separately for SNIPS2017 and the model accuracy will vary for Chatbot.
 For Snips2017 it has been found that lowering the step size does not solve this problem, as listed in Table~\ref{tab:runs_snips}.
-%This suggests that the gradient descent does not converge because the step size is too big.
-%A bigger batch size means a more stable error gradient.
+% This suggests that the gradient descent does not converge because the step size is too big.
+% A bigger batch size means a more stable error gradient.
 One reason for the poor performance on intent classification only is that the model get stuck in a local minimum.
 % It might be that this caused the model to get stuck in a local minimum.
 The difference with joint training is that the joint training data is much more varied.
@@ -91,7 +92,7 @@ Lowering the former to the expected maximum number of tokens in sentences reduce
 
 Observe that joint training generalizes to sequential labeling and sentence classification.
 In other words, any combination of tasks where sentences are classified as well as parts of the sentence and these tasks are correlated.
-The tasks are expected to be correlated for any real-world NLP dataset.
+The tasks, of course, are expected to be correlated for any real-world NLP dataset.
 
 \section{Implementation improvements}
 \label{sec:implementation_improvements}
