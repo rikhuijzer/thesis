@@ -1,7 +1,7 @@
 \section{Tool and results}
 \label{sec:bench}
 % intro
-The benchmarking tool is called \textsc{bench} and located on Github\footnote{\url{https://github.com/rikhuijzer/bench}}.
+The benchmarking tool is called \textsc{bench} and available on Github\footnote{\url{https://github.com/rikhuijzer/bench}}.
 Its goal is to be a reproducible benchmarking tool for intent classification and named-entity recognition.
 Reproducible means that other people can run the code for their own use, or to reproduce results presented in this report.
 The code is written in Python, since it is the default choice for machine learning.
@@ -15,11 +15,10 @@ Some general notes on functional programming in Python are listed in Appendix~\r
 The functional programming constraints for the project are that we do not define any new classes.
 Specifically, we do not use the class keyword.
 Exceptions being NamedTuples and Enums.
-Both do provide functional APIs, but these are not fully supported by the autocomplete in PyCharm.
 The code prefers returning iterators over collections, the reason for this is explained in Appendix~\ref{ch:demonstration}.
 A final remark is about the imports.
-When importing an attempt is made to explicitly import using `from $<$module$>$ import $<$class$>$`.
-When more implicit imports are used `import $<$module$>$` this is can have multiple causes.
+When importing an attempt is made to explicitly import using `from $<$module$>$ import $<$class$>$'.
+When more implicit imports are used `import $<$module$>$' this is can have multiple causes.
 It is either caused by the appearance of circular imports, by the fact that some names are too common or to avoid reader confusion.
 An example for the latter are the types defined in \textsc{src.typ}.
 The names are quite generic and could cause name clashing or confusion when imported explicitly.
@@ -62,16 +61,13 @@ Tests are also omitted.
 
 Some generic functions are listed in \textsc{src.utils} and used through the entire project.
 The project makes use of type hints as introduced in Python 2.7.
-Also, the project does not use classes and therefore tends to pass more data through functions.
-To define containers for these data NamedTuples are used.
-A more in-depth explanation of why these are needed can be found in Section~\ref{sec:named_tuple}.
 All NamedTuples or `types' are defined in \textsc{src.typ}.
 An overview of the most important types is depicted in Figure~\ref{fig:types}.
 These types also contains enumerable's or `Enums'.
 These are used in cases where function behaviour depends on some parameter from a fixed set of options.
 Alternatively one could use strings for these cases depending on user-preference.
-Notable is the usage of \testsc{system} and by that \textsc{corpus} in \textsc{Query}, \textsc{SystemCorpus}, \textsc{Classification} and \textsc{F1Score}.
-This is caused by the fact that external systems (for example, DialogFlow) have a certain state which needs to be remembered.
+Notable is the usage of \textsc{system}, and by that the usage of \textsc{corpus}, in \textsc{Query}, \textsc{SystemCorpus}, \textsc{Classification} and \textsc{F1Score}.
+This is caused by the fact that external systems (for example, DialogFlow) have a certain state which needs to be passed through many functions.
 This state could be that the system has not yet seen the dataset, resulting in \textsc{Corpus.EMPTY}, or the system has trained on AskUbuntu, which results in \textsc{Corpus.ASKUBUNTU}.
 In, for example, \textsc{Classification} this is used to let some evaluation function know context for an input sentence.
 This context includes from what dataset the sentence came and what system has classified the sentence.

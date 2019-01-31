@@ -2,7 +2,7 @@
 \label{sec:deep_learning}
 
 As with many computer science subfields deep learning has outperformed manual feature engineering on many NLP tasks.
-For the last few years the best performing NLP systems have been neural networks.
+For the last few years the best performing NLP systems have been neural networks~\citep{young2018recent}.
 This section will provide a basic overview of the most important model architectures for NLP.
 % TODO: Explain encoder decoder.
 % TODO: Explain transfer learning? (used for ELMo)
@@ -29,7 +29,7 @@ The backpropagation algorithm updates the weights in the network by sending info
 The problem relates to vanishing and exploding updates to weights in the layers further from the output layer.
 These extreme updates are caused by the backpropagation algorithm.
 Consider some weight $w$ which is near the input layer of some network.
-Say this weight is updated by the following partial derivative $w = d_1 \cdot d_2 \cdot \ldots \cdot d_i$.
+This weight is updated by the following partial derivative $w = d_1 \cdot d_2 \cdot \ldots \cdot d_i$.
 Here $i$ corresponds to the number of layers in the network.
 These partial derivatives $d_x$ can become small $(0 \leq d_x < 1)$ or large $(1 \ll d_x)$.
 Typically the learning rate has an order of magnitude of \numb{1}{-3}.
@@ -52,15 +52,14 @@ Effectively the vanishing gradient problem causes layers which are have a long d
 \end{figure}
 A recurrent neural network (RNN) is an extension on neural networks which allows the network to have memory.
 This is effective for problems where the data is sequential.
-In an RNN the information from the state of the network is passed to the next state, see Figure~\ref{fig:rnn}.
+In a RNN the information from the state of the network is passed to the next state, see Figure~\ref{fig:rnn}.
 This state contains information from previous states, we call this a `summary', denoted $W$ in the image.
 On the right side the model is unfolded in time.
 The unfolded representation shows the states of the network and the flow of information for three consecutive points in time.
 To know its history the neural network in current state $s_t$ obtains the summary $W$ from the previous state $s_{t-1}$.
 Suppose we are training a RNN in an unsupervised way.
-The model trains on real-world texts.
-For each word $w_i$ it is asked to predict $w_i$ based only on previous words $w_1, w_2, \ldots, w_{i-1}$.
-In the image $w_i$ is denoted as input $x_i$.
+Hence, the model trains on unlabeled real-world texts.
+For each step it is asked to predict the output word $o_t$ based only on all $k$ previous words $x_{t-1}, x_{t-2}, \ldots, x_{t-k}$.
 The prediction is compared to the correct word, if these are not equal the loss is backpropagated.
 The backpropagation is then able to `change history' to improve prediction accuracy.
 
@@ -68,6 +67,7 @@ The benefit of this architecture over n-grams, as presented in Section~\ref{subs
 Also, there is a certain sense of importance since the weights are not uniformly updated for all previous states (words).
 Take, for example, `the car, which is green, broke'.
 For this sentence the word `broke' can more easily be predicted based on `the car' than on `which is green'.
+It is found that RNNs are able to capture this importance~\citep{manning2017lectures}.
 
 In practice RNNs are not using the complete history.
 The cause for this are vanishing gradients.
@@ -101,13 +101,14 @@ To do this the network reads all words $x_1, x_2, \ldots, x_T$ until an end of l
 At that point the entire sentence is captured in the hidden state $C$.
 The decoder starts generating words $y_1, y_2, \ldots, y_{T'}$ based on the previous decoder states and $C$.
 This is visualised by the arrows.
-The authors of the paper recognized that this approach has the same limitations as the basic RNN.
-Typically words in translation sentence pairs are somewhat aligned, as described in subSection~\ref{subsec:mt}.
+The authors of the paper recognize that this approach has the same limitations as the basic RNN.
+Typically words in translation sentence pairs are aligned, as described in Section~\ref{subsec:mt}.
 For example, when generating the first word $y_1$ the algorithm mainly needs info from $x_1$, but has more recently seen the next words in the sequence $x_2, x_3, \cdots, x_{T'}$.
-Vanishing gradients will cause the network to forget its far history, so this methods does not work well for long sentences.
-To solve this the authors have also introduced gates to RNNs.
+Vanishing gradients will cause the network to forget its far history, so based on the 7-grams claim RNNs are only effective for translating sentences shorter than 7 words.
+To solve this the authors~\citep{cho2014learning} have introduced gates to RNNs.
+To improve this gated recurrent architectures such as long short-term memory networks (LSTMs)~\citep{hochreiter1997long} and gated recurrent units (GRUs)~\citep{cho2014learning} have been developed.
 
-Gated recurrent units (GRUs) have gates which automatically learn to open and close for some hidden state.
+GRUs have gates which automatically learn to open and close for some hidden state.
 This can be visualised by looking at the information which is passed through the states.
 The information is captured in a matrix.
 In a RNN the information in the entire matrix is updated in each step.
@@ -125,9 +126,9 @@ Writing, in effect, lets the model allocate specific parts in the matrix for spe
     \label{fig:gru_subset}
 \end{figure}
 
-Long short-term memory networks (LSTMs)~\citep{hochreiter1997long} are similar to GRUs.
+LSTMs~\citep{hochreiter1997long} are similar to GRUs.
 An LSTM does not only contain update and reset gates but also uses a internal memory state.
-In practise LSTMs take longer to converge than GRUs~\citep{chung2014empirical}, but remember around 100 words where GRUs remember around 40.
+In practise LSTMs take longer to converge than GRUs~\citep{chung2014empirical}, but remember around 100 words where GRUs remember around 40 words~\citep{manning2017lectures}.
 
 \iffalse
 \subsection{Attention}
@@ -155,17 +156,17 @@ Take for example the following sentences containing the polyseme `drinking'.
 The meaning of the word `drinking' changes after reading the next words in the sentence.
 To take this into account bidirectional recurrent neural networks (BRNN) have been developed by~\citet{schuster1997}.
 A BRNN contains two separate RNNs as depicted in figure~\ref{fig:bidirectional}.
-The paper only considers RNNs, but the method can be applied to gated recurrent models as well.
+The paper only considers RNNs, but the method can be applied to gated recurrent models as well~\citep{peters2018}.
 One RNN goes through elements of the sequence from left to right and the other in the reverse direction.
 Training can be done by showing the network all words except for one.
 Both networks learn to predict the next word given a sequence of words.
 Calculating the loss is done by taking the average of the predictions of both RNNs.
 To reduce required computational power one simplification is used.
-Suppose we want to learn from the word at location $k$, $w_k$.
-A solution would be to get all the way to states $s_{k-1}$ and $s_{k+1}'$ to predict $w_k$.
-Then we update the weights and, assuming we go forward, now want to learn from $w_{k+1}$.
+Suppose we want to learn from the word at location $k$, $x_k$, and stepped through many states to reach $s_{k-1}$ and $s_{k+1}'$.
+Here we let the model make a prediction for $y_k$.
+Then we update the weights and, assuming we go forward, now want to learn from $x_{k+1}$.
 The RNN in state $s_{k-1}$ takes one step forward, but the RNN in state $s_{k+1}'$ has to restart from the last word in the sequence.
-To solve this both RNNs make one prediction for each word and the answers of both for the entire sequence are used to update the weights.
+To solve this both RNNs make one prediction for each word and the answers of both for the entire sequence are batched and used to update the weights.
 
 \begin{figure}[htbp]
     \begin{center}
@@ -178,7 +179,7 @@ To solve this both RNNs make one prediction for each word and the answers of bot
 \subsection{Convolutional neural networks}
 \label{subsec:cnn}
 % cnn intro
-Convolutional neural networks (CNNs) are an extension to vanilla neural networks which allow the model to exploit spatial locality.
+Convolutional neural networks (CNNs)~\citep{lecun1995convolutional} are an extension to vanilla neural networks which allow the model to exploit spatial locality.
 This makes the networks highly successful for image classification.
 During image classification CNNs learn a hierarchical representation of the input, according to~\citet{conneau2016very}.
 The authors claim that such an hierarchical representation would have benefits for NLP over sequential models.
@@ -186,34 +187,33 @@ One of the benefits is that the depth of the tokens, which can be chosen as word
 In CNNs this depth would be constant, which mitigates the problem of forgetting tokens seen in a less recent past.
 
 % cnn outro
-A review by~\citet{young2018recent} argues that CNNs are suited for specific NLP tasks.
-When data is scarce they are not effective.
-Foundational problems with CNNs are that they are unable to model long-distance contextual information and preserving sequential order.
-The former implies that CNNs are not well suited for question answering tasks.
+A review by~\citet{young2018recent} argues that CNNs are suited for specific NLP tasks, but when data is scarce they are not effective.
+Foundational problems with CNNs are that they are unable to model long-distance contextual information and to preserve sequential order~\citep{young2018recent}.
+The former implies that CNNs are not well suited for question answering tasks such as SQuAD~\citep{rajpurkar2018}.
 
 \subsection{ELMo}
 \label{subsec:elmo}
-Word embeddings generated by competitive models such as Word2vec~\citep{mikolov2013distributed} and GloVe~\citep{pennington2014} do not take context into account when determining word representations.
+Word embeddings generated by well-known models such as Word2vec~\citep{mikolov2013distributed} and GloVe~\citep{pennington2014} do not take context into account when determining word representations.
 For ELMo ``each token is assigned a representation that is a function of the entire input sentence''~\citep{peters2018}.
 This is done by using a bidirectional LSTM.
-To improve accuracy further the authors advise to use the deep internals of the network.
-These internals can be used for downstream models.
+Word embeddings are used only to map words to vector representations.
+To improve accuracy further, compared to traditional embeddings, the authors advise to use `the deep internals of the network'~\citep{peters2018}.
+These internals can be used for downstream models, also known as transfer learning.
 For example, the authors show that word sense disambiguation tasks are captured by higher level LSTM states.
 Part-of-speech tagging or named entity recognition are captured by lower level states.
 ELMo is not the first system to use context, but was obtaining state-of-the-art empirical results on multiple non-trivial tasks at the time of publication.
-Another reason for this is that the system is character based.
+Another reason for the good results is that the system is character based.
 Word based systems cannot generate an embedding for a word they have not seen during training (out-of-vocabulary tokens).
 In character based systems morphological clues can be used to guess the meaning of the out-of-vocabulary words.
 The system has quickly become very popular.
-Reasons for this seem to be that the system generalizes well, and is trained on a lot of data.
-The model is integrated into the AllenNLP open-source NLP library created by~\citet{gardner2017}.
+Reasons for this seem to be the high accuracy, that the system generalizes well, and that it is integrated into the AllenNLP open-source NLP library created by~\citet{gardner2017}.
 
 \subsection{Transformers}
 \label{subsec:transformers}
 The main issue in the recurrent approaches is that distant information needs to pass through all the intermediate states.
 In the basic RNN for each state all the information is updated, causing less recent information to gradually disappear.
 Gated recurrent architectures (GRUs and LSTMs) reduce this problem by being more selective when viewing or changing information.
-Transformer networks allow the model to look at previous inputs instead of previous states~\citet{vaswani2017attention}.
+Transformer networks allow the model to look at previous inputs instead of previous states~\citep{vaswani2017attention}.
 For example, suppose we are translating `impounded' in the following sentence pair from the WMT'14 English-German dataset.
 \begin{center}
     The motorcycle was seized and \underline{impounded} for three months.\\[3mm]
@@ -229,25 +229,25 @@ Transformers evade this overwriting problem by allowing the system to see all $d
 The only thing the transformer then needs to learn is where to focus its attention.
 The information of all the previous words is stored in an array of word vectors (a tensor).
 To apply focus to parts of this tensor the model learns to put a mask over the tensor.
-In the mask zeroes correspond to hidden items.
-One drawback is the required computational power.
+In the mask hidden items are multiplied by infinity~\citep{vaswani2017attention}.
+One drawback of this architecture is the required computational power.
 Suppose we only need one word from the $d$ previous words.
 The mask will hide $d-1$ words.
 This still requires to multiply the masked word vectors by infinity.
 Google argues that this is not really an issue since matrix multiplication code is highly optimized and graphic processing units (GPUs) and tensor processing units (TPUs) exist.
 So, the model can relate any dependency in constant time when the range is lower than $d$.
 This in contrast to recurrent layers which are in linear time.
-When the sequence length is greater than $d$ computations will require more than linear time.
+When the sequence length is greater than $d$, computations will require more than linear time~\citep{vaswani2017attention}.
 
 Another benefit of the transformers are that self-attention visualisations can more easily be done than in recurrent architectures.
 By self-attention the authors refer to attention that is used to generate context aware word representations.
-An example of a tranformer model correctly applying coreference resolution is presented shown in figure~\ref{fig:coreference_resolution}.
+An example of a tranformer model correctly applying coreference resolution is shown in figure~\ref{fig:coreference_resolution}.
 
 \begin{figure}[htbp]
     \begin{center}
         \includegraphics[width=\textwidth]{figures/coreference_resolution.png}
     \end{center}
-    \caption{Encoder self-attention distribution~\citep{uszkoreit2017}.}
+    \caption{Example of transformer encoder self-attention distribution~\citep{uszkoreit2017}.}
     \label{fig:coreference_resolution}
 \end{figure}
 

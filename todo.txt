@@ -1,6 +1,5 @@
 
-dubbelcheck proofread
-finish f1 formula
+read through entire thesis
 
 preliminaries
 fix improv description
@@ -18,5 +17,3 @@ insert images (increases page count ftw)
 Training data section
 Fix todos in report
 Reduce could / should
-Vanishing gradient explanation is okay, but need bit more formal. Replace ‘lets’ by ‘consider’ (colloquial phrases).
-Walk through entire report

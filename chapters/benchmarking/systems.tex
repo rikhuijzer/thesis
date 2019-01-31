@@ -1,18 +1,22 @@
 \section{Systems}
 \label{sec:systems}
 
+Two open-source systems and some cloud services are considered for the benchmark.
+The open-source systems are described in Section~\ref{subsec:rasa} and~\ref{subsec:deeppavlov}.
+Cloud services are described in Section~\ref{subsec:cloud_services}.
+
 \subsection{Rasa}
 \label{subsec:rasa}
 % introduction
-Rasa (\url{https://rasa.com/}) is an open-source system allowing users to build conversational agents.
+Rasa~\citep{bocklisch2017rasa} is an open-source system allowing users to build conversational agents.
 The systems consists of two parts, namely \textsc{rasa\_nlu} and \textsc{rasa\_core}.
-The former classifies sentences and sub-sentences.
+The former classifies sentences and subsentences.
 To train the system users can specify (hierarchical) intents, synonyms and regular expressions.
 Hierarchical intents is a recent addition which allows the system to extract multiple intents from a sentence.
 For example, it can extract `hi+book\_ticket' from
 ``Good morning.
 Can I order a ticket to London please?''.
-Regular expressions can, for example, be used to detect numbers and dates.
+Regular expressions can, for example, be used to detect numbers and dates in fixed formatting.
 The system is actively used in production.
 As a result the code is well documented and stable.
 
@@ -24,16 +28,16 @@ This part remains one of the most difficult problems for conversational agents.
 Humans tend to switch rapidly between topics in conversations.
 For example, suppose one ticket order conversation flow contains six questions to be answered by the customer.
 Customers expect to be able to switch topic during each one of these questions and then return to the flow.
-Enabling this behaviour via state machines or flowcharts is cumbersome, because the number of transitions tends to grow quickly.
+Enabling this behaviour via state machines or flowcharts is cumbersome, because the number of transitions grows quickly.
 One of the Rasa solutions is applying machine learning to let developers train dialog flows interactively.
 
 % using system
-Rasa allows the system to be used as API and `Python API'.
+Rasa can be used via the API or via the `Python API'.
 The Python API is the most efficient.
 Here users install \textsc{rasa\_nlu} in their programming environment and call functions directly.
 Depending on the used configuration a selection of dependencies have to be installed.
 The regular API advises use a Docker container.
-This is less efficient, but more modular.
+This is less efficient, but more modular and does not require to install dependencies.
 Containers are published to Docker Hub by Rasa.
 Users can pull these for free and use the newest stable configuration of choice.
 
@@ -41,7 +45,7 @@ Users can pull these for free and use the newest stable configuration of choice.
 Configurations are defined as a pipeline.
 Pipelines specify what components should be applied to sentences and in what order.
 Typical pipelines contain at least a tokenizer followed by some classifier.
-Pipelines are meant to be modified easily and are specified in yaml.
+Pipelines are meant to be modified easily and are specified using configuration files.
 In practise default pipelines often suffice for end-users.
 A back-end refers to the used intent classifier in some pipeline, for example `tensorflow'.
 Three back-ends are offered by Rasa via Docker Hub, namely \textsc{rasa-mitie}, \textsc{rasa-spacy} and \textsc{rasa-tensorflow}.
@@ -49,8 +53,8 @@ Three back-ends are offered by Rasa via Docker Hub, namely \textsc{rasa-mitie}, 
 % note-to-self: do not change MITIE to \textsc{MITIE} or \textsc{mitie} or whatever.
 Training MITIE (\url{https://github.com/mit-nlp/MITIE}) takes at least a few minutes for small datasets.
 This is caused by the fact that it is tuning hyperparameters during training.
-On two computers used for this thesis the Docker Hub image occasionally hangs on various datasets.
-\textsc{rasa-spacy} is the successor of MITIE and, unsurprisingly, based on spaCy (\url{https://spacy.io}).
+On two different computers used for this thesis the MITIE Docker Hub image occasionally hangs on various datasets.
+\textsc{rasa-spacy} is the successor of MITIE and based on spaCy~\citep{spacy2019}.
 In 2015 spaCy was in the top 1\% for accuracy and the fastest syntactic parser~\citep{choi2015depends}.
 spaCy (and by that \textsc{rasa-spacy}) uses a language model to parse text.
 It includes seven language models for which English, Spanish and French include word vectors.
