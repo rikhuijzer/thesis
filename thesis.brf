@@ -109,6 +109,7 @@
 \backcite {manning2017lectures}{{18}{3.2.3}{subsection.3.2.3}}
 \backcite {dale2018text}{{19}{3.2.3}{subsection.3.2.3}}
 \backcite {braun2017}{{21}{3.3.2}{subsection.3.3.2}}
+\backcite {braun2017}{{22}{3.3.2}{table.caption.15}}
 \backcite {braun2017}{{22}{3.4}{section.3.4}}
 \backcite {nichol2018vectors}{{22}{3.4.1}{subsection.3.4.1}}
 \backcite {braun2017}{{23}{3.4.2}{subsection.3.4.2}}
@@ -128,7 +129,7 @@
 \backcite {nichol2018reptile}{{26}{4.1.4}{subsection.4.1.4}}
 \backcite {pennington2014}{{26}{4.1.5}{subsection.4.1.5}}
 \backcite {joulin2016bag}{{26}{4.1.5}{subsection.4.1.5}}
-\backcite {cer2018universal}{{26}{4.1.5}{subsection.4.1.5}}
+\backcite {cer2018universal}{{27}{4.1.5}{subsection.4.1.5}}
 \backcite {subramanian2018learning}{{27}{4.1.5}{subsection.4.1.5}}
 \backcite {wiese2018}{{27}{4.1.5}{subsection.4.1.5}}
 \backcite {kiela2018dynamic}{{27}{4.1.5}{subsection.4.1.5}}
@@ -154,7 +155,7 @@
 \backcite {devlin2018github}{{28}{4.2.2}{subsection.4.2.2}}
 \backcite {devlin2018github}{{28}{4.2.2}{subsection.4.2.2}}
 \backcite {bajaj2018}{{28}{4.2.2}{subsection.4.2.2}}
-\backcite {dettmers2018}{{28}{4.2.2}{figure.caption.17}}
+\backcite {dettmers2018}{{29}{4.2.2}{figure.caption.17}}
 \backcite {jouppi2017}{{29}{4.2.2}{figure.caption.17}}
 \backcite {devlin2018github}{{29}{4.2.2}{figure.caption.17}}
 \backcite {devlin2018github}{{29}{4.2.2}{figure.caption.17}}

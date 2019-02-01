@@ -3,7 +3,7 @@
 
 The field of NLP is rapidly evolving due to the introduction of deep learning~\citep{cambria2014jumping}.
 Systems which obtain state of the art (SOTA) accuracy are often surpassed within a few months.
-A recent example of this is ELMo as published in March 2018~\citep{peters2018} which has been surpassed~\citep{young2018recent} by BERT on in October 2018~\citep{devlin2018}.
+A recent example of this is ELMo~\citep{peters2018} as published in March 2018 which has been surpassed~\citep{young2018recent} by BERT~\citep{devlin2018} in October 2018.
 A search is conducted to improve the accuracy of the existing systems.
 The research for this part has not been systematic.
 The method for finding an improvement is based on coming up with `novel' approaches to improve accuracy.
@@ -21,11 +21,10 @@ Another approach could be based on template responses used by customer support t
 A classifier could be trained to come up with these template responses.
 
 % semantic text similarity
-Another approach to find duplicates is using semantic text similarity (STS).
-STS is a NLP tasks focusing on finding sentences (or texts) having the same meaning.
-It is a recurring task in the SemEval workshop.
+Another approach to find duplicates is using semantic text similarity.
+It is is a NLP tasks focusing on finding sentences (or texts) having the same meaning and a recurring task in the SemEval workshop.
 Systems in this field obtain impressive results, however it would not help with the chosen task of intent classification.
-Also, intent classification is more useful for the thesis than only knowing whether two sentences are the same.
+Also, intent classification and NER extract more information from the sentence than only finding whether there is a similar sentence.
 
 \subsection{Using data}
 \label{subsec:using_data}
@@ -43,7 +42,7 @@ From this it is concluded that reinforcement learning and automatic data wrangli
 
 \subsection{Kaggle}
 \label{subsec:kaggle}
-Kaggle (\url{https://www.kaggle.com}) is a well-known site in the machine learning domain.
+Kaggle\footnote{\url{https://www.kaggle.com}} is a well-known site in the machine learning domain.
 On this site a framework exists where datasets can be published.
 The site, along other things, shows statistics, a comments section and a scoreboard.
 It is famous for hosting `competitions', where the person or team obtaining the highest accuracy for some task gets price money from the dataset hoster.
@@ -53,7 +52,7 @@ Research papers tend to focus on designing the best deep learning architectures.
 The Kaggle explanations are valuable sources for learning how to get the most out of the architectures.
 
 One such post~\citep{kumar2018} uses three embeddings, namely Glove, FastText and Paragram.
-The author argues that ``there is a good chance that they (the embeddings) capture different type of information from the data''.
+The author argues that ``there is a good chance that they [the embeddings] capture different type of information from the data''.
 This method is called boosting.
 Predictions from the embeddings are combined by taking the average score.
 A threshold is set to remove answers where the model is unsure.
@@ -85,7 +84,7 @@ More convenient would be using a model which works on all domains.
 \label{subsec:embeddings}
 Embeddings capture knowledge about language and use that for downstream tasks.
 There appears to be a consensus about the timeline of embeddings evolution.
-Glove~\citep{pennington2014} was superseded by FastText~\citep{joulin2016bag}.
+GloVe~\citep{pennington2014} was superseded by FastText~\citep{joulin2016bag}.
 The Facebook FastText embedding is aimed to be quick, allowing it to be used as a baseline.
 With 157 languages (\url{https://fasttext.cc/}) it is a mutli-lingual model.
 Another state-of-the-art and easy to implement embedding is the universal sentence encoder~\citep{cer2018universal}.

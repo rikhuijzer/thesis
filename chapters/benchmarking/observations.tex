@@ -12,27 +12,27 @@ While developing the benchmarking system, it is observed that the current implem
 The observations are as follows.
 Few datasets are publicly available.
 Current datasets are either small (AskUbuntu, Chatbot, WebApplications) or domain specific (Snips2017).
-Rasa, for example, uses `a dozen different datasets'~\citep{nichol2018vectors} for verification.
+Rasa, for example, uses ``a dozen different datasets''~\citep{nichol2018vectors} for verification.
 One possible explanation for not sharing these datasets is the sensitive nature of natural language.
 Another is that they simply not share it to have a competitive advantage.
 We also observe that dependencies require the product to be continuously maintained.
 The dependencies are mainly in the form of APIs.
 APIs are meant to be used by software and will therefore not change often.
-However, eventually they will do.
+However, eventually they will change or stop functioning.
 So, eventually the benchmarking software needs to be updated.
 Another problem is that the services which offer APIs are not free to use.
 For each system to be evaluated we need a separate API key.
 The owner of the benchmarking tool can decide to offer paid keys or let users set keys manually.
 The former might be possible by negotiations with NLU service providers which are incentivized by selling their product.
 The latter requires users to have an account for each service.
-A closed-source solution is Intento (\url{https://inten.to}).
+A closed-source solution is Intento\footnote{\url{https://inten.to}}.
 One can send data to the site via their API and they will run a benchmark on various services for a given task.
 Their `catalog' contains machine translation, intent detection, sentiment analysis, text classification, dictionaries, image tagging, optical character recognition and speech-to-text.
 The final observation for \textsc{bench} is as follows.
 When choosing a system not only the performance matters.
 One reason for this is that accuracies are volatile.
 If companies would base their decision solely on `the highest accuracy' then they would need to change system each month.
-Since companies cannot spend their time constantly switching systems they should also take other factors into account.
+Since companies can not spend their time constantly switching systems they should also take other factors into account.
 These factors can include pricing, memory usage, classification speed, privacy (whether open-source) and in-house API preferences.
 
 % summary
@@ -64,13 +64,13 @@ AskUbuntu contains 128 labeled intents and 123 labeled entities.
 So, when using micro $\text{F}_1$ on AskUbuntu the score is based somewhat equally on intents and entities.
 For WebApplications the score is based for about one thirds on intents and two thirds on entities.
 This could mean that some system has scored significantly better that others simply because it labels entities in WebApplications particularly well.
-Another reason which makes this score odd is that users interested in either intent or entity classification are not well informed.
+Another observation is that users interested in either intent or entity classification are not well informed.
 Better seems to be using macro or weighted $\text{F}_1$ and reporting separate intent and entity scores.
 Macro averaging (and by that weighted averaging) is better suited to ``get a sense of effectiveness on small classes''\citep{schutze2008introduction}.
 Rasa, for example, uses the weighted average in their evaluation according to their code on Github.
 
 % non-deterministic probalistic models, showing detailed information is misleading
-Another reason to distrust presented $\text{F}_1$ scores is the probabilistic nature of neural networks.
+Another reason for caution with regard to the presented $\text{F}_1$ scores is the probabilistic nature of neural networks.
 Although inference (classification) is deterministic, training is not.
 During training models often start with random weights.
 Random initializations can move into different local minima for the same training data.
@@ -80,5 +80,5 @@ According to a mail from the main author Rasa 0.5 with the MITIE back-end is use
 The MITIE back-end has not shown to change accuracy after re-training the model.
 Microsoft LUIS and Google Dialogflow also did not show a change in accuracy after re-training.
 So, it could be that all the systems in the benchmark were deterministic.
-Still, the problem of not considering the possibility of changing accuracy persists.
+Still, the problem of not considering the possibility of changing accuracy persists for the methodology.
 

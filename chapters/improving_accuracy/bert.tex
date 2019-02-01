@@ -58,7 +58,7 @@ Relative to the pre-training it is.
 Experiments show that fine-tuning with default hyperparameters will run out of RAM on a 16 GB RAM machine.
 Lowering the batch size reduces the memory usage, but running a few training steps still takes at least a few hours.
 
-To train the model on some tasks it is advised to run `a few epochs'~\citep{devlin2018github}.
+To train the model on some tasks it is advised to run ``a few epochs''~\citep{devlin2018github}.
 Based on the example code provided by Google researchers the number of epochs is 3 and the number of training examples is about 1000~\citep{bajaj2018}.
 So, it is advised to show the system $3000$ examples.
 For our smaller datasets of around 50 examples this means running $3000 / 50 = 60$ epochs.
@@ -100,7 +100,7 @@ According to the paper the benefit of the Transformer models is that they are hi
 Training BERT consist mainly of matrix multiplications~\citep{dettmers2018}.
 These can be done quickly and efficiently on graphic processing units (GPUs) and tensor processing units (TPUs).
 The latter are ASICs created by Google specifically to do machine learning inference~\citep{jouppi2017} and contain 64 GB of RAM~\citep{devlin2018github}.
-When using the TensorFlow implementation of BERT GPUs with 16 GB of RAM are required~\citep{devlin2018github}.
+When using the TensorFlow implementation of BERT, GPUs with 16 GB of RAM are required~\citep{devlin2018github}.
 GPU optimizations are available in the PyTorch implementation provided by~\citet{wolf2018}, but PyTorch does not support TPUs at the time of writing.
 Prices for these GPUs are at least a few thousand euros, which means most users and companies resort to cloud services.
 Google Colab~\citet{google2019colab} provides free access to a GPU and TPU instance.
@@ -113,7 +113,7 @@ Usability is hindered by the usual constraints of online Jupyter Notebook editor
 To overcome these issues most of the code is written and tested locally and pushed to a Github repository called \textsc{improv}, see Appendix~\ref{ch:improv}.
 In the Colab the code is then pulled from the repository and main functions are called.
 Using Colab has benefits as well.
-Hyperparameters and output are visible and can easily be modified in the Notebook, this eases verification.
+Hyperparameters and output are visible in one document and can easily be modified in the Notebook, this eases verification.
 Reproducibility is possible by opening the Notebook and running all cells.
 The first cell will ask to link the Colab to a Google account, make sure this account has access to a Google Cloud Bucket.
 
@@ -232,7 +232,7 @@ where `text' is passed to $C, T_1, \cdots, T_s$ and `true' to $E_{[CLS]}, E_1, \
 % In the default BERT model $[CLS]$ is passed to denote that the model is used for classification.
 The BERT tokenizer splits words which are not listed in the vocabulary corresponding to a pre-trained model.
 INTENT is capitalized to force it to be out-of-vocabulary, it is converted by BERT to [UNK].
-The goal of this is to avoid overriding the default interpretation BERT has for `intent' (or any other uncased token we choose).
+The goal of this is to avoid overriding the default interpretation the pre-trained model has for `intent' (or any other uncased token we choose).
 
 % loss function
 The NER loss function can be applied to the joint training without change.

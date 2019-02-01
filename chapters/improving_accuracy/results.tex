@@ -68,10 +68,10 @@ The model accuracy will be near zero when training on intents separately for SNI
 For Snips2017 it has been found that lowering the step size does not solve this problem, as listed in Table~\ref{tab:runs_snips}.
 % This suggests that the gradient descent does not converge because the step size is too big.
 % A bigger batch size means a more stable error gradient.
-One reason for the poor performance on intent classification only is that the model get stuck in a local minimum.
+One reason for the poor performance on intent classification only is expected to be that the model get stuck in an incorrect local minimum.
 % It might be that this caused the model to get stuck in a local minimum.
-The difference with joint training is that the joint training data is much more varied.
-Say a typical sentence contains 12 tokens.
+This might be explained by the fact that joint training examples are more varied.
+A typical sentence contains 12 tokens.
 Then a joint training batch of size 32 will contain about 3 tokens related to intents and 29 related to entities.
 For an intent training batch of size 32 it will contain 32 tokens related to intents.
 Hence, the data for the joint training is much more complex.
@@ -80,7 +80,7 @@ This seems to indicate that the joint training forces the model to learn a more 
 % closing remarks
 An important thing to note about the results is that the datasets are very small.
 One would expect that the large BERT model is better suited for datasets which contain more training examples.
-Furthermore, the experiments are based on a naive implementation.
+Furthermore, the experiments are based on a basic implementation.
 For intent the model as defined by~\citet{devlin2018github} is used.
 For named-entity recognition and joint training the model by~\citet{kyzhouhzau2018ner} is used.
 Not only the batch size but also other hyperparameters can be tuned for better results.
@@ -93,6 +93,8 @@ Lowering the former to the expected maximum number of tokens in sentences reduce
 Observe that joint training generalizes to sequential labeling and sentence classification.
 In other words, any combination of tasks where sentences are classified as well as parts of the sentence and these tasks are correlated.
 The tasks, of course, are expected to be correlated for any real-world NLP dataset.
+Also, it seems that joint training can be used for multiple sequential labeling tasks (for example, NER and part-of-speech tagging) combined with a sentence classification task.
+Further work is needed to validate this.
 
 \section{Implementation improvements}
 \label{sec:implementation_improvements}
@@ -101,7 +103,7 @@ The loss function for joint training needs to be reconsidered.
 Currently the importance of intent and all named-entities is the same, meaning one error in a intent or in a named-entity weights the same.
 It might be better for the model to have a higher importance for the intents, since the intent contains information about the entire sentence.
 Further tests are needed to see whether the increase in accuracy is significant.
-Comparing NER is currently non-trivial since the accuracy calculation is based on the tokenizer used by BERT.
+Comparing NER with a baseline is currently not possible using \textsc{bench} since the \fone score calculation is based on the tokenizer used by BERT.
 The BERT tokenizer (\textsc{FullTokenizer}) is based on the vocabulary file corresponding to the pre-trained BERT model.
 So, when trying to compare the score with, for example, Rasa one has to use the same tokenizer and vocabulary file to calculate the Rasa score.
 Better would be to use a more standard tokenizer as provided by NLTK~\citep{bird2004nltk}.
@@ -116,8 +118,9 @@ Another improvement would be setting up fine-tuning such that TensorBoard visual
 This allows users to get a better insight into the model training.
 Lastly, the code is in need of refactoring and validation.
 For example, the NER code has a distinction between X and O.
-O is used by the BIO annotation standard and X is used for positions which are not used (since the sentence is shorter than the maximum sequence length).
+O is used by the BIO annotation standard and X is used for padding (since the sentence is shorter than the maximum sequence length).
 The model in its current implementation does use X to classify tokens.
+Accuracy can be improved by simply converting all X in the output to O.
 
 % less important improvements
 Less important improvements are using conditional code to fix I-\textsc{entity} statements appearing without a B-\textsc{entity}.
