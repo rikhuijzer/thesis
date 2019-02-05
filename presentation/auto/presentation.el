@@ -22,10 +22,12 @@
    (TeX-add-symbols
     '("pblue" 1)
     '("pgreen" 1)
-    '("blue" 1)
-    '("green" 1))
+    '("demo" 1)
+    '("intent" 1)
+    '("entity" 1))
    (LaTeX-add-xcolor-definecolors
     "ao(english)"
-    "azure(colorwheel)"))
+    "azure(colorwheel)"
+    "darkgray"))
  :latex)
 
