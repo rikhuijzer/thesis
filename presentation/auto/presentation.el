@@ -18,7 +18,8 @@
     "beamer"
     "beamer10"
     "montserrat"
-    "fontenc")
+    "fontenc"
+    "graphicx")
    (TeX-add-symbols
     '("pblue" 1)
     '("pgreen" 1)
