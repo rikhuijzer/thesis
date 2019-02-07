@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex presentation"] 1549536479 "presentation.aux" "presentation.bbl" "presentation" 1549536480
+["bibtex presentation"] 1549542436 "presentation.aux" "presentation.bbl" "presentation" 1549542444
   "../references.bib" 1549272066 32189 b433d202d758441f3d552119c9ff7072 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/apacite/apacite.bst" 1480098433 141073 9d7b79dbf9d91133318126032cff8c27 ""
-  "presentation.aux" 1549536446 11013 a5e0005fabf96028bd05dc4873959335 ""
+  "presentation.aux" 1549542330 11382 2b3cb38ba5fcc32ecbeed687bd7b98c2 ""
   "presentation.bcf" 0 -1 0 ""
   (generated)
   "presentation.bbl"
   "presentation.blg"
-["pdflatex"] 1549536480 "presentation.tex" "presentation.pdf" "presentation" 1549536480
+["pdflatex"] 1549542444 "presentation.tex" "presentation.pdf" "presentation" 1549542444
   "../figures/bert_ner.png" 1545669087 75920 229ddf43e67e7f37328a970247c33961 ""
   "../figures/bert_single_sentence.png" 1545669069 76097 955187f34d8e5c6a4651eff286321bde ""
   "../figures/deeply_bidirectional.png" 1547824717 127943 dc1f1f754964d2ed72f2dd77f9e1ad6d ""
@@ -237,17 +237,17 @@
   "figures/snips_own_benchmark.png" 1549296711 90237 5cfc6fa8577582059e528abf8375eefc ""
   "figures/tiger.png" 1549373252 1558044 14661e06304c95516c48a351a33fb914 ""
   "figures/watson.png" 1549442931 146497 c6eafb6ad2645760679272f99f2c11ad ""
-  "presentation.aux" 1549536446 11013 a5e0005fabf96028bd05dc4873959335 ""
-  "presentation.bbl" 1549536480 927 3cc8526720b9f9feed4dad0ebda2f5b5 "bibtex presentation"
-  "presentation.nav" 1549536446 6602 ba80031655715ca90754af695eb48463 ""
-  "presentation.out" 1549536446 1124 a565f70dc12aab17afa3d0fab3d5b232 ""
-  "presentation.tex" 1549536479 13188 99e23c081cdcc74cd37f3a396b6a1ad3 ""
-  "presentation.toc" 1549536446 987 694b1aadbafa5e08a73d4b68da863c85 ""
+  "presentation.aux" 1549542330 11382 2b3cb38ba5fcc32ecbeed687bd7b98c2 ""
+  "presentation.bbl" 1549542436 927 3cc8526720b9f9feed4dad0ebda2f5b5 "bibtex presentation"
+  "presentation.nav" 1549542330 6862 05243aaf7ef5581e747ea03f115ccf2d ""
+  "presentation.out" 1549542330 1174 dd2baecdb09f1a217a65b4d50b69927d ""
+  "presentation.tex" 1549542436 13250 926273727a71f0ece150b012dc782a88 ""
+  "presentation.toc" 1549542330 987 694b1aadbafa5e08a73d4b68da863c85 ""
   (generated)
-  "presentation.aux"
-  "presentation.snm"
-  "presentation.pdf"
-  "presentation.toc"
-  "presentation.out"
   "presentation.log"
+  "presentation.out"
+  "presentation.snm"
+  "presentation.toc"
   "presentation.nav"
+  "presentation.aux"
+  "presentation.pdf"

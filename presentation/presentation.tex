@@ -18,6 +18,7 @@
 \usepackage[notocbib]{apacite} % This does not put the bibliography in the table of contents if it is an unnumbered section or chapter. 
 \bibliographystyle{apacite}
 \nobibintoc % only works for apacite
+\renewcommand\bibsection{\section[]{\refname}}
 
 \usepackage[defaultfam,tabular,lining]{montserrat} %% Option 'defaultfam'
 
@@ -378,6 +379,8 @@
 
         Further work: Whether accuracy improvements are significant.
     \end{frame}
+
+    \appendix
 
    \begin{frame}[allowframebreaks]{References}
         \scriptsize
