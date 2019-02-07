@@ -4,7 +4,7 @@
    (TeX-add-to-alist 'LaTeX-provided-class-options
                      '(("beamer" "pdf")))
    (TeX-add-to-alist 'LaTeX-provided-package-options
-                     '(("montserrat" "defaultfam" "tabular" "lining") ("fontenc" "T1")))
+                     '(("apacite" "notocbib") ("montserrat" "defaultfam" "tabular" "lining") ("natbib" "numbers") ("fontenc" "T1")))
    (add-to-list 'LaTeX-verbatim-environments-local "semiverbatim")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
@@ -17,7 +17,9 @@
     "latex2e"
     "beamer"
     "beamer10"
+    "apacite"
     "montserrat"
+    "natbib"
     "fontenc"
     "graphicx")
    (TeX-add-symbols
@@ -25,7 +27,10 @@
     '("pgreen" 1)
     '("demo" 1)
     '("intent" 1)
-    '("entity" 1))
+    '("entity" 1)
+    "Fontvi")
+   (LaTeX-add-bibliographies
+    "../references.bib")
    (LaTeX-add-xcolor-definecolors
     "ao(english)"
     "azure(colorwheel)"

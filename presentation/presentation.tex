@@ -15,7 +15,15 @@
 \end{frame}
 }
 
+\usepackage[notocbib]{apacite} % This does not put the bibliography in the table of contents if it is an unnumbered section or chapter. 
+\bibliographystyle{apacite}
+\nobibintoc % only works for apacite
+
 \usepackage[defaultfam,tabular,lining]{montserrat} %% Option 'defaultfam'
+
+\usepackage[numbers]{natbib}
+\newcommand\Fontvi{\fontsize{6}{7.2}\selectfont}
+
 %% only if the base font of the document is to be sans serif
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
@@ -47,11 +55,12 @@
     \subsection{Research question 1}
     \begin{frame}{Existing benchmarks}
         \begin{itemize}
-            \item Braun et al.
-            \item Snips (next slide)
-            \item Burtsev et al.
-            \item Botfuel
+            \item Braun et al.~\cite{braun2017}
+            \item Snips\footnotemark (next slide)
+            \item Burtsev et al.\footnotemark
+            \item Botfuel\footnotemark
         \end{itemize}
+        \footnotetext[1]{test}
     \end{frame}
 
     \begin{frame}{Snips entity recognition}
@@ -223,8 +232,7 @@
         \end{itemize}
         \footnotetext[1]{Steven Lott, Functional Python Programming}
       \end{frame}
-      lorem
-
+      
     \begin{frame}{Results}
         \hspace*{-6mm}
         \begin{tabular}{l c c c c}
@@ -370,4 +378,11 @@
 
         Further work: Whether accuracy improvements are significant.
     \end{frame}
+
+   \begin{frame}[allowframebreaks]{References}
+        \scriptsize
+        % \bibliographystyle{plainnat}
+        \bibliography{../references.bib}
+\end{frame}
+
 \end{document}
