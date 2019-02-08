@@ -113,19 +113,15 @@
 \headcommand {\beamer@subsectionentry {0}{5}{2}{41}{Research question 2}}
 \headcommand {\slideentry {5}{2}{1}{41/41}{Research question 2}{0}}
 \headcommand {\beamer@framepages {41}{41}}
-\headcommand {\gdef \insertmainframenumber {37}}
-\headcommand {\partentry {\translate {Appendix}}{1}}
-\headcommand {\beamer@partpages {1}{41}}
 \headcommand {\beamer@sectionpages {39}{41}}
 \headcommand {\beamer@subsectionpages {41}{41}}
-\headcommand {\beamer@appendixpages {42}}
-\headcommand {\beamer@sectionpages {42}{41}}
-\headcommand {\beamer@subsectionpages {42}{41}}
-\headcommand {\sectionentry {6}{References}{42}{References}{1}}
-\headcommand {\slideentry {6}{0}{0}{42/42}{}{1}}
+\headcommand {\sectionentry {6}{References}{42}{References}{0}}
+\headcommand {\slideentry {6}{0}{0}{42/42}{Research question 2}{0}}
 \headcommand {\beamer@framepages {42}{42}}
-\headcommand {\beamer@partpages {42}{42}}
-\headcommand {\beamer@subsectionpages {42}{42}}
-\headcommand {\beamer@sectionpages {42}{42}}
-\headcommand {\beamer@documentpages {42}}
-\headcommand {\gdef \inserttotalframenumber {38}}
+\headcommand {\slideentry {6}{0}{0}{42/43}{Research question 2}{0}}
+\headcommand {\beamer@framepages {42}{43}}
+\headcommand {\beamer@partpages {1}{43}}
+\headcommand {\beamer@subsectionpages {41}{43}}
+\headcommand {\beamer@sectionpages {39}{43}}
+\headcommand {\beamer@documentpages {43}}
+\headcommand {\gdef \inserttotalframenumber {39}}

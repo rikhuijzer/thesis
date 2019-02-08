@@ -15,6 +15,7 @@
 \end{frame}
 }
 
+% many duplicates, needs refactoring
 \usepackage[notocbib]{apacite} % This does not put the bibliography in the table of contents if it is an unnumbered section or chapter. 
 \bibliographystyle{apacite}
 \nobibintoc % only works for apacite
@@ -57,11 +58,10 @@
     \begin{frame}{Existing benchmarks}
         \begin{itemize}
             \item Braun et al.~\cite{braun2017}
-            \item Snips\footnotemark (next slide)
-            \item Burtsev et al.\footnotemark
-            \item Botfuel\footnotemark
+            \item Snips~\cite{snips2017benchmarking} (next slide)
+            \item Burtsev et al.~\cite{burtsev2018}
+            \item Botfuel~\cite{botfuel2018benchmark}
         \end{itemize}
-        \footnotetext[1]{test}
     \end{frame}
 
     \begin{frame}{Snips entity recognition}
@@ -100,12 +100,8 @@
     \subsection{Natural language processing}
     \begin{frame}{Description of NLP field}
         \begin{itemize}
-            \item Extract meaningful information from
-            \begin{itemize}
-                \item Text
-                \item Speech
-            \end{itemize}
-            \item Generate text
+            \item Extract meaningful information from text or speech
+            \item Generate text or speech
         \end{itemize}
     \end{frame}
 
@@ -128,7 +124,7 @@
             \item Statistical\\[3mm]
         \end{itemize}
         \uncover<2>{
-        Tries to capture grammar\\[3mm]
+        Tries to capture grammar\\[1mm]
         \vspace*{5mm}
         \begin{tabular}{l l}
             \textbf{Task} & \textbf{Example}\\
@@ -138,6 +134,10 @@
             Speech recognition & $P(\text{\demo{the red car}}) > P(\text{\demo{she read ar}})$
         \end{tabular}
         }
+    \end{frame}
+
+    \begin{frame}{Count-based}
+      
     \end{frame}
 
     \subsection{Deep learning}
@@ -176,7 +176,7 @@
             \textbf{Dataset} & \textbf{Train} & \textbf{Test} & \textbf{\intent{Intents}} & \textbf{\entity{Entities}}\\
             \hline
             WebApplications & 30 & 54 & 7 & 1\\
-            AskUbuntu & 53 & 109 & 4 & 3\\
+
             Chatbot & 100 & 106 & 2 & 5\\
             Snips2017 & 2100 & 700 & 7 & unknown\\
         \end{tabular}
@@ -379,8 +379,6 @@
 
         Further work: Whether accuracy improvements are significant.
     \end{frame}
-
-    \appendix
 
    \begin{frame}[allowframebreaks]{References}
         \scriptsize
