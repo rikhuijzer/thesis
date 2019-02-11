@@ -375,6 +375,11 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/montserrat/Montserrat-Bold-
 INPUT figures/tiger.png
 INPUT ./figures/tiger.png
 INPUT ./figures/tiger.png
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/montserrat/Montserrat-Regular-tlf-sc-t1.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/montserrat/Montserrat-Regular-tlf-sc-t1.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/montserrat/Montserrat-Regular-tlf-sc-t1.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/montserrat/Montserrat-Regular-tlf-sc-t1.vf
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/montserrat/Montserrat-Regular-tlf-sc-t1--base.tfm
 INPUT figures/rnn.png
 INPUT ./figures/rnn.png
 INPUT ./figures/rnn.png
@@ -414,9 +419,6 @@ INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/montserrat/Montserrat-Regula
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/montserrat/Montserrat-Regular-tlf-sc-t1--base.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/montserrat/Montserrat-Regular-tlf-t1.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/montserrat/Montserrat-Regular-tlf-t1--base.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/montserrat/Montserrat-Regular-tlf-sc-t1.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/montserrat/Montserrat-Regular-tlf-sc-t1.vf
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/montserrat/Montserrat-Regular-tlf-sc-t1--base.tfm
 INPUT presentation.toc
 INPUT presentation.toc
 INPUT ../figures/deeply_bidirectional.png

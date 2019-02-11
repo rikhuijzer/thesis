@@ -99,9 +99,10 @@
     \section{Preliminaries}
     \subsection{Natural language processing}
     \begin{frame}{Description of NLP field}
+      For text or speech:
         \begin{itemize}
-            \item Extract meaningful information from text or speech
-            \item Generate text or speech
+            \item Extract meaningful information
+            \item Generate
         \end{itemize}
     \end{frame}
 
@@ -109,23 +110,23 @@
         \begin{itemize}
             \item Machine translation
             \item Speech recognition
-            \item {\pgreen{2-3}{Named-entity recognition (NER)}}
-            \item {\pblue{3}{Intent classification}}
+            \item \uncover<2-3>{{\pgreen{2-3}{Named-entity recognition (NER)}}}
+            \item \uncover<3>{{\pblue{3}{Intent classification}}}
         \end{itemize}
         \vspace*{5mm}
         \uncover<2-3>{\demo{What is [London's](\entity{location}) weather [tomorrow](\entity{date})?}} \\[3mm]
         \uncover<3>{\demo{\intent{GetWeather}}}
     \end{frame}
+
     \begin{frame}{Language model}
+        Tries to model grammar\\[1mm]
         \begin{itemize}
             \item Rule-based
-            \end{itemize}
-        \begin{itemize}
             \item Statistical\\[3mm]
         \end{itemize}
         \uncover<2>{
-        Tries to capture grammar\\[1mm]
-        \vspace*{5mm}
+          Statistical applications:\\
+        \vspace*{3mm}
         \begin{tabular}{l l}
             \textbf{Task} & \textbf{Example}\\
             \hline
@@ -136,11 +137,6 @@
         }
     \end{frame}
 
-    \begin{frame}{Count-based}
-      
-    \end{frame}
-
-    \subsection{Deep learning}
     { % all template changes are local to this group.
     \setbeamertemplate{navigation symbols}{}
     \begin{frame}[plain]
@@ -148,6 +144,26 @@
         \includegraphics[scale=0.35]{figures/tiger.png}
     \end{frame}
     }
+
+
+    \begin{frame}{Count-based}
+      \[
+        P(\text{the car broke}) = P(\text{the}) \cdot P(\text{car} \: | \:
+        \text{the}) \cdot P(\text{broke} \: | \: \text{the car}) 
+      \]
+      \textbf{Implementation last factor}
+      \[
+        P(\text{broke} \: | \: \text{the car}) = \textsc{count}(\text{the car}) \: / \: \textsc{count}(\text{broke})
+        \]
+ \textbf{Approximation}
+ \[
+   P(\text{broke} \: | \: \text{the car}) \approx P(\text{broke} \: | \:
+   \text{car})
+ \]
+\uncover<2>{Insufficient history and not mobile-friendly}
+    \end{frame}
+
+    \subsection{Deep learning} 
 
     \begin{frame}{Recurrent neural networks}
         \includegraphics[width=\textwidth]{figures/rnn.png}
@@ -167,8 +183,16 @@
     \end{frame}
 
     \begin{frame}{Gated recurrent neural networks}
+      \begin{itemize}
+      \item Gated recurrent unit (GRU) \\[3mm]
+        \item Long short-term memory (LSTM)
+      \end{itemize}
+    \end{frame}
+    
+    \begin{frame}{Gates intuition}
         \includegraphics[height=0.9\textheight]{figures/gru.png}
     \end{frame}
+
     \section{Benchmarking}
     \subsection{Datasets}
     \begin{frame}{Overview}
@@ -228,7 +252,7 @@
     \begin{frame}{Tool: \textsc{Bench}}
         \begin{itemize}
             \item Python
-            \item Docker
+            \item Using Docker containers
             \item Not object-oriented\footnotemark
         \end{itemize}
         \footnotetext[1]{Steven Lott, Functional Python Programming}
@@ -246,6 +270,7 @@
             Rasa:0.13.7-mitie & \textsc{bench} & 0.881 & & 0.763 \\
             Rasa:0.13.8-spacy & \textsc{bench} & 0.853 & 0.981 & 0.627 \\
             Watson & \textsc{bench} & 0.881 & 0.934 & 0.831 \\
+            Dialogflow & \textsc{bench} & 0.879 & 0.986 & 0.830 \\ 
             \hline
         \end{tabular}
     \end{frame}

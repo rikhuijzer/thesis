@@ -1,0 +1,54 @@
+\message{ !name(presentation.tex)}\documentclass[pdf]{beamer}
+
+\mode<presentation>{\usetheme{Warsaw}}
+\usecolortheme{dove}
+
+% http://web.mit.edu/rsi/www/pdfs/beamer-tutorial.pdf
+% https://rohanverma.net/blog/2017/12/20/setting-up-latex-on-spacemacs/
+% begin end CTRL-c CRTL-e
+
+\AtBeginSection[]
+{
+\begin{frame}
+    \frametitle{Contents}
+    \tableofcontents[currentsection, hideothersubsections]
+\end{frame}
+}
+
+% many duplicates, needs refactoring
+\usepackage[notocbib]{apacite} % This does not put the bibliography in the table of contents if it is an unnumbered section or chapter. 
+\bibliographystyle{apacite}
+\nobibintoc % only works for apacite
+\renewcommand\bibsection{\section[]{\refname}}
+
+\usepackage[defaultfam,tabular,lining]{montserrat} %% Option 'defaultfam'
+
+\usepackage[numbers]{natbib}
+\newcommand\Fontvi{\fontsize{6}{7.2}\selectfont}
+
+%% only if the base font of the document is to be sans serif
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TOsF}\selectfont #1}}
+
+\definecolor{ao(english)}{rgb}{0.0, 0.6, 0.0} % warning: duplicate below
+\definecolor{azure(colorwheel)}{rgb}{0.0, 0.5, 1.0} % warning: duplicate below
+\definecolor{darkgray}{rgb}{0.4, 0.4, 0.4}
+\newcommand{\entity}[1]{\textcolor{ao(english)}{#1}}
+\newcommand{\intent}[1]{\textcolor{azure(colorwheel)}{#1}}
+\newcommand{\demo}[1]{\textit{\textcolor{darkgray}{#1}}}
+
+\newcommand{\pgreen}[1]{\color<#1>[rgb]{0.0, 0.6. 0.0}}
+\newcommand{\pblue}[1]{\color<#1>[rgb]{0.0, 0.6, 1.0}}
+
+\title{Automatically responding to customers}
+\begin{document}
+
+\message{ !name(presentation.tex) !offset(138) }
+ 
+    \end{frame}
+    
+    \begin{frame}{
+\message{ !name(presentation.tex) !offset(356) }
+
+\end{document}
