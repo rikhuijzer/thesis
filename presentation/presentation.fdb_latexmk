@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex presentation"] 1549967596 "presentation.aux" "presentation.bbl" "presentation" 1549967672
+["bibtex presentation"] 1549984469 "presentation.aux" "presentation.bbl" "presentation" 1549984725
   "../references.bib" 1549967473 32364 dfaa8952057f359bd0471ba3cd2b8213 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/apacite/apacite.bst" 1480098433 141073 9d7b79dbf9d91133318126032cff8c27 ""
-  "presentation.aux" 1549967599 12133 72184cd5d9d0e09e9b231ded42f995b2 ""
+  "presentation.aux" 1549984675 12266 195761d372ab7faf463a6c16ce4ab3e0 ""
   "presentation.bcf" 0 -1 0 ""
   (generated)
-  "presentation.blg"
   "presentation.bbl"
-["pdflatex"] 1549967672 "presentation.tex" "presentation.pdf" "presentation" 1549967672
+  "presentation.blg"
+["pdflatex"] 1549984725 "presentation.tex" "presentation.pdf" "presentation" 1549984725
   "../figures/bert_ner.png" 1545669087 75920 229ddf43e67e7f37328a970247c33961 ""
   "../figures/bert_single_sentence.png" 1545669069 76097 955187f34d8e5c6a4651eff286321bde ""
   "../figures/deeply_bidirectional.png" 1547824717 127943 dc1f1f754964d2ed72f2dd77f9e1ad6d ""
@@ -241,17 +241,17 @@
   "figures/snips_own_benchmark.png" 1549296711 90237 5cfc6fa8577582059e528abf8375eefc ""
   "figures/tiger.png" 1549373252 1558044 14661e06304c95516c48a351a33fb914 ""
   "figures/watson.png" 1549442931 146497 c6eafb6ad2645760679272f99f2c11ad ""
-  "presentation.aux" 1549967599 12133 72184cd5d9d0e09e9b231ded42f995b2 ""
-  "presentation.bbl" 1549967596 3419 8a915a8caf2ac1fd6f381af84533e1c4 "bibtex presentation"
-  "presentation.nav" 1549967599 7077 e0394e555ad44e19b32378469a0ebb4e ""
-  "presentation.out" 1549967599 1174 6278fc0de38eba03886600105c24387f ""
-  "presentation.tex" 1549967672 14179 4c54403aa6c4f77ec7d54cb8a105018c ""
-  "presentation.toc" 1549967599 986 83d969d2198c5daaf00d5884f7cf6435 ""
+  "presentation.aux" 1549984675 12266 195761d372ab7faf463a6c16ce4ab3e0 ""
+  "presentation.bbl" 1549984470 3419 8a915a8caf2ac1fd6f381af84533e1c4 "bibtex presentation"
+  "presentation.nav" 1549984675 7173 4704268b05c8ca267954bc257fdbecbf ""
+  "presentation.out" 1549984675 1174 d45adff5fc7de2eeaedd7d5e0365ebab ""
+  "presentation.tex" 1549984725 14515 e3fa83d663ffc188a7cb25ffc75129fd ""
+  "presentation.toc" 1549984675 987 429ef14a951c9f4dcaa4f0888e493341 ""
   (generated)
-  "presentation.log"
-  "presentation.aux"
+  "presentation.snm"
   "presentation.toc"
   "presentation.pdf"
-  "presentation.snm"
-  "presentation.nav"
+  "presentation.log"
+  "presentation.aux"
   "presentation.out"
+  "presentation.nav"
