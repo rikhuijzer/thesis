@@ -64,7 +64,7 @@
         \end{itemize}
     \end{frame}
 
-    \begin{frame}{Snips entity recognition}
+    \begin{frame}{Snips named-entity recognition (NER)}
         \begin{center}
             \includegraphics[width=\textwidth]{figures/snips_ner.png}
         \end{center}
@@ -79,14 +79,11 @@
     \begin{frame}{Question and goal}
         \begin{itemize}
             \item Can an open-source NLU benchmarking tool be created?
-            \item Develop such a tool.
+            \item Develop such a tool
         \end{itemize}
     \end{frame}
 
     \subsection{Research question 2}
-    \begin{frame}{Improving accuracy}
-        How hard can it be?
-    \end{frame}
 
     \begin{frame}{Question and goal}
         \begin{itemize}
@@ -110,7 +107,7 @@
         \begin{itemize}
             \item Machine translation
             \item Speech recognition
-            \item \uncover<2-3>{{\pgreen{2-3}{Named-entity recognition (NER)}}}
+            \item \uncover<2-3>{{\pgreen{2-3}{Named-entity recognition}}}
             \item \uncover<3>{{\pblue{3}{Intent classification}}}
         \end{itemize}
         \vspace*{5mm}
@@ -118,8 +115,8 @@
         \uncover<3>{\demo{\intent{GetWeather}}}
     \end{frame}
 
-    \begin{frame}{Language model}
-        Tries to model grammar\\[1mm]
+    \begin{frame}{Language models}
+        Try to model grammar\\[1mm]
         \begin{itemize}
             \item Rule-based
             \item Statistical\\[3mm]
@@ -160,7 +157,7 @@
    P(\text{broke} \: | \: \text{the car}) \approx P(\text{broke} \: | \:
    \text{car})
  \]
-\uncover<2>{Insufficient history and not mobile-friendly}
+\uncover<2>{Insufficient history; not mobile-friendly}
     \end{frame}
 
     \subsection{Deep learning} 
@@ -200,7 +197,7 @@
             \textbf{Dataset} & \textbf{Train} & \textbf{Test} & \textbf{\intent{Intents}} & \textbf{\entity{Entities}}\\
             \hline
             WebApplications & 30 & 54 & 7 & 1\\
-
+            AskUbuntu & 53 & 109 & 4 & 3\\
             Chatbot & 100 & 106 & 2 & 5\\
             Snips2017 & 2100 & 700 & 7 & unknown\\
         \end{tabular}
@@ -252,7 +249,8 @@
     \begin{frame}{Tool: \textsc{Bench}}
         \begin{itemize}
             \item Python
-            \item Using Docker containers
+            \item Docker containers
+            \item API calls
             \item Not object-oriented\footnotemark
         \end{itemize}
         \footnotetext[1]{Steven Lott, Functional Python Programming}
@@ -285,7 +283,7 @@
 
             \item Transformer (less sequential and $\mathcal{O} (1)$ history)
             \item Pre-training
-            \item Deep bidirectionality
+            \item Deep bidirectionality (next slide)
         \end{itemize}
     \end{frame}
 
@@ -301,19 +299,6 @@
     \end{frame}
 
     \subsection{Training}
-    \begin{frame}{Single sentence classification}
-        \begin{columns}
-            \column{0.7\textwidth}
-            \begin{center}
-                \includegraphics[height=0.87\textheight]{../figures/bert_single_sentence.png}
-            \end{center}
-            \column{0.3\textwidth}
-            \begin{itemize}
-                \item Training time: 1.5 days
-                \item Occasional near zero accuracy
-            \end{itemize}
-        \end{columns}
-    \end{frame}
 
     \begin{frame}{Sequential labelling}
         \vspace*{-1cm}
@@ -329,8 +314,22 @@
         \end{columns}
     \end{frame}
 
+    \begin{frame}{Single sentence classification}
+        \begin{columns}
+            \column{0.7\textwidth}
+            \begin{center}
+                \includegraphics[height=0.87\textheight]{../figures/bert_single_sentence.png}
+            \end{center}
+            \column{0.3\textwidth}
+            \begin{itemize}
+                \item Training time: Many hours on CPU
+                \item Occasional near zero accuracy
+            \end{itemize}
+        \end{columns}
+    \end{frame}
+
     \subsection{Joint training}
-    \begin{frame}{Intuition}
+    \begin{frame}{Intuition for intent classification}
         \intent{GetWeather}: \\[5mm]
 
         \demo{Will it rain in \entity{London} \entity{tomorrow}?}  \\
@@ -370,10 +369,10 @@
             \item Code validation
             \item Loss function
             \item Entities baseline comparison
-            \item Datasets
-            \item `Mobile friendly' transformer\footnotemark
+            \item More datasets
+            \item Evaluate newer architectures, such as evolved (`mobile-friendly') transformer~\cite{so2019evolved}
         \end{itemize}
-        \footnotetext[2]{So et al., The Evolved Transformer (30 jan 2019)}
+        % \footnotetext[2]{So et al., The Evolved Transformer (30 jan 2019)}
     \end{frame}
 
     \section{Conclusions}
@@ -405,6 +404,8 @@
         Further work: Whether accuracy improvements are significant.
     \end{frame}
 
+    \appendix % this one solves the references being displayed on top of slides
+    
    \begin{frame}[allowframebreaks]{References}
         \scriptsize
         % \bibliographystyle{plainnat}

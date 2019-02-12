@@ -424,12 +424,12 @@ INPUT presentation.toc
 INPUT ../figures/deeply_bidirectional.png
 INPUT ../figures/deeply_bidirectional.png
 INPUT ../figures/deeply_bidirectional.png
-INPUT ../figures/bert_single_sentence.png
-INPUT ../figures/bert_single_sentence.png
-INPUT ../figures/bert_single_sentence.png
 INPUT ../figures/bert_ner.png
 INPUT ../figures/bert_ner.png
 INPUT ../figures/bert_ner.png
+INPUT ../figures/bert_single_sentence.png
+INPUT ../figures/bert_single_sentence.png
+INPUT ../figures/bert_single_sentence.png
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmss12.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmss10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
