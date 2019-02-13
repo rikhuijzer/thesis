@@ -118,8 +118,8 @@ For WebApplications, AskUbuntu, Chatbot and Snips2017 see respectively Table~\re
         intent & 8 & 2 & \scit{6.14}{-1} & \scit{1.65}{0} & \scit{1.92}{0} & 0.036 & \\
         intent & 8 & 3 & \scit{3.27}{0} & \scit{4.60}{-1} & \scit{2.37}{0} & 0.036 & \\
         \\
-        & & & & 1000 & 1500 & 1500 & 1500 \\
-        & & & & steps & steps & steps & steps\\
+        & & & 500 & 1000 & 1500 & 1500 & 1500 \\
+        & & & steps & steps & steps & steps & steps\\
         \hline
         intent & 32 & 1 & & \scit{1.93}{1} & \scit{2.25}{1} & 0.036 &  \\
         intent & 32 & 2 & & \scit{2.05}{0} & \scit{1.98}{0} & 0.036 &  \\
@@ -132,8 +132,15 @@ For WebApplications, AskUbuntu, Chatbot and Snips2017 see respectively Table~\re
         joint & 32 & 1 & & \scit{2.47}{-3} & \scit{1.17}{0} & 0.979 & 0.859 \\
         joint & 32 & 2 & & \scit{5.50}{0} & \scit{1.17}{0} & 0.955 & 0.861 \\
         joint & 32 & 3 & & \scit{3.64}{-3} & \scit{3.08}{-3} & 0.996 & 0.861 \\
+      \\
+      joint* & 32 & 1 & \scit{1.5}{0} & \scit{1.4}{-3} & \scit{4.7}{-1} & 0.996 & 0.860 \\
+      joint* & 32 & 2 & \scit{3.9}{-1} & \scit{4.1}{-3} & \scit{3.3}{-3} & 0.949 & 0.860 \\
+      joint* & 32 & 3 & \scit{1.7}{1} & \scit{1.5}{-3} & \scit{1.6}{-3} & 0.994 & 0.863 \\
     \end{tabular}
-    \caption{Training loss, intent classification score and NER score for Snips2017.
+    \caption{
+      *Fix: Decapitalized dataset.
+      Training loss, intent classification score and NER score for
+      Snips2017. 
     Loss is determined using the training set.
     Both scores are weighted F1 as determined using the evaluation set.
     Source: \url{https://github.com/rikhuijzer/improv/tree/master/runs/snips2017}.}
